@@ -1,0 +1,83 @@
+-- AFTER INSERT ON `retour`
+CREATE DEFINER=`root`@`localhost` TRIGGER `sae4`.`retour_AFTER_INSERT` AFTER INSERT ON `retour` FOR EACH ROW
+BEGIN
+insert into audit (user_id , time_date ,event_nom ,table_affecte ,detaille) values 
+(user() , now() , 'ajouter un retour','retour',concat(' id_retour : ',new.id_retour," , date_achat : ",new.date_achat ,' , date_envoi : ',new.date_envoi,
+ ' , date_remboursement : ',new.date_remboursement 
+,' , id_client : ',new.id_client," , id_ens : ",new.id_ens,' , id_statut : ',new.id_statut)   );
+END
+
+
+
+-- AFTER UPDATE ON `retour`
+CREATE DEFINER=`root`@`localhost` TRIGGER `sae4`.`retour_AFTER_UPDATE` AFTER UPDATE ON `retour` FOR EACH ROW
+BEGIN
+declare res varchar(255);
+declare v_date_achat varchar(100);
+declare v_date_envoi varchar(100);
+declare v_date_remboursement varchar(100);
+declare v_id_client varchar(100);
+declare v_id_ens varchar(100);
+declare v_id_statut varchar(100);
+if(old.date_achat != new.date_achat)then
+set v_date_achat := concat("date_achat : ",old.date_achat ," => ",new.date_achat,"  ");
+else set v_date_achat := "";
+end if;
+if(old.date_envoi != new.date_envoi)then
+set v_date_envoi := concat("date_envoi : ",old.date_envoi ," => ",new.date_envoi,"  ");
+else set v_date_envoi := "";
+end if;
+if(old.date_remboursement != new.date_remboursement)then
+set v_date_remboursement := concat("date_remboursement : ",old.date_remboursement ," => ",new.date_remboursement,"  ");
+else set v_date_remboursement := "";
+end if;
+if(old.id_client != new.id_client)then
+set v_id_client := concat("id_client : " ,old.id_client ," => ",new.id_client,"  ");
+else set v_id_client := "";
+end if;
+if(old.id_ens != new.id_ens)then
+set v_id_ens := concat("id_ens : ",old.id_ens ," => ",new.id_ens,"  ");
+else set v_id_ens := "";
+end if;
+if(old.id_statut != new.id_statut)then
+set v_id_statut := concat("id_statut : ",old.id_statut ," => ",new.id_statut,"  ");
+else set v_id_statut := "";
+end if;
+set res := concat("id_retour : ",old.id_retour,"   " ,v_date_achat,v_date_envoi,v_date_remboursement,v_id_client,v_id_ens,v_id_statut);
+
+insert into audit (user_id , time_date ,event_nom ,table_affecte ,detaille) values 
+(user() , now() , 'update un retour','retour',res );
+
+END
+
+
+
+-- AFTER DELETE ON `retour`
+CREATE DEFINER=`root`@`localhost` TRIGGER `sae4`.`retour_AFTER_DELETE` AFTER DELETE ON `retour` FOR EACH ROW
+BEGIN
+insert into audit (user_id , time_date ,event_nom ,table_affecte ,detaille) values 
+(user() , now() , 'delete un retour','retour',concat(' id_retour : ',old.id_retour," , date_achat : ",old.date_achat ,' , date_envoi : ',old.date_envoi,
+ ' , date_remboursement : ',old.date_remboursement 
+,' , id_client : ',old.id_client," , id_ens : ",old.id_ens,' , id_statut : ',old.id_statut)   );
+END
+
+
+
+--  AFTER INSERT ON `client`
+CREATE DEFINER=`root`@`localhost` TRIGGER `sae4`.`client_AFTER_INSERT` AFTER INSERT ON `client` FOR EACH ROW
+BEGIN
+insert into audit (user_id , time_date ,event_nom ,table_affecte ,detaille) values 
+(user() , now() , 'creer utilisteur ','client',concat(' id : ',new.id_client," , nom : ",new.nom ,' , prenom : ',new.prenom,
+ ' , maiss : ',new.naissance 
+,' , email : ',new.email," , tel : ",new.tel,' , address : ',new.address)   );
+END
+
+
+
+-- AFTER DELETE ON `client`
+CREATE DEFINER=`root`@`localhost` TRIGGER `sae4`.`client_AFTER_DELETE` AFTER DELETE ON `client` FOR EACH ROW
+BEGIN
+insert into audit (user_id , time_date ,event_nom ,table_affecte ,detaille) values 
+(user() , now() , 'delete un utilisateur','client',concat(' id : ',old.id_client," , nom : ",old.nom ,' , prenom : ',old.prenom 
+,' , email : ',old.email," , tel : ",old.tel)   );
+END

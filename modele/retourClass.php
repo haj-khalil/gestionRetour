@@ -1,0 +1,55 @@
+<?php
+    if(!class_exists('Retour')){
+		class Retour
+	{
+		private $id_retour;
+		private $date_achat;
+		private $date_envoi;
+        private $date_remboursement;
+        private $id_client;
+        private $id_ens;
+        private $id_statut;
+		
+
+
+		function __construct( int $id_retour=0,
+		string $date_achat='', string $date_envoi='', 
+		string $date_remboursement='', string $id_client = '', 
+		string $id_ens = '', string $id_statut = '') {
+
+			$this->id_retour	    	=$id_retour;
+			$this->date_achat		=$date_achat;
+
+			$this->date_envoi	=$date_envoi;
+            $this->date_remboursement	=$date_remboursement;
+            $this->id_client	=$id_client;
+            $this->id_ens	=$id_ens;
+            $this->id_statut	=$id_statut;
+            
+		}
+
+		function getId_retour	    	() : int			    { return $this->id_retour;		        	}
+		function setId_retour	    	(int $id_retour)			{ $this->id_retour=$id_retour;	        		}
+		
+		function getDate_achat 	() : string			    { return $this->date_achat; 			}
+		function setDate_achat	(string $date_achat)		{ $this->date_achat=$date_achat; 			}
+		
+		function getDate_envoi	() : string				{ return $this->date_envoi; 		}   
+		function setDate_envoi	(string $date_envoi)	{ $this->date_envoi=$date_envoi;  }		
+        
+		function getDate_remboursement	() : string		{ return $this->date_remboursement; 		}   
+		function setDate_remboursement	(string $date_remboursement)
+		{ $this->date_remboursement=$date_remboursement;  }		
+		
+		function getId_client	() : int				{ return $this->id_client; 		}   
+		function setId_client	(int $id_client)	{ $this->id_client=$id_client;  }
+				
+		function getId_ens	() : int				{ return $this->id_ens; 		}   
+		function setId_ens	(int $id_ens)	{ $this->id_ens=$id_ens;  }		
+		
+		function getId_statut	() : int				{ return $this->id_statut; 		}   
+		function setId_statut	(int $id_statut)	{ $this->id_statut=$id_statut;  }		
+	
+	}
+}
+?>
