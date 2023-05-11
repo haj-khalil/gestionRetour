@@ -19,6 +19,11 @@ $RetourByArticleDAO=new RetourByArticleDAO;
 $lesHistoires=$RetourByArticleDAO->getHistoire();
 }
 
+if ($_SESSION['login'] == 'root') {
+$RetourByArticleDAO=new RetourByArticleDAO;
+$lesHistoires=$RetourByArticleDAO->getHistoire();
+}
+
 
 $lesRows = [];
 if($lesHistoires != []){
