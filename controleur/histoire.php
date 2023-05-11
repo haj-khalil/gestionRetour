@@ -13,7 +13,6 @@ $RetourByArticleDAO=new RetourByArticleDAO;
 $lesHistoires=$RetourByArticleDAO->getHistoire();
 }
 
-// kfokd,fknkegkendfhtfrhtyklihklgyjgfydkty
 
 
 $lesRows = [];
