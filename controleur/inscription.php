@@ -1,21 +1,21 @@
-
 <?php
 session_start();
 require_once('../modele/clientDAO.php');
 $messageInscription=false;
 $clientDAO = new ClientDAO();
 
-$valider     = (isset($_POST['valider']) ? $_POST['valider'] : null);
+$valider = (isset($_POST['valider']) ? $_POST['valider'] : null);
 if ($valider) {
-    $nom     = (isset($_POST['nom']) ? strip_tags(trim($_POST['nom'])) : null);
-    $prenom     = (isset($_POST['prenom']) ? strip_tags(trim($_POST['prenom'])) : null);
-    $email     = (isset($_POST['email']) ? strip_tags(trim($_POST['email'])) : null);
-    $address     = (isset($_POST['address']) ? strip_tags(trim($_POST['address'])) : null);
-    $select_paye     = (isset($_POST['select_paye']) ? strip_tags(trim($_POST['select_paye'])) : null);
-    $tel     = (isset($_POST['tel']) ? trim($_POST['tel']) : null);
-    $mdp     = (isset($_POST['mdp']) ? password_hash(strip_tags(trim($_POST['mdp'])), PASSWORD_ARGON2I) : null); ///*
-    $mdpRep    = (isset($_POST['mdpRep']) ? strip_tags(trim($_POST['mdpRep'])) : null); ///*
-    $naissance     = (isset($_POST['naissance']) ? $_POST['naissance'] : null);
+    $nom = (isset($_POST['nom']) ? htmlspecialchars(trim($_POST['nom'])) : null);
+    $prenom = (isset($_POST['prenom']) ? htmlspecialchars(trim($_POST['prenom'])) : null);
+    $email = (isset($_POST['email']) ? htmlspecialchars(trim($_POST['email'])) : null);
+    $address = (isset($_POST['address']) ? htmlspecialchars(trim($_POST['address'])) : null);
+    $select_paye = (isset($_POST['select_paye']) ? htmlspecialchars(trim($_POST['select_paye'])) : null);
+    $tel = (isset($_POST['tel']) ? trim($_POST['tel']) : null);
+    
+    $mdp = (isset($_POST['mdp']) ? password_hash(htmlspecialchars(trim($_POST['mdp'])), PASSWORD_BCRYPT) : null); 
+    $mdpRep = (isset($_POST['mdpRep']) ? htmlspecialchars(trim($_POST['mdpRep'])) : null); 
+    $naissance = (isset($_POST['naissance']) ? $_POST['naissance'] : null);
     
     $valeurs = [
         'prenom' => null,
@@ -34,34 +34,35 @@ if ($valider) {
 
     if ($nom != null && strlen($nom) > 1) {
         $valeurs['nom'] = trim($nom);
-    } else $erreurs['nom'] = 'nom invalid';
+    } else $erreurs['nom'] = 'Nom invalide.';
 
 
     if ($prenom != null  && strlen($prenom) > 1) {
         $valeurs['prenom'] = $prenom;
-    } else $erreurs['prenom'] = ' prenom invalid';
+    } else $erreurs['prenom'] = 'Prénom invalide.';
 
 
-    if ($address != null  && !empty($address)&& $select_paye != null ) {
+    if ($address != null  && !empty($address)) {
         $valeurs['address'] = $address;
         $valeurs['select_paye'] = $select_paye;
-    } else $erreurs['address'] = 'address or select_paye invalid';
+    } else $erreurs['address'] = 'Adresse ou pays invalide.';
 
 
     if ($email != null && filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $clientDAO = new ClientDAO();
         $existeEmail = $clientDAO->existeEmail($email);
         if ($existeEmail) {
-            $erreurs['email'] = 'email déjà existant ! ';
+            $erreurs['email'] = 'L\'adresse e-mail est déjà utilisée.';
         } else $valeurs['email'] = $email;
-    } else $erreurs['email'] = 'Il faudrait entrer l"adresse e-mail.';
+    } else $erreurs['email'] = 'Il faut entrer une adresse e-mail valide.';
 
 
     if ($tel != null) {
         $existeTel = $clientDAO->existeTel($tel);
         if ($existeTel) {
-            $erreurs['tel'] = 'le numéro de téléphone saisie déjà existant ! ';
-        } elseif (strlen($tel) != 10 || (substr(strval($tel),0,2)!='07'&& substr(strval($tel),0,2)!='06')) {
+            $erreurs['tel'] = 'Le numéro de téléphone est déjà utilisé.';
+        } elseif (strlen($tel) != 10 || (substr(strval($tel),0,2)!='07'&& substr(strval($tel),0,2)
+!='07'&& substr(strval($tel),0,2)!='06')) {
             $erreurs['tel'] = ' le numéro de téléphone n\'est pas valide   ! ';
         } else $valeurs['tel'] = $tel;
     } else $erreurs['tel'] = 'il faut entrer le tel';

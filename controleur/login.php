@@ -17,21 +17,12 @@ function existeUtilisateur(array $identifiants): bool
             FROM  client
             WHERE email = :login";
   $res  = $db->execSQL($req, [':login' => $login]);
-
-
-
-
   if (isset($res[0]["mdp"])) {
     if (password_verify($mdpass, $res[0]["mdp"])) {
       $_SESSION['id']=$res[0]["id_client"];
       $ok = true;
     }
   }
-
-
-
-
-
   if ($login === 'root' && $mdpass === 'root') {
     $ok = true;
   }

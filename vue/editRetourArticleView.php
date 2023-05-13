@@ -67,9 +67,9 @@
 
     <section class="mb-3">
       <div class="col-md-6">
-        <input type="submit" id="valider" name="valider" class="btn btn-primary" value="Valider" />
+        <input type="submit" id="validers" name="validers" class="btn btn-primary" value="Valider" />
         &emsp;
-        <input type="submit" id="annuler" name="annuler" class="btn btn-secondary" value="Annuler" />
+        <input type="submit" id="annulers" name="annulers" class="btn btn-secondary" value="Annuler" />
     </div>
 </section>
 

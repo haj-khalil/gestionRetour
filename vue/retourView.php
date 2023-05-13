@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <section class="container my -10" style=" margin-bottom: 50px;">
     <?php require_once('../vue/header.php'); ?>
 </section>
@@ -126,64 +126,4 @@
 
 
 <?php require_once("../vue/footer.php") ?>
-=======
-<html>
 
-<head>
-    <meta charset="utf-8">
-    <title>Liste des infractions</title>
-    <link rel="stylesheet" href="../vue/style/style3.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-</head>
-
-<body>
-    <form method="GET" action="../controleur/retourAdmin.php" name="add">
-        <?php require_once('../vue/header.php'); ?>
-
-        <section>
-            <label></label>
-            <h1>Liste des Retours</h1>
-
-        </section>
-
-        <section>
-            <label></label>
-            <table border="1" class='table_salle'>
-                <tr>
-                    <th onclick="">Numéro Retour</th>
-                    <th>entreprise</th>
-                    <th>date_achat</th>
-                    <th>lable</th>
-                    <th>Date_envoie</th>
-                    <th>nom</th>
-                    <th>prenom</th>
-                    <th>Montant Total</th>
-                    <th>les articles</th>
-                    <th>supprimer</th>
-                    <th>modifier</th>
-                </tr>
-
-                <?php
-                foreach ($lignes as $ligne) {
-                    echo $ligne; // tableau de lignes à créer dans /controleur/salles.php
-                }
-                ?>
-            </table>
-            <style>
-                .article {
-                    background-color: blanchedalmond;
-                }
-
-                #img_x {
-                    width: 24px;
-                    height: 24px;
-                }
-            </style>
-        </section>
-        <section>
-        </section>
-        <script src="../vue/style.js"></script>
-</body>
-
-</html>
->>>>>>> f79f36075427c21767750931446a43cea51ca600
