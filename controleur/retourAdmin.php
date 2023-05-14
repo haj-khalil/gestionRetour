@@ -4,12 +4,16 @@ require_once('../modele/retourByArticleDAO.php');
 require_once("../modele/statutDAO.php");
 
 session_start();
+if ((time() - $_SESSION['last_login']) > 5 && $_SESSION['login'] != "root") {
+	echo '<h2 style=" text-align: center;">session time est terminé !</h2>';
+	header("refresh:3;url=login.php");
+} else if (isset($_SESSION['login'])) {
 
 //n
-$op 	= (isset($_GET['op'])?$_GET['op']:null);
-$suppr = ($op == 'sA');
- $id_article = isset($_GET['id_article']) ? $_GET['id_article'] : 1;
-if ($suppr) {
+    $op 	= (isset($_GET['op'])?$_GET['op']:null);
+    $suppr = ($op == 'sA');
+    $id_article = isset($_GET['id_article']) ? $_GET['id_article'] : 1;
+    if ($suppr) {
 
     // suppression
 	require_once('../modele/articleDAO.php');
@@ -18,10 +22,6 @@ if ($suppr) {
 }
 //n
 
-if ((time() - $_SESSION['last_login']) > 5 && $_SESSION['login'] != "root") {
-	echo '<h2 style=" text-align: center;">session time est terminé !</h2>';
-	header("refresh:3;url=login.php");
-} else if (isset($_SESSION['login'])) {
 
 
 
@@ -30,17 +30,16 @@ if ((time() - $_SESSION['last_login']) > 5 && $_SESSION['login'] != "root") {
 		$isAdmin = true;
 	} else $isAdmin = false;
 
-
-
 	$id                     = isset($_GET['id']) ? $_GET['id'] : null;
 	$input_id_statut        = isset($_GET['select_id_statut']) ? $_GET['select_id_statut'] : null;
 	$date_remboursement     = isset($_GET['date_remboursement']) ? $_GET['date_remboursement'] : null;
 	$updateStatut           = isset($_GET['updateStatut']) ? $_GET['updateStatut'] : null;
 	$id_retour_modif_statut = isset($_GET['id_retour_modif_statut']) ? $_GET['id_retour_modif_statut'] : 2;
+    $adminRechercheClientRetour = isset($_GET['adminRechercheClientRetour']) ? $_GET['adminRechercheClientRetour'] : null;
+    $EmailClient            = isset($_GET['EmailClient']) ? $_GET['EmailClient'] : null;
 	$op                     = isset($_GET['op']) ? $_GET['op'] : null;
-
-	$supp       = ($op == 's');
-	$detaille   = ($op == 'd');
+	$supp                   = ($op == 's');
+	$detaille               = ($op == 'd');
 
 	// effacer un retour si op==s et id_retour bien forni
 	$retourByArticleDAO = new RetourByArticleDAO();
@@ -60,7 +59,15 @@ if ((time() - $_SESSION['last_login']) > 5 && $_SESSION['login'] != "root") {
 		$lesArticles = $retourByArticleDAO->getAllArticleByIdRetour($id);
 	}
 
-
+   // definir ce qu'on va afficher soit isadmin et EmailClient not null il affiche les retour de ce client si EmailClient est null il affiche tous les retour, 
+	// si no il affiche uniquement les retours de l'utilisateur  
+	if ($isAdmin) {
+		if ($EmailClient) {
+			$lesRetours = $retourByArticleDAO->infoRetour($EmailClient);
+		} else $lesRetours = $retourByArticleDAO->getAll();
+	} else {
+		$lesRetours = $retourByArticleDAO->infoRetour($_SESSION['login']);
+	}
 	
 
 // prepare les infos des articles  
@@ -94,7 +101,7 @@ if ((time() - $_SESSION['last_login']) > 5 && $_SESSION['login'] != "root") {
 			$ch .= '<td class="article"><a href="../controleur/editArticle.php?op=d&id_article='
 		. urlencode($uneArticle['id_article']) .
 		'"><img src="../vue/style/modification.png"></a></td>';
-		 
+		
 
 		$ch .= '<td class="article"><a onclick="confirmerAvantEffacer()" id="supp"
 		href="../controleur/retourAdmin.php?op=sA&id_article='
@@ -136,11 +143,12 @@ if ((time() - $_SESSION['last_login']) > 5 && $_SESSION['login'] != "root") {
 
 		$ch .= '<td><input type="button" onclick="getIdRetour(this.value)" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"
 	    " value=' . urlencode($unRetour['id_retour']) . '></input></td>';
-//nadime
-$ch .= '<td ><a href="../controleur/editArticle.php?op=d&id_retour='
-. urlencode($unRetour['id_retour']) .
-'"><img src="../vue/style/ajout.png"></a></td>';
-//nadime
+        
+        //nadime
+        $ch .= '<td ><a href="../controleur/editArticle.php?op=d&id_retour='
+        . urlencode($unRetour['id_retour']) .
+        '"><img src="../vue/style/ajout.png"></a></td>';
+        //nadime
 		$lignes[] = "<tr>$ch</tr>";
 
 		// il affiche les detaille de un retour si op==d 

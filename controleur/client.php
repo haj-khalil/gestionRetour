@@ -29,6 +29,9 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
 			$ch .= '<td>' . $unClient->getEmail() . '</td>';
 			$ch .= '<td>' . $unClient->getAddress() . '</td>';
 			$ch .= '<td>' . $unClient->getTel() . '</td>';
+            $ch .= '<td><a href="../controleur/retourAdmin.php?EmailClient='
+			.  $unClient->getEmail()
+			. '"><img src="../vue/style/visu.png"></a></td>';
 
 			$lignes[] = "<tr>$ch</tr>";
 		}

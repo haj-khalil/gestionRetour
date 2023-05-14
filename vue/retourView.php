@@ -68,7 +68,7 @@
                     </nav>
             <?php
                 }
-            else : echo "<p class='text-center'>Il n'y a pas de retour encore</p>";
+            else : echo "<p class='text-center' >Il n'y a pas de retour encore</p>";
             endif;
             ?>
         </section>
