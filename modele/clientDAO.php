@@ -109,7 +109,7 @@ class ClientDAO
 	}
  */
 
-	function existeTel(int $tel): bool 
+	function existeTel(string $tel): bool 
 	{
 		$req 	= "SELECT *  FROM  client
 				

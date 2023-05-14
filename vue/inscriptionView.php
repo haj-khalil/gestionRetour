@@ -74,14 +74,16 @@
 
                 <tr>
                     <td><label for="mdp">Mot de passe</label></td>
-                    <td><input type="password" name="mdp" id="mdp" placeholder="Au moins 6 caractères" class="form-control" value="<?= htmlentities($valeurs['mdp'] ?? '') ?>" /></td>
+                    <td><input type="password" name="mdp" id="mdp" placeholder="Au moins 6 caractères" class="form-control" value="" />
+                </td>
+
                     <td><span class="text-danger"><?= $erreurs['mdp'] ?? '' ?></span></td>
                 </tr>
 
 
                 <tr>
                     <td><label for="mdpRep">confimez le mot de passe</label></td>
-                    <td><input type="password" name="mdpRep" id="mdpRep" placeholder="confirmation de mot de passe" class="form-control" value="<?= htmlentities($valeurs['mdpRep'] ?? '') ?>" /></td>
+                    <td><input type="password" name="mdpRep" id="mdpRep" placeholder="confirmation de mot de passe" class="form-control" value="" /></td>
                     <td><span class="text-danger"><?= $erreurs['mdp'] ?? '' ?></span></td>
                 </tr>
 
@@ -138,6 +140,7 @@
                     document.getElementById('select_pays').appendChild(option)
                 }
             }
+
         }
     </script>
 </body>
