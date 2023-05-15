@@ -80,6 +80,14 @@ if ((time() - $_SESSION['last_login']) > 5 && $_SESSION['login'] != "root") {
 				<th colspan='2'> montant_piece</th>
 				<th colspan='2'>quantite</th>
 				<th colspan='3'>motif</th>
+				<th>
+    				<button type='button'>
+        				<a href='../controleur/editArticle.php?op=d&id_article='>
+            				<img id='ajout' src='../vue/style/ajout.png'>
+        				</a>
+    				</button>
+				</th>
+
 				<th><button type='button'><img id='img_x'  onclick='casherTableArticle()' src='../vue/style/x.jpg'></button>
 				</th>
 				</tr>";
@@ -101,9 +109,13 @@ if ((time() - $_SESSION['last_login']) > 5 && $_SESSION['login'] != "root") {
 			$ch .= '<td class="article"><a href="../controleur/editArticle.php?op=d&id_article='
 		. urlencode($uneArticle['id_article']) .
 		'"><img src="../vue/style/modification.png"></a></td>';
+
+			// $ch .= '<td class="article"><a href="../controleur/editArticle.php?op=d&id_article='
+         	// . urlencode($uneArticle['id_article']) .
+         	// '"><img src="../vue/style/ajout.png"></a></td>';
 		
 
-		$ch .= '<td class="article"><a onclick="confirmerAvantEffacer()" id="supp"
+		$ch .= '<td class="article"><a  onclick="javascript:return confirm(\'Etes-vous sûr de vouloir supprimer ? \') " id="supp"
 		href="../controleur/retourAdmin.php?op=sA&id_article='
 		. urlencode($uneArticle['id_article'])
 		. '" ><img src="../vue/style/corbeille.png"></a></td>';
@@ -133,7 +145,7 @@ if ((time() - $_SESSION['last_login']) > 5 && $_SESSION['login'] != "root") {
 			.  $unRetour['id_retour']
 			. '"><img src="../vue/style/visu.png"></a></td>';
 
-        $ch .= '<td><a onclick="javascript:return confirm(\'Etes-vous sûr de vouloir supprimer ? \') " id="supp"href="../controleur/retourAdmin.php?op=s&id='
+        $ch .= '<td><a onclick="javascript:return confirm(\'Etes-vous sûr de vouloir supprimer ? \') " id="supp" href="../controleur/retourAdmin.php?op=s&id='
             . urlencode($unRetour['id_retour'])
             . '" ><img src="../vue/style/corbeille.png"></a></td>';
 
@@ -145,9 +157,9 @@ if ((time() - $_SESSION['last_login']) > 5 && $_SESSION['login'] != "root") {
 	    " value=' . urlencode($unRetour['id_retour']) . '></input></td>';
         
         //nadime
-        $ch .= '<td ><a href="../controleur/editArticle.php?op=d&id_retour='
-            . urlencode($unRetour['id_retour']) .
-            '"><img src="../vue/style/ajout.png"></a></td>';
+        // $ch .= '<td ><a href="../controleur/editArticle.php?op=d&id_retour='
+            // . urlencode($unRetour['id_retour']) .
+            // '"><img src="../vue/style/ajout.png"></a></td>';
         //nadime
 		$lignes[] = "<tr>$ch</tr>";
 

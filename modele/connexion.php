@@ -11,7 +11,13 @@ class Connexion {
 		$db_config['DB_NAME']	= 'BDD_Retour';
 		$db_config['USER']		= 'root';
 		$db_config['PASSWORD']	= 'root'; */
+		// $db_config['SGBD']		= 'mysql';
+		// $db_config['HOST']		= '127.0.0.2:3307';
+		// $db_config['DB_NAME']	= 'sae4';
+		// $db_config['USER']		= 'root';
+		// $db_config['PASSWORD']	= '';
 		$db_config['SGBD']		= 'mysql';
+
 		$db_config['HOST']		= 'localhost';
 		$db_config['DB_NAME']	= 'BDD_Retour';
 		$db_config['USER']		= 'root';
