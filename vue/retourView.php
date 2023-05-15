@@ -124,6 +124,7 @@
             }
             th{
                 text-align: center;
+                 color:green;
             }
         </style>
         <script src="../vue/style.js"></script>
