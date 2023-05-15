@@ -26,7 +26,7 @@ print_r($id_motif);
 if($valider){
     require_once('../modele/articleClass.php');
     $article = new Article(1,$nom_article,$montant_piece,
-    $quantite,$id_motif,1);
+    $quantite,$id_motif,$id_retour);
     echo "<pre>";
     print_r($article);
     echo "<pre>"; 

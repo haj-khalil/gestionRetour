@@ -3,6 +3,8 @@
     
     <?php require_once('../vue/header.php'); ?> 
 
+    <div>ajoutez des articles au Retour <p id="id_ret"><?php  echo $id_retour;
+        ?></p></div>
 
     <form  id="formulaire"  class="row g-3" method="GET" action="" name="add">
         <div class="col-md-6">
@@ -32,7 +34,8 @@
                         }
                     ?>
             </select>
-            <input type="text" style="visibility: hidden;" onchange="getIdRetour(this.value)" id="id_retour" name="id_retour" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"
+            <input type="text" style="visibility: hidden;" onchange="getIdRetour(this.value)" id="id_retour" 
+             name="id_retour" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"
             ></input>
         </div>
         <section>

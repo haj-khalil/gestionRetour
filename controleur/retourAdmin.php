@@ -12,7 +12,7 @@ if ((time() - $_SESSION['last_login']) > 5 && $_SESSION['login'] != "root") {
 //n
     $op 	= (isset($_GET['op'])?$_GET['op']:null);
     $suppr = ($op == 'sA');
-    $id_article = isset($_GET['id_article']) ? $_GET['id_article'] : 1;
+    $id_article = isset($_GET['id_article']) ? $_GET['id_article'] : NULL;
     if ($suppr) {
 
     // suppression
@@ -82,7 +82,7 @@ if ((time() - $_SESSION['last_login']) > 5 && $_SESSION['login'] != "root") {
 				<th colspan='3'>motif</th>
 				<th>
     				<button type='button'>
-        				<a href='../controleur/editArticle.php?op=d&id_article='>
+        				<a href='../controleur/editArticle.php?op=d&id_retour=60'>
             				<img id='ajout' src='../vue/style/ajout.png'>
         				</a>
     				</button>
@@ -93,7 +93,13 @@ if ((time() - $_SESSION['last_login']) > 5 && $_SESSION['login'] != "root") {
 				</tr>";
 	} else $lesRows[] = "<tr class='article'><th colspan='10'>il n y a pas des articles !</th>
 				<th><button type='button'><img id='img_x'  onclick='casherTableArticle()' src='../vue/style/x.jpg'></button>
-				</tr>";
+				<th>
+    				<button type='button'>
+        				<a href='../controleur/editArticle.php?op=d&id_retour=60'>
+            				<img id='ajout' src='../vue/style/ajout.png'>
+        				</a>
+    				</button>
+				</th></tr>";
 
 
 	if ($lesArticles != '') {
