@@ -89,7 +89,7 @@
 
 
                 <tr class="centre">
-                <td><input type="submit" id="valider" name="valider" value="valider" /></td>
+                <td><input type="submit" id="valid" name="valid" value="valid" /></td>
                     <td><button type="button" class="btn btn-danger" onclick="window.location.href='../controleur/login.php'">Annuler</button></td>
                 </tr>
 

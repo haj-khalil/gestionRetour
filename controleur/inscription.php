@@ -4,7 +4,7 @@ require_once('../modele/clientDAO.php');
 $messageInscription=false;
 $clientDAO = new ClientDAO();
 
-$valider = (isset($_POST['valider']) ? $_POST['valider'] : null);
+$valider = (isset($_POST['valid']) ? $_POST['valid'] : null);
 if ($valider) {
     $nom = (isset($_POST['nom']) ? htmlspecialchars(trim($_POST['nom'])) : null);
     $prenom = (isset($_POST['prenom']) ? htmlspecialchars(trim($_POST['prenom'])) : null);

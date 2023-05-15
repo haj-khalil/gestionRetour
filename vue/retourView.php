@@ -1,6 +1,19 @@
 
 <section class="container my -10" style=" margin-bottom: 50px;">
     <?php require_once('../vue/header.php'); ?>
+
+    <head>
+    <meta charset="utf-8">
+    <title>Liste des infractions</title>
+    <!-- ///** */ -->
+    <link rel="stylesheet" href="../vue/style/style3.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="../vue/style.js"></script>
+    <!-- ///** */ -->
+</head>
 </section>
 
 <body>
@@ -33,16 +46,16 @@
                                 </tr>
                                 <tr>
                                     <th onclick="">Numéro Retour</th>
-                                    <th>entrprise</th>
-                                    <th>date achater</th>
+                                    <th>Enseigne</th>
+                                    <th>date Achat</th>
                                     <th>lable</th>
-                                    <th>Date envoyer</th>
+                                    <th>Date Envoie</th>
                                     <th>nom</th>
-                                    <th>prenom</th>
-                                    <th>Montant Total</th>
-                                    <th>les article</th>
+                                    <th>prénom</th>
+                                    <th>Montant</th>
+                                    <th>Articles</th>
                                     <th>supprimer</th>
-                                    <th>modif</th>
+                                    <th>modifier</th>
                                     <th>changer statut</th>
                                 </tr>
                             </thead>
@@ -78,16 +91,16 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">Modal</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
 
-                        <h2>actualiser statut</h2>
+                        <h2>actualiser</h2>
                         <select class="form-select" required aria-label="Default select example" name="select_id_statut" id="select_id_statut">
-                            <option selected>select statut </option>
+                            <option selected>Choix statut </option>
                             <?php
                             foreach ($rows as $row) {
                                 echo $row;
@@ -96,7 +109,7 @@
                         </select>
                     </div>
                     <div>
-                        <label for="date_remboursement">date remboursement</label>
+                        <label for="date_remboursement">Date remboursement</label>
                         <input id="date_remboursement" name="date_remboursement" type="date" size="15" value="" />
 
 
@@ -104,8 +117,8 @@
 
                     <div class="modal-footer">
                         <input type="text" id="id_retour_modif_statut" style="display:none;" name="id_retour_modif_statut" value="">
-                        <input type="submit" id="updateStatut" name="updateStatut" class="btn btn-secondary" value="updateStatut" />
-                        <input type="submit" id="annuler" name="annuler" value="Annuler" class="btn btn-secondary" data-dismiss="modal" />
+                        <input type="submit" id="updateStatut" name="updateStatut" class="btn btn-secondary" value="Actualiser" />
+                        <input type="submit" id="annuler" name="annuler" value="Quitter" class="btn btn-secondary" data-dismiss="modal" />
                     </div>
                 </div>
             </div>
@@ -128,6 +141,7 @@
             }
         </style>
         <script src="../vue/style.js"></script>
+
     </form>
 </body>
 

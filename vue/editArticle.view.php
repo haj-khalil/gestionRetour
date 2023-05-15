@@ -8,7 +8,7 @@
 
     <form  id="formulaire"  class="row g-3" method="GET" action="" name="add">
         <div class="col-md-6">
-            <label for="inputNom" class="form-label">Nom article</label>
+            <label for="inputNom" class="form-label">Article</label>
             <input type="text" name="nom_article" class="form-control" id="nom_article">
             <div id="erreur-nom" class="text-danger"></div>
         </div>

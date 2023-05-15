@@ -45,8 +45,8 @@
   <!-- Custom styles for this template -->
   <link href="css/styles.css" rel="stylesheet">
 </head>
-<body>
 
+<body>
   <section class="container mt-5">
     <h1 class="text-center mb-4">Authentification</h1>
     <form method="POST" action="login.php" name="add">

@@ -62,9 +62,9 @@
                 </div>
                 <div class="col">
                     <section>
-                        <h2>effacer un motif </h2>
+                        <h2>Suppression Motif</h2>
                         <select class="form-select" aria-label="Default select example" name="select_id_motif" id="select_id_motif">
-                            <option selected>select un motif à effacer </option>
+                            <option selected>Choix motif à éffacer </option>
                             <?php
                             foreach ($rowsMotifs as $row) {
                                 echo $row;
@@ -87,8 +87,8 @@
             <div class="row">
                 <div class="col">
                     <section>
-                        <h2>ajouter une enseigne</h2>
-                        <label for="nomEns">entrez le nom de l'enseigne</label>
+                        <h2>Ajout Enseigne</h2>
+                        <label for="nomEns">Entrez le nom de l'enseigne</label>
                         <input id="nomEns" name="nomEns" type="text" size="15" value="<?= htmlentities($valeurs['nomEns'] ?? '') ?>" />
                         <br />
                         <span class="erreur"><?= $erreurs['nomEns'] ?? '' ?></span>
@@ -102,8 +102,8 @@
                 </section>
                 <div class="col">
                     <section>
-                        <h2>Ajouter un statut</h2>
-                        <label for="nomStatut">entrez le nom de l'enseigne</label>
+                        <h2>Ajout statut</h2>
+                        <label for="nomStatut">Entrez le nom de l'enseigne</label>
                         <input id="nomStatut" name="nomStatut" type="text" size="15" value="<?= htmlentities($valeurs['nomStatut'] ?? '') ?>" />
                         <br />
                         <span class="erreur"><?= $erreurs['nomStatut'] ?? '' ?></span>
@@ -118,8 +118,8 @@
                 </section>
                 <div class="col">
                     <section>
-                        <h2>Ajouter un motif</h2>
-                        <label for="nomMotif">entrez le motif</label>
+                        <h2>Ajout motif</h2>
+                        <label for="nomMotif">Entrez le motif</label>
                     
                         <input id="nomMotif" name="nomMotif" type="text" size="15" value="<?= htmlentities($valeurs['nomMotif'] ?? '') ?>" />
                         <br />
