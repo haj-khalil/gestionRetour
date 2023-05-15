@@ -119,6 +119,9 @@
                 width: 24px;
                 height: 24px;
             }
+            td{
+                text-align: center;
+            }
         </style>
         <script src="../vue/style.js"></script>
     </form>
