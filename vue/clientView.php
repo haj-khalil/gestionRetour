@@ -16,6 +16,7 @@
                         <th>Email</th>
                         <th>Adresse</th>
                         <th>Téléphone</th>
+                        <th>Retours</th>
                     </tr>
                 </thead>
                 <tbody>

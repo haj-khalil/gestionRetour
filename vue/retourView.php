@@ -68,7 +68,7 @@
                     </nav>
             <?php
                 }
-            else : echo "<p class='text-center'>Il n'y a pas de retour encore</p>";
+            else : echo "<p class='text-center' >Il n'y a pas de retour encore</p>";
             endif;
             ?>
         </section>
@@ -118,6 +118,9 @@
             #img_x {
                 width: 24px;
                 height: 24px;
+            }
+            td{
+                text-align: center;
             }
         </style>
         <script src="../vue/style.js"></script>

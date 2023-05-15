@@ -17,19 +17,19 @@ class Client
 		string $prenom = '',
 		string $email = '',
 		string $address = '',
-		int $tel = 0,
+		string $tel = "",
 		string $mdp = '',
 		string $naissance = ''
 	) {
 		$this->id_client	    	= $id_client;
-		$this->nom		= $nom;
-		$this->prenom	= $prenom;
-		$this->email	= $email;
+		$this->nom		            = $nom;
+		$this->prenom	            = $prenom;
+		$this->email	            = $email;
 
 
-		$this->address	= $address;
-		$this->tel = $tel;
-		$this->mdp	= $mdp;
+		$this->address  	= $address;
+		$this->tel          = $tel;
+		$this->mdp     	    = $mdp;
 		$this->naissance	= $naissance;
 	}
 
@@ -77,11 +77,11 @@ class Client
 	{
 		$this->address = $address;
 	}
-	function getTel(): int
+	function getTel(): string
 	{
 		return $this->tel;
 	}
-	function setTel(int $tel)
+	function setTel(string $tel)
 	{
 		$this->tel = $tel;
 	}

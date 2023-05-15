@@ -10,9 +10,8 @@ if ($valider) {
     $prenom = (isset($_POST['prenom']) ? htmlspecialchars(trim($_POST['prenom'])) : null);
     $email = (isset($_POST['email']) ? htmlspecialchars(trim($_POST['email'])) : null);
     $address = (isset($_POST['address']) ? htmlspecialchars(trim($_POST['address'])) : null);
-    $select_paye = (isset($_POST['select_paye']) ? htmlspecialchars(trim($_POST['select_paye'])) : null);
+    $select_pays = (isset($_POST['select_pays']) ? htmlspecialchars(trim($_POST['select_pays'])) : "France");
     $tel = (isset($_POST['tel']) ? trim($_POST['tel']) : null);
-    
     $mdp = (isset($_POST['mdp']) ? password_hash(htmlspecialchars(trim($_POST['mdp'])), PASSWORD_BCRYPT) : null); 
     $mdpRep = (isset($_POST['mdpRep']) ? htmlspecialchars(trim($_POST['mdpRep'])) : null); 
     $naissance = (isset($_POST['naissance']) ? $_POST['naissance'] : null);
@@ -25,10 +24,17 @@ if ($valider) {
         'tel' => null,
         'mdp' => null,
         'naissance' => null,
-        'select_paye' => null
+        'select_pays' => null
     ];
     $erreurs = [
-        'nom' => "", 'prenom' => '', 'email' => "", 'address' => "",'select_paye' => "", 'tel' => "", 'mdp' => "", 'naissance' => ""
+        'nom' => "", 
+        'prenom' => '',
+        'email' => "",
+        'address' => "",
+        'select_pays' => "", 
+        'tel' => "", 
+        'mdp' => "", 
+        'naissance' => ""
     ];
 
 
@@ -42,10 +48,10 @@ if ($valider) {
     } else $erreurs['prenom'] = 'Prénom invalide.';
 
 
-    if ($address != null  && !empty($address)) {
+    if ($address != null  && !empty($address)  ) {
         $valeurs['address'] = $address;
-        $valeurs['select_paye'] = $select_paye;
-    } else $erreurs['address'] = 'Adresse ou pays invalide.';
+        $valeurs['select_pays'] = $select_pays;
+    } else $erreurs['address'] = 'Adresse invalide.';
 
 
     if ($email != null && filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -59,12 +65,9 @@ if ($valider) {
 
     if ($tel != null) {
         $existeTel = $clientDAO->existeTel($tel);
-        if ($existeTel) {
-            $erreurs['tel'] = 'Le numéro de téléphone est déjà utilisé.';
-        } elseif (strlen($tel) != 10 || (substr(strval($tel),0,2)!='07'&& substr(strval($tel),0,2)
-!='07'&& substr(strval($tel),0,2)!='06')) {
-            $erreurs['tel'] = ' le numéro de téléphone n\'est pas valide   ! ';
-        } else $valeurs['tel'] = $tel;
+        if (!$existeTel) {
+            $valeurs['tel'] = $tel;
+        } else  $erreurs['tel'] = 'Le numéro de téléphone est déjà utilisé.';
     } else $erreurs['tel'] = 'il faut entrer le tel';
 
 
@@ -78,17 +81,19 @@ if ($valider) {
     if ($naissance != null) {
         $valeurs['naissance'] = $naissance;
     } else $erreurs['naissance'] = 'il faut entrer la date de naissance';
+
+
     $nbErreurs = 0;
     foreach ($erreurs as $erreur) {
         if ($erreur != "") $nbErreurs++;
     }
+
     if ($nbErreurs == 0) {
         $client = new Client();
-        //$client = new Client(10,$nom,$prenom,$email,$address,$tel,$mdp,$naissance);
         $client->setNom($nom);
         $client->setPrenom($prenom);
         $client->setEmail($email);
-        $client->setAddress($select_paye." ".$address);
+        $client->setAddress($select_pays." , ".$address);
         $client->setTel($tel);
         $client->setMdp($mdp);
         $client->setNaissance($naissance);
