@@ -103,7 +103,7 @@ if ((time() - $_SESSION['last_login']) > 5 && $_SESSION['login'] != "root") {
 		'"><img src="../vue/style/modification.png"></a></td>';
 		
 
-		$ch .= '<td class="article"><a onclick="confirmerAvantEffacer()" id="supp"
+		$ch .= '<td class="article"><a  onclick="javascript:return confirm(\'Etes-vous sûr de vouloir supprimer ? \') " id="supp"
 		href="../controleur/retourAdmin.php?op=sA&id_article='
 		. urlencode($uneArticle['id_article'])
 		. '" ><img src="../vue/style/corbeille.png"></a></td>';
@@ -133,7 +133,7 @@ if ((time() - $_SESSION['last_login']) > 5 && $_SESSION['login'] != "root") {
 			.  $unRetour['id_retour']
 			. '"><img src="../vue/style/visu.png"></a></td>';
 
-        $ch .= '<td><a onclick="javascript:return confirm(\'Etes-vous sûr de vouloir supprimer ? \') " id="supp"href="../controleur/retourAdmin.php?op=s&id='
+        $ch .= '<td><a onclick="javascript:return confirm(\'Etes-vous sûr de vouloir supprimer ? \') " id="supp" href="../controleur/retourAdmin.php?op=s&id='
             . urlencode($unRetour['id_retour'])
             . '" ><img src="../vue/style/corbeille.png"></a></td>';
 
