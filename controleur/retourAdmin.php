@@ -10,11 +10,11 @@ session_start();
 // } else 
 if (isset($_SESSION['login'])) {
 
-	//n
-	$op 	= (isset($_GET['op']) ? $_GET['op'] : null);
-	$suppr = ($op == 'sA');
-	$id_article = isset($_GET['id_article']) ? $_GET['id_article'] : 1;
-	if ($suppr) {
+//n
+    $op 	= (isset($_GET['op'])?$_GET['op']:null);
+    $suppr = ($op == 'sA');
+    $id_article = isset($_GET['id_article']) ? $_GET['id_article'] : NULL;
+    if ($suppr) {
 
     // suppression
 	require_once('../modele/articleDAO.php');
@@ -85,10 +85,10 @@ if (isset($_SESSION['login'])) {
 				<th colspan='2'>id_article</th>
 				<th colspan='2'> montant_piece</th>
 				<th colspan='2'>quantite</th>
-				<th colspan='3'>motif</th>
+				<th colspan='2'>motif</th>
 				<th>
     				<button type='button'>
-        				<a href='../controleur/editArticle.php?op=d&id_article='>
+        				<a href='../controleur/editArticle.php?op=d&id_retour=60'>
             				<img id='ajout' src='../vue/style/ajout.png'>
         				</a>
     				</button>
@@ -99,7 +99,13 @@ if (isset($_SESSION['login'])) {
 				</tr>";
 	} else $lesRows[] = "<tr class='article'><th colspan='10'>il n y a pas des articles !</th>
 				<th><button type='button'><img id='img_x'  onclick='casherTableArticle()' src='../vue/style/x.jpg'></button>
-				</tr>";
+				<th>
+    				<button type='button'>
+        				<a href='../controleur/editArticle.php?op=d&id_retour=60'>
+            				<img id='ajout' src='../vue/style/ajout.png'>
+        				</a>
+    				</button>
+				</th></tr>";
 
 
 	if ($lesArticles != '') {
@@ -110,7 +116,7 @@ if (isset($_SESSION['login'])) {
 			$ch .= '<td colspan="2" class="article">' . $uneArticle['id_article'] . '</td>';
 			$ch .= '<td colspan="2" class="article">' . $uneArticle['montant_piece'] . " €" . '</td>';
 			$ch .= '<td colspan="2" class="article">' . $uneArticle['quantite'] . '</td>';
-			$ch .= '<td colspan="4" class="article">' . $uneArticle['motif'] . '</td>';
+			$ch .= '<td colspan="2" class="article">' . $uneArticle['motif'] . '</td>';
 
 			$ch .= '<td class="article"><a href="../controleur/editArticle.php?op=d&id_article='
 				. urlencode($uneArticle['id_article']) .
