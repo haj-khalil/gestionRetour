@@ -16,6 +16,22 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
 		$lesClients = $ClientDAO->getAll();
 	}
 
+	///////nadime
+	$op 	= (isset($_GET['op'])?$_GET['op']:null);
+	$suppr = ($op == 'sC');
+	$id_client = isset($_GET['id_client']) ? $_GET['id_client'] : null;
+if ($suppr && !empty($id_client)&& $id_client) {
+	
+	// suppression
+	require_once('../modele/clientDAO.php');
+	$clienteDAO=new ClientDAO();
+	$clienteDAO->delete($id_client);
+	header("Refresh:0; url=client.php");
+
+
+}	
+///////nadime
+
 
 	$lesRows = [];
 	if ($lesClients != []) {
@@ -32,6 +48,12 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
             $ch .= '<td><a href="../controleur/retourAdmin.php?EmailClient='
 			.  $unClient->getEmail()
 			. '"><img src="../vue/style/visu.png"></a></td>';
+			
+			//n
+			$ch .= '<td class="article"><a id="supp" href="../controleur/client.php?op=sC&id_client='
+		    . urlencode( $unClient->getId_client() )
+		    . '" ><img src="../vue/style/corbeille.png"></a></td>';
+			//n
 
 			$lignes[] = "<tr>$ch</tr>";
 		}
