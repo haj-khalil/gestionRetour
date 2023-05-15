@@ -122,6 +122,9 @@
             td{
                 text-align: center;
             }
+            th{
+                text-align: center;
+            }
         </style>
         <script src="../vue/style.js"></script>
     </form>

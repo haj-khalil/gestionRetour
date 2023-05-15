@@ -79,7 +79,7 @@ if ((time() - $_SESSION['last_login']) > 5 && $_SESSION['login'] != "root") {
 				<th colspan='2'>id_article</th>
 				<th colspan='2'> montant_piece</th>
 				<th colspan='2'>quantite</th>
-				<th colspan='3'>motif</th>
+				<th colspan='2'>motif</th>
 				<th>
     				<button type='button'>
         				<a href='../controleur/editArticle.php?op=d&id_retour=60'>
@@ -110,7 +110,7 @@ if ((time() - $_SESSION['last_login']) > 5 && $_SESSION['login'] != "root") {
 			$ch .= '<td colspan="2" class="article">' . $uneArticle['id_article'] . '</td>';
 			$ch .= '<td colspan="2" class="article">' . $uneArticle['montant_piece'] . " €" . '</td>';
 			$ch .= '<td colspan="2" class="article">' . $uneArticle['quantite'] . '</td>';
-			$ch .= '<td colspan="4" class="article">' . $uneArticle['motif'] . '</td>';
+			$ch .= '<td colspan="2" class="article">' . $uneArticle['motif'] . '</td>';
 
 			$ch .= '<td class="article"><a href="../controleur/editArticle.php?op=d&id_article='
 		. urlencode($uneArticle['id_article']) .
