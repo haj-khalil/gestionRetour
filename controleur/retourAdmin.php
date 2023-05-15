@@ -27,16 +27,16 @@ if (isset($_SESSION['login'])) {
 		$isAdmin = true;
 	} else $isAdmin = false;
 
-	$id                     = isset($_GET['id']) ? $_GET['id'] : null;
-	$input_id_statut        = isset($_GET['select_id_statut']) ? $_GET['select_id_statut'] : null;
-	$date_remboursement     = isset($_GET['date_remboursement']) ? $_GET['date_remboursement'] : null;
-	$updateStatut           = isset($_GET['updateStatut']) ? $_GET['updateStatut'] : null;
-	$id_retour_modif_statut = isset($_GET['id_retour_modif_statut']) ? $_GET['id_retour_modif_statut'] : 2;
-	$adminRechercheClientRetour = isset($_GET['adminRechercheClientRetour']) ? $_GET['adminRechercheClientRetour'] : null;
-	$EmailClient            = isset($_GET['EmailClient']) ? $_GET['EmailClient'] : null;
-	$op                     = isset($_GET['op']) ? $_GET['op'] : null;
-	$supp                   = ($op == 's');
-	$detaille               = ($op == 'd');
+	$id                         = isset($_GET['id']) ? $_GET['id'] : null;
+	$input_id_statut            = isset($_GET['select_id_statut']) ? $_GET['select_id_statut'] : null;
+	$date_remboursement         = isset($_GET['date_remboursement']) ? $_GET['date_remboursement'] : null;
+	$updateStatut               = isset($_GET['updateStatut']) ? $_GET['updateStatut'] : null;
+	$id_retour_modif_statut     = isset($_GET['id_retour_modif_statut']) ? $_GET['id_retour_modif_statut'] : 2; 
+    $adminRechercheClientRetour = isset($_GET['adminRechercheClientRetour']) ? $_GET['adminRechercheClientRetour'] : null;
+    $EmailClient                = isset($_GET['EmailClient']) ? $_GET['EmailClient'] : null;
+	$op                         = isset($_GET['op']) ? $_GET['op'] : null;
+	$supp                       = ($op == 's');
+	$detaille                   = ($op == 'd');
 
 	// effacer un retour si op==s et id_retour bien forni
 	$retourByArticleDAO = new RetourByArticleDAO();
@@ -150,14 +150,14 @@ if (isset($_SESSION['login'])) {
 			. urlencode($unRetour['id_retour']) .
 			'"><img src="../vue/style/modification.png"></a></td>';
 
-		$ch .= '<td><input type="button" onclick="getIdRetour(this.value)" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" 
-		value="' . urlencode($unRetour['id_retour']) . '"></input></td>';
-
-		//nadime
-		// $ch .= '<td ><a href="../controleur/editArticle.php?op=d&id_retour=' 
-		// . urlencode($unRetour['id_retour']) .
-		// '"><img src="../vue/style/ajout.png"></a></td>';
-		//nadime
+		$ch .= '<td><input type="button" onclick="getIdRetour(this.value)" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"
+	    " value=' . urlencode($unRetour['id_retour']) . '></input></td>';
+        
+        //nadime
+        // $ch .= '<td ><a href="../controleur/editArticle.php?op=d&id_retour='
+            // . urlencode($unRetour['id_retour']) .
+            // '"><img src="../vue/style/ajout.png"></a></td>';
+        //nadime
 		$lignes[] = "<tr>$ch</tr>";
 
 		// il affiche les detaille de un retour si op==d 

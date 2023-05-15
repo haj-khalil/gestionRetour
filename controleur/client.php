@@ -50,7 +50,7 @@ if ($suppr && !empty($id_client)&& $id_client) {
 			. '"><img src="../vue/style/visu.png"></a></td>';
 			
 			//n
-			$ch .= '<td class="article"><a id="supp" href="../controleur/client.php?op=sC&id_client='
+			$ch .= '<td class="article"><a  onclick="javascript:return confirm(\'Etes-vous sûr de vouloir supprimer ? \') " id="supp" href="../controleur/client.php?op=sC&id_client='
 		    . urlencode( $unClient->getId_client() )
 		    . '" ><img src="../vue/style/corbeille.png"></a></td>';
 			//n
