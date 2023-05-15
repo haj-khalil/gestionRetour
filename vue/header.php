@@ -42,7 +42,6 @@
 
 
   <!-- Custom styles for this template -->
-  <link href="css/styles.css" rel="stylesheet">
 </head>
 
 <body class="d-flex flex-column h-100">
@@ -83,13 +82,13 @@
                 <?php if ($_SESSION['login'] != 'root') : {
                 ?>
                     <li class="nav-item">
-                      <a style="color: #219cee; " class="nav-link active" aria-current="page" href="../controleur/menu.php">Ajouter</a>
+                      <a style="color: #219cee; " class="nav-link active" aria-current="page" href="../controleur/editRetourArticle.php">Ajouter</a>
                     </li>
                 <?php }
                 endif;
                 ?>
                 <li class="nav-item">
-                  <a style="color: #219cee; " class="nav-link" href="../controleur/logout.php">Logout</a>
+                  <a style="color: #219cee; " class="nav-link" href="../controleur/logout.php">Déconnexion</a>
                 </li>
 
               </ul>

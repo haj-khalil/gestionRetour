@@ -34,11 +34,11 @@ require_once("../vue/footer.php") ?>
                                 </tr>
                                 <tr>
                                     <th>Numéro changement</th>
-                                    <th>user</th>
-                                    <th> time </th>
+                                    <th>Utilisateur</th>
+                                    <th>Temp </th>
                                     <th>table</th>
                                     <th>action</th>
-                                    <th>detaille</th>
+                                    <th>détaille</th>
 
                                 </tr>
                             </thead>
