@@ -15,7 +15,7 @@ $ajout = ($op == 'a');
 $modif = ($op == 'm');
 $suppr = ($op == 's');
 $id_client = (isset($_GET['id_client']) ? $_GET['id_client'] : null);
-$editid_client = ($id_client && $modif);
+$editid_client = ($modif&&$id_client);
 $titre = (($ajout)?'Nouveau Retour':(($modif)?"Retour - édition des informations":null));
 
 if (($id_client != null && $ajout) || (($id_client == null) && ($modif || $suppr))) {
@@ -63,14 +63,38 @@ $valeurs['date_envoi'] = (isset($_POST['date_envoi']) ? trim($_POST['date_envoi'
 
 
 $retour = false;
-if (isset($_POST['valider'])) {
+
+if (isset($_POST['Valider']))
+ {
 	
-	if (!isset($valeurs['id_client']) or strlen($valeurs['id_client'])==0) 	{ $erreurs['id_client']	= 'saisie obligatoire du numéro client';	}
-	if (!isset($valeurs['statut']) or strlen($valeurs['statut'])==0) { 
-		$erreurs['statut'] = 'Statut non valide.'; 
+
+	// Vérifier si l'id client est renseigné et valide
+// 	if($ajout){
+
+// 	if (!isset($valeurs['id_client']) || strlen(trim($valeurs['id_client'])) == 0) {
+// 		$erreurs['id_client'] = 'Saisie obligatoire du numéro client.';
+// 	} elseif (!is_numeric(trim($valeurs['id_client']))) {
+// 		$erreurs['id_client'] = 'Numéro client non valide.';
+// 	}
+// }
+	// Vérifier si le statut est renseigné
+	if (!isset($valeurs['statut']) || strlen(trim($valeurs['statut'])) == 0) { 
+		$erreurs['statut'] = 'Saisie obligatoire du statut.'; 
 	}
-	if (!isset($valeurs['date_achat']) or strlen($valeurs['date_achat'])==0) 	{ $erreurs['date_achat']	= 'saisie obligatoire de la date d\'achat';	}
 	
+	// Vérifier si la date d'achat est renseignée et valide
+	if (!isset($valeurs['date_achat']) || strlen(trim($valeurs['date_achat'])) == 0) {
+		$erreurs['date_achat'] = 'Saisie obligatoire de la date d\'achat.';
+	} else {
+		$dateAchat = DateTime::createFromFormat('Y-m-d', trim($valeurs['date_achat']));
+		$today = new DateTime();
+		
+		if (!$dateAchat) {
+			$erreurs['date_achat'] = 'Date d\'achat non valide.';
+		} elseif ($dateAchat > $today) {
+			$erreurs['date_achat'] = 'La date d\'achat ne peut pas être dans le futur.';
+		}
+	}
 
  	$nbErreurs = 0;
  	foreach ($erreurs as $erreur){
@@ -80,9 +104,7 @@ if (isset($_POST['valider'])) {
 	
  	if ($nbErreurs === 0){
 		$RetourDAO = new RetourDAO();
-
-        $unRetour = [$valeurs['id_client'],$valeurs['date_achat'], $valeurs['date_envoi'],$valeurs['enseigne'],  $valeurs['statut']];
-
+        $unRetour = [$valeurs[0],$valeurs[1], $valeurs[2],$valeurs[3],  $valeurs[4]];
 		if ($ajout)	{
 			$RetourDAO->insert($unRetour);
 			$retour = true;
@@ -93,6 +115,7 @@ if (isset($_POST['valider'])) {
 		}
 	}
 }
+
 else if (isset($_POST['annuler']))	{
 	$retour = true;
 }
@@ -102,7 +125,6 @@ else if ($suppr) {
 	$retour = true;
 }
 else if ($modif)	{
-	$unRetour = $RetourDAO->getByid_client($id_client);
 	$valeurs['id_client']		= $unRetour->getid_client();
 	$valeurs['statut'] = $unRetour->getId_statut();		
 	$valeurs['date_achat'] 	= $unRetour->getDate_achat();	

@@ -31,24 +31,24 @@
 		function getId_retour	    	() : int			    { return $this->id_retour;		        	}
 		function setId_retour	    	(int $id_retour)			{ $this->id_retour=$id_retour;	        		}
 		
-		function getDate_achat 	() : string			    { return $this->date_achat; 			}
-		function setDate_achat	(string $date_achat)		{ $this->date_achat=$date_achat; 			}
+		function getDate_achat 	()			    { return $this->date_achat; 			}
+		function setDate_achat	($date_achat)		{ $this->date_achat=$date_achat; 			}
 		
-		function getDate_envoi	() : string				{ return $this->date_envoi; 		}   
-		function setDate_envoi	(string $date_envoi)	{ $this->date_envoi=$date_envoi;  }		
+		function getDate_envoi	()			{ return $this->date_envoi; 		}   
+		function setDate_envoi	( $date_envoi)	{ $this->date_envoi=$date_envoi;  }		
         
-		function getDate_remboursement	() : string		{ return $this->date_remboursement; 		}   
-		function setDate_remboursement	(string $date_remboursement)
+		function getDate_remboursement	(){ return $this->date_remboursement; 		}   
+		function setDate_remboursement	( $date_remboursement)
 		{ $this->date_remboursement=$date_remboursement;  }		
 		
-		function getId_client	() : int				{ return $this->id_client; 		}   
-		function setId_client	(int $id_client)	{ $this->id_client=$id_client;  }
+		function getId_client	() 				{ return $this->id_client; 		}   
+		function setId_client	( $id_client)	{ $this->id_client=$id_client;  }
 				
-		function getId_ens	() : int				{ return $this->id_ens; 		}   
-		function setId_ens	(int $id_ens)	{ $this->id_ens=$id_ens;  }		
+		function getId_ens	() 				{ return $this->id_ens; 		}   
+		function setId_ens	( $id_ens)	{ $this->id_ens=$id_ens;  }		
 		
-		function getId_statut	() : int				{ return $this->id_statut; 		}   
-		function setId_statut	(int $id_statut)	{ $this->id_statut=$id_statut;  }		
+		function getId_statut	()				{ return $this->id_statut; 		}   
+		function setId_statut	( $id_statut)	{ $this->id_statut=$id_statut;  }		
 	
 	}
 }

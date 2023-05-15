@@ -16,12 +16,21 @@ if (isset($_SESSION['login'])) {
 	$id_article = isset($_GET['id_article']) ? $_GET['id_article'] : 1;
 	if ($suppr) {
 
-		// suppression
-		require_once('../modele/articleDAO.php');
-		$articleDAO = new ArticleDAO();
-		$articleDAO->delete($id_article);
-	}
-	//n
+    // suppression
+	require_once('../modele/articleDAO.php');
+    $articleDAO=new ArticleDAO();
+	$articleDAO->delete($id_article);
+}
+//n
+
+// if ((time() - $_SESSION['last_login']) > 5 && $_SESSION['login'] != "root") {
+// 	echo '<h2 style=" text-align: center;">session time est terminé !</h2>';
+// 	header("refresh:3;url=login.php");
+// } else 
+if (isset($_SESSION['login'])) {
+
+
+
 	// isAmin est un variable pour definir l'utilisateur  admin ou non
 	if ($_SESSION['login'] == 'root') {
 		$isAdmin = true;
@@ -146,7 +155,7 @@ if (isset($_SESSION['login'])) {
 			. urlencode($unRetour['id_retour'])
 			. '" ><img src="../vue/style/corbeille.png"></a></td>';
 
-		$ch .= '<td><a href="../controleur/editRetourArticle.php?op=m'
+		$ch .= '<td><a href="../controleur/editRetourArticle.php?op=m&id_client='
 			. urlencode($unRetour['id_retour']) .
 			'"><img src="../vue/style/modification.png"></a></td>';
 
@@ -192,4 +201,5 @@ if (isset($_SESSION['login'])) {
 } else {
 	echo "<h2 style=' text-align: center;'>Désolé, il y a une erreur : vous ne pouvez pas accéder à cette page.</h2>";
 	header("refresh:2;url=login.php");
+}
 }

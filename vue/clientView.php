@@ -34,4 +34,4 @@
     <script src="../vue/style.js"></script>
 </body>
 
-<?php require_once('../vue/header.php'); ?>
+<?php require_once('../vue/footer.php'); ?>
