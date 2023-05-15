@@ -122,6 +122,9 @@
             td{
                 text-align: center;
             }
+            input[type=button]:not(:disabled){
+                width: 60px;
+            }
         </style>
         <script src="../vue/style.js"></script>
     </form>

@@ -4,7 +4,7 @@ require_once('../modele/retourByArticleDAO.php');
 require_once("../modele/statutDAO.php");
 
 session_start();
-if ((time() - $_SESSION['last_login']) > 5 && $_SESSION['login'] != "root") {
+if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
 	echo '<h2 style=" text-align: center;">session time est terminé !</h2>';
 	header("refresh:3;url=login.php");
 } else if (isset($_SESSION['login'])) {
@@ -110,9 +110,9 @@ if ((time() - $_SESSION['last_login']) > 5 && $_SESSION['login'] != "root") {
 		. urlencode($uneArticle['id_article']) .
 		'"><img src="../vue/style/modification.png"></a></td>';
 
-			// $ch .= '<td class="article"><a href="../controleur/editArticle.php?op=d&id_article='
-         	// . urlencode($uneArticle['id_article']) .
-         	// '"><img src="../vue/style/ajout.png"></a></td>';
+			 $ch .= '<td class="article"><a href="../controleur/editArticle.php?op=d&id_article='
+         	. urlencode($uneArticle['id_article']) .
+         	 '"><img src="../vue/style/ajout.png"></a></td>';
 		
 
 		$ch .= '<td class="article"><a  onclick="javascript:return confirm(\'Etes-vous sûr de vouloir supprimer ? \') " id="supp"
