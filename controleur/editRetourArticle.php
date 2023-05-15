@@ -52,8 +52,9 @@ if ($modif || $editid_client) {
 
 $erreurs = ['id_client'=>"", 'statut'=>"", 'enseigne'=>"", 'date_achat'=>"", 'date_remb'=>"", 'date_envoi'=>""];
 $valeurs = ['id_client' => null, 'statut' => null, 'date_achat' => null, 'id_ens'=> null];
-
+if($_SESSION['login'] === "root"){
 $valeurs['id_client'] = (isset($_POST['id_client']) ? trim($_POST['id_client']) : 1);
+}else $valeurs['id_client'] =  $_SESSION['id'];
 $valeurs['enseigne'] = (isset($_POST['id_ens']) ? trim($_POST['id_ens']) : 1);
 $valeurs['statut'] = (isset($_POST['select_id_statut']) ? trim($_POST['select_id_statut']) : 1);
 $valeurs['date_achat'] = (isset($_POST['date_achat']) ? trim($_POST['date_achat']) : '2000-01-01');

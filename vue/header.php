@@ -88,7 +88,7 @@
                 endif;
                 ?>
                 <li class="nav-item">
-                  <a style="color: #219cee; " class="nav-link" href="../controleur/logout.php">Logout</a>
+                  <a style="color: #219cee; " class="nav-link" href="../controleur/logout.php">Déconnexion</a>
                 </li>
 
               </ul>
