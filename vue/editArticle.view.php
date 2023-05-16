@@ -75,6 +75,7 @@ section{
          <div class="col-md-6">
             <label for="inputMontant" class="form-label">Montant</label>
             <input type="number" name="montant_piece" class="form-control" id="inputMontant" >
+            <span class="input-group-text">€</span>
             <div id="erreur-montant" class="text-danger"></div>
         </div>
         <div class="col-md-2">

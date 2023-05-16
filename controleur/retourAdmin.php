@@ -22,10 +22,7 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
     }
     //n
 
-    // if ((time() - $_SESSION['last_login']) > 5 && $_SESSION['login'] != "root") {
-    // 	echo '<h2 style=" text-align: center;">session time est terminé !</h2>';
-    // 	header("refresh:3;url=login.php");
-    // } else 
+    
     if (isset($_SESSION['login'])) {
 
 
@@ -84,15 +81,15 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
 				<th colspan='2'>id_article</th>
 				<th colspan='2'> montant_piece</th>
 				<th colspan='2'>quantite</th>
-				<th colspan='4'>motif</th>
+				<th colspan='3'>motif</th>
 				
 
 				<th><button type='button'><img id='img_x'  onclick='casherTableArticle()' src='../vue/style/x.jpg'></button>
 				</th>
-				</tr>";
-        } else $lesRows[] = "<tr class='article'><th colspan='10'>il n y a pas des articles !</th>
+				";
+        } else $lesRows[] = "<tr class='article'><th colspan='11'>il n y a pas des articles !</th>
 				<th><button type='button'><img id='img_x'  onclick='casherTableArticle()' src='../vue/style/x.jpg'></button>
-				></tr>";
+				";
 
 
         if ($lesArticles != '') {
@@ -133,9 +130,9 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
             $ch .= '<td>' . $unRetour['prenom'] . '</td>';
             $ch .= '<td>' . $montantRetour . " €" . '</td>';
 
-            $ch .= '<td><a href="../controleur/retourAdmin.php?op=d&id='
+            $ch .= '<td ><a href="../controleur/retourAdmin.php?op=d&id='
                 .  $unRetour['id_retour']
-                . '"><img src="../vue/style/visu.png"></a></td>';
+                . '"><img onclick="casherTableArticle()"  src="../vue/style/visu.png"></a></td>';
 
             $ch .= '<td><a onclick="javascript:return confirm(\'Etes-vous sûr de vouloir supprimer ? \') " id="supp" href="../controleur/retourAdmin.php?op=s&id='
                 . urlencode($unRetour['id_retour'])
@@ -158,6 +155,11 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
 
             // il affiche les detaille de un retour si op==d 
             if ($id == $unRetour['id_retour'] && $detaille) {
+
+                $lesRows[0].= '<td><a href="editArticle.php?&id_retour='
+                . urlencode($unRetour['id_retour']) .
+                '"><img src="../vue/style/ajout.png"></a></td></tr>';
+
                 foreach ($lesRows as $row)
                     $lignes[] = $row;
             }
