@@ -1,32 +1,86 @@
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
 
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+input[type=number], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  margin-top: 100px;
+}
+h2{
+    
+}
+a {
+    color: #0d6efd;
+    text-decoration: none;
+}
+section{
+    display: inline;
+}
+</style>
 <body>
     
     <?php require_once('../vue/header.php'); ?> 
 
-    <div>ajoutez des articles au Retour <p id="id_ret"><?php  echo $id_retour;
+    <div><h2>Ajoutez des articles au Retour <h2><p id="id_ret"><?php  echo $id_retour;
         ?></p></div>
-
+    <div class="container">
     <form  id="formulaire"  class="row g-3" method="GET" action="" name="add">
         <div class="col-md-6">
             <label for="inputNom" class="form-label">Article</label>
             <input type="text" name="nom_article" class="form-control" id="nom_article">
             <div id="erreur-nom" class="text-danger"></div>
+          <span class="text-danger"><?= $erreurs['nom_article'] ?? '' ?></span>
         </div>
         <div class="col-12">
             <label for="inputQuantite" class="form-label">Quantité</label>
             <input type="number"  name="quantite" class="form-control" id="inputQuantite">
-            <div id="erreur-quantite" class="text-danger"></div>
+          <span class="text-danger"><?= $erreurs['quantite'] ?? '' ?></span>
         </div>
          <div class="col-md-6">
             <label for="inputMontant" class="form-label">Montant</label>
             <input type="number" name="montant_piece" class="form-control" id="inputMontant" >
-            <span class="input-group-text">€</span>
-            <div id="erreur-montant" class="text-danger"></div>
+            <span class="input-group-text" size= 5>€</span>
+          <span class="text-danger"><?= $erreurs['montant_piece'] ?? '' ?></span>
         </div>
         <div class="col-md-2">
             <select id="id_motif" class="form-select" aria-label="Default select example" name="id_motif" id="id_motif">
                 <option selected>select motif </option>
-                <div id="erreur-motif" class="text-danger"></div>
 
                     <?php
                         foreach ($columns as $column) {
@@ -51,6 +105,7 @@
 
         </section>
 </form>
+</div>
 <script>
     valeur= document.getElementById('id_ret').innerHTML
     document.getElementById('id_retour').value=valeur;
