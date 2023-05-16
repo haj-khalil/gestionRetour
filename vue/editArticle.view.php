@@ -75,8 +75,7 @@ section{
          <div class="col-md-6">
             <label for="inputMontant" class="form-label">Montant</label>
             <input type="number" name="montant_piece" class="form-control" id="inputMontant" >
-            <span class="input-group-text" size= 5>€</span>
-          <span class="text-danger"><?= $erreurs['montant_piece'] ?? '' ?></span>
+            <div id="erreur-montant" class="text-danger"></div>
         </div>
         <div class="col-md-2">
             <select id="id_motif" class="form-select" aria-label="Default select example" name="id_motif" id="id_motif">

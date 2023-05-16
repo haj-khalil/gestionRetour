@@ -56,6 +56,7 @@
                                     <th>Articles</th>
                                     <th>supprimer</th>
                                     <th>modifier</th>
+                                    <th>ajouter article</th>
                                     <th>changer statut</th>
                                 </tr>
                             </thead>
@@ -132,12 +133,15 @@
                 width: 24px;
                 height: 24px;
             }
+            
             td{
                 text-align: center;
             }
             th{
                 text-align: center;
-                 color:green;
+            }
+            input[type=button]:not(:disabled){
+                width: 60px;
             }
         </style>
         <script src="../vue/style.js"></script>
