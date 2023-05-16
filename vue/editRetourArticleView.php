@@ -10,7 +10,6 @@
 
     <form name="add" action="editRetourArticle.php?op=a" method="post">
 
-<<<<<<< Updated upstream
       <section class="mb-3">
         <div class="col-md-6">
 
@@ -27,21 +26,6 @@
           } else{?>
         </div>
       </section>
-=======
-     
-<section class="mb-3">
-  <label for="id_client" class="form-label">Numéro Client :</label>
-  <div class="col-md-6">
-    <?php if ($ajout) { ?>
-      <input id="id_client" name="id_client" type="text" class="form-control" size="5" maxlength="5" value="<?= htmlentities($valeurs['id_client'] ?? '') ?>" />
-      <br />
-      <span class="text-danger"><?= ($erreurs['id_client'] ?? '') ?></span>
-    <?php } else { ?>
-      <p class="form-control-static"><?= $id_client ?></p>
-    <?php } ?>
-  </div>
-</section>
->>>>>>> Stashed changes
 
       <section class="mb-3">
         <label for="id_ens" class="form-label">Enseignes:</label>
