@@ -19,6 +19,7 @@
 <body>
 
     <form method="GET" action="../controleur/retourAdmin.php" name="add">
+
         <section class="container my-5">
             <?php
             if (isset($lignes) && $lignes != []) : {
@@ -111,7 +112,7 @@
                     </div>
                     <div>
                         <label for="date_remboursement">Date remboursement</label>
-                        <input id="date_remboursement" name="date_remboursement" type="date" size="15" value="" />
+                        <input type="date" id="date_remboursement" name="date_remboursement" value="<?php echo date("Y-m-d"); ?>">
 
 
                     </div>
@@ -133,7 +134,7 @@
                 width: 24px;
                 height: 24px;
             }
-            
+
             td{
                 text-align: center;
             }
@@ -144,6 +145,9 @@
                 width: 60px;
             }
         </style>
+        <script>
+
+        </script>
         <script src="../vue/style.js"></script>
 
     </form>
