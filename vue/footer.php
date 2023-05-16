@@ -3,7 +3,7 @@
     <!-- Contenu de la page ici -->
   </main>
 
-  <footer class="footer mt-auto py-3 bg-light">
+  <footer class="footer mt-auto py-3 bg-light" style="width:100%">
     <div class="container">
       <span class="text-muted">Copyright@2023</span>
     </div>

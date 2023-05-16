@@ -1,7 +1,8 @@
+<section class="container my -10" style=" margin-bottom: 100px;">
+    <?php require_once('../vue/header.php'); ?> 
+</section>
 
 <body>
-    
-    <?php require_once('../vue/header.php'); ?> 
 
     <div>ajoutez des articles au Retour <p id="id_ret"><?php  echo $id_retour;
         ?></p></div>

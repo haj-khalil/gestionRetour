@@ -166,9 +166,9 @@ if (isset($_SESSION['login'])) {
 			'"><img src="../vue/style/modification.png"></a></td>';
 
 		$ch .= '<td><input type="button" onclick="getIdRetour(this.value)" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"
-	    " value=' . urlencode($unRetour['id_retour']) . '></input></td>';
+	    " value='  . '></td>';
         
-        //nadime
+        //nadime.  
         // $ch .= '<td ><a href="../controleur/editArticle.php?op=d&id_retour='
             // . urlencode($unRetour['id_retour']) .
             // '"><img src="../vue/style/ajout.png"></a></td>';
@@ -194,7 +194,8 @@ if (isset($_SESSION['login'])) {
 
 	// update un statut et la date_remboursement 
 	if ($updateStatut && $input_id_statut != $unRetour['id_statut']  &&  $date_remboursement) {
-
+print_r($unRetour['id_statut'] );
+print_r($updateStatut );
 		if (is_numeric($input_id_statut)) {
 			$retour = new RetourDAO();
 			$retour->udateRetourStatut($input_id_statut, $id_retour_modif_statut);

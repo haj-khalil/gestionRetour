@@ -22,7 +22,7 @@
         <section class="container my-5">
             <?php
             if (isset($lignes) && $lignes != []) : {
-                    $nombre_par_page = 10; // nombre d'éléments à afficher par page
+                    $nombre_par_page = 15; // nombre d'éléments à afficher par page
                     $nombre_total = count($lignes); // nombre total d'éléments
                     $nombre_de_pages = ceil($nombre_total / $nombre_par_page); // nombre de pages à afficher
                     $page_actuelle = isset($_GET['page']) ? $_GET['page'] : 1; // numéro de la page actuelle (si non spécifié, afficher la première page)
@@ -47,16 +47,16 @@
                                 <tr>
                                     <th onclick="">Numéro Retour</th>
                                     <th>Enseigne</th>
-                                    <th>date Achat</th>
-                                    <th>lable</th>
+                                    <th>Date Achat</th>
+                                    <th>Lable</th>
                                     <th>Date Envoie</th>
-                                    <th>nom</th>
-                                    <th>prénom</th>
+                                    <th>Nom</th>
+                                    <th>Prénom</th>
                                     <th>Montant</th>
                                     <th>Articles</th>
-                                    <th>supprimer</th>
-                                    <th>modifier</th>
-                                    <th>changer statut</th>
+                                    <th>Supprimer</th>
+                                    <th>Modifier</th>
+                                    <th>Changer statut</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -87,42 +87,42 @@
         </section>
         <!-- Modal
         ///** */ -->
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Modal</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
+ <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form>
+        <div class="modal-body">
+          <h2>Actualiser</h2>
+          <select class="form-select" required aria-label="Default select example" name="select_id_statut" id="select_id_statut">
+            <option default>Choix statut</option>
+            <?php
+            foreach ($rows as $row) {
+              echo $row;
+            }
+    
+            ?>
+          </select>
 
-                        <h2>actualiser</h2>
-                        <select class="form-select" required aria-label="Default select example" name="select_id_statut" id="select_id_statut">
-                            <option selected>Choix statut </option>
-                            <?php
-                            foreach ($rows as $row) {
-                                echo $row;
-                            }
-                            ?>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="date_remboursement">Date remboursement</label>
-                        <input id="date_remboursement" name="date_remboursement" type="date" size="15" value="" />
-
-
-                    </div>
-
-                    <div class="modal-footer">
-                        <input type="text" id="id_retour_modif_statut" style="display:none;" name="id_retour_modif_statut" value="">
-                        <input type="submit" id="updateStatut" name="updateStatut" class="btn btn-secondary" value="Actualiser" />
-                        <input type="submit" id="annuler" name="annuler" value="Quitter" class="btn btn-secondary" data-dismiss="modal" />
-                    </div>
-                </div>
-            </div>
+          <div class="form-group mt-3">
+            <label for="date_remboursement">Date remboursement</label>
+            <input id="date_remboursement" name="date_remboursement" type="date" class="form-control" value="">
+          </div>
         </div>
+        <div class="modal-footer">
+          <input type="text" id="id_retour_modif_statut" style="display:none;" name="id_retour_modif_statut" value="">
+          <button type="submit" id="updateStatut" name="updateStatut" class="btn btn-primary">Actualiser</button>
+          <button type="button" id="annuler" name="annuler" class="btn btn-secondary" data-dismiss="modal">Quitter</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
         <style>
             .article {
                 background-color: blanchedalmond;
