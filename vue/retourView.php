@@ -56,6 +56,7 @@
                                     <th>Articles</th>
                                     <th>supprimer</th>
                                     <th>modifier</th>
+                                    <th>ajouter article</th>
                                     <th>changer statut</th>
                                 </tr>
                             </thead>
@@ -132,6 +133,7 @@
                 width: 24px;
                 height: 24px;
             }
+            
             td{
                 text-align: center;
             }
