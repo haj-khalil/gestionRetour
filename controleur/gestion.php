@@ -23,27 +23,29 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
     ];
 
 
-
-
     // les options des enseigne
-    $enseigne = new EnseigneDAO();
-    $lesEns = $enseigne->getAll();
-    $lignes    = [];
-    foreach ($lesEns as $ens) {
-        $ch = '';
-        $ch .= '<option value=' . $ens->getId_ens() . '>' . $ens->getNom_ens() . '</option>';
-        $lignes[] = "<tr>$ch</tr>";
-    }
+    
+        $enseigne = new EnseigneDAO();
+        $lesEns   = $enseigne->getAll();
+        $lignes   = [];
+        foreach ($lesEns as $ens) {
+            $ch = '';
+            $ch .= '<option value=' . $ens->getId_ens() . '>' . $ens->getNom_ens() . '</option>';
+            $lignes[] = "<tr>$ch</tr>";
+        }
+    
 
 
 
 
-    //effacer une enseigne strip_tags(trim($_POST['email']))
-    $id_ens = isset($_GET['select_id_ens']) ? $_GET['select_id_ens'] : null;
-    $effacerEns = isset($_GET['effacerEns']) ? $_GET['effacerEns'] : null;
+    //effacer une enseigne  
+
+        $id_ens = isset($_GET['select_id_ens']) ? $_GET['select_id_ens'] : null;
+        $effacerEns = isset($_GET['effacerEns']) ? $_GET['effacerEns'] : null;
     if ($effacerEns) {
         if (is_numeric($id_ens)) {
             $lesEns = $enseigne->delete($id_ens);
+            header("refresh:0;url=gestion.php");
         } else $erreurs["id_ens"] = "il faut selecter l'enseigne !";
     }
 
@@ -57,6 +59,7 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
             $lesEns = $enseigne->existeByNom_ens($nomEns);
             if (!$lesEns) {
                 $lesEns = $enseigne->insert($nomEns);
+                header("refresh:0;url=gestion.php");
             } else $erreurs["nomEns"] = " enseigne déjà existant ! ";
         } else $erreurs["nomEns"] = "il faut saisir le nom de l'enseigne ! ";
     }
@@ -80,6 +83,7 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
     if ($effacerStatut) {
         if (is_numeric($id_statut)) {
             $lesStatut = $statut->delete($id_statut);
+            header("refresh:0;url=gestion.php");
         } else $erreurs["id_statut"] = "il faut selecter l'enseigne !";
     }
 
@@ -93,6 +97,7 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
             $lesStatut = $statut->existeByLabel($nomStatut);
             if (!$lesStatut) {
                 $lesStatut = $statut->insert($nomStatut);
+                header("refresh:0;url=gestion.php");
             } else $erreurs["nomStatut"] = " statut déjà existant ! ";
         } else $erreurs["nomStatut"] = "il faut saisir le nom du statut ! ";
     }
@@ -116,6 +121,7 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
     if ($effacerMotif) {
         if (is_numeric($id_motif)) {
             $lesMotifs = $motif->delete($id_motif);
+            header("refresh:0;url=gestion.php");
         } else $erreurs["id_motif"] = "il faut selecter le motif !";
     }
 
@@ -129,12 +135,12 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
             $lesMotif = $motif->existeByMotif($nomMotif);
             if (!$lesMotif) {
                 $lesMotif = $motif->insert($nomMotif);
+                header("refresh:0;url=gestion.php");
             } else $erreurs["nomMotif"] = "  motif déjà existant ! ";
         } else $erreurs["nomMotif"] = "il faut saisir le motif ! ";
     }
 
-
-
+    
 
     require_once('../vue/gestionView.php');
 } else {

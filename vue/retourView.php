@@ -19,6 +19,7 @@
 <body>
 
     <form method="GET" action="../controleur/retourAdmin.php" name="add">
+
         <section class="container my-5">
             <?php
             if (isset($lignes) && $lignes != []) : {
@@ -54,9 +55,10 @@
                                     <th>Prénom</th>
                                     <th>Montant</th>
                                     <th>Articles</th>
-                                    <th>Supprimer</th>
-                                    <th>Modifier</th>
-                                    <th>Changer statut</th>
+                                    <th>supprimer</th>
+                                    <th>modifier</th>
+                                    <th>ajouter article</th>
+                                    <th>changer statut</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -87,42 +89,42 @@
         </section>
         <!-- Modal
         ///** */ -->
- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form>
-        <div class="modal-body">
-          <h2>Actualiser</h2>
-          <select class="form-select" required aria-label="Default select example" name="select_id_statut" id="select_id_statut">
-            <option default>Choix statut</option>
-            <?php
-            foreach ($rows as $row) {
-              echo $row;
-            }
-    
-            ?>
-          </select>
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Modal</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
 
-          <div class="form-group mt-3">
-            <label for="date_remboursement">Date remboursement</label>
-            <input id="date_remboursement" name="date_remboursement" type="date" class="form-control" value="">
-          </div>
+                        <h2>actualiser</h2>
+                        <select class="form-select" required aria-label="Default select example" name="select_id_statut" id="select_id_statut">
+                            <option selected>Choix statut </option>
+                            <?php
+                            foreach ($rows as $row) {
+                                echo $row;
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="date_remboursement">Date remboursement</label>
+                        <input type="date" id="date_remboursement" name="date_remboursement" value="<?php echo date("Y-m-d"); ?>">
+
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <input type="text" id="id_retour_modif_statut" style="display:none;" name="id_retour_modif_statut" value="">
+                        <input type="submit" id="updateStatut" name="updateStatut" class="btn btn-secondary" value="Actualiser" />
+                        <input type="submit" id="annuler" name="annuler" value="Quitter" class="btn btn-secondary" data-dismiss="modal" />
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="modal-footer">
-          <input type="text" id="id_retour_modif_statut" style="display:none;" name="id_retour_modif_statut" value="">
-          <button type="submit" id="updateStatut" name="updateStatut" class="btn btn-primary">Actualiser</button>
-          <button type="button" id="annuler" name="annuler" class="btn btn-secondary" data-dismiss="modal">Quitter</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
         <style>
             .article {
                 background-color: blanchedalmond;
@@ -132,13 +134,20 @@
                 width: 24px;
                 height: 24px;
             }
+
             td{
                 text-align: center;
             }
             th{
                 text-align: center;
             }
+            input[type=button]:not(:disabled){
+                width: 60px;
+            }
         </style>
+        <script>
+
+        </script>
         <script src="../vue/style.js"></script>
 
     </form>
