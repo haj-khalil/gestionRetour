@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit article</title>
+</head>
+
 <style>
 body {font-family: Arial, Helvetica, sans-serif;}
 * {box-sizing: border-box;}
@@ -66,7 +75,6 @@ section{
         <div class="col-md-6">
             <label for="inputNom" class="form-label">Article: </label>
             <input type="text" name="nom_article" class="form-control" id="nom_article" value="<?= $valeurs['nom_article'] ?? '' ?>">
-            <div id="erreur-nom" class="text-danger"></div>
           <span class="text-danger"><?= $erreurs['nom_article'] ?? '' ?></span>
         </div>
         <div class="col-12">
@@ -78,7 +86,6 @@ section{
             <label for="inputMontant" class="form-label">Montant: </label>
             <input type="number" name="montant_piece" class="form-control" id="inputMontant" value="<?= $valeurs['montant_piece'] ?? '' ?>" >
             <span class="input-group-text">€</span>
-            <div id="erreur-montant" class="text-danger"></div>
         </div>
         <div class="col-md-2">
             <select id="id_motif" class="form-select" aria-label="Default select example" name="id_motif" id="id_motif" value="<?= $valeurs['motif'] ?? '' ?>">
@@ -111,51 +118,6 @@ section{
 <script>
     valeur= document.getElementById('id_ret').innerHTML
     document.getElementById('id_retour').value=valeur;
-
-    document.getElementById('formulaire').addEventListener('submit', function (e) {
-            let valide = true;
-            document.querySelector('#erreur-nom').innerHTML = '';
-            document.querySelector('#erreur-quantite').innerHTML = '';
-            document.querySelector('#erreur-montant').innerHTML = '';
-            document.querySelector('#erreur-motif').innerHTML = '';
-           
-
-            const REGEX_NOM = /^[a-zA-Z]{2,50}$/;
-            const REGEX_QUANTITE = /^([1-9]|[1-9][0-9]{1,3}|10000)(\.[0-9]+)?$/;
-            const REGEX_MONTANT = /^(?:\p{Sc}\s*)?([1-9]\d*|0)(?:\.\d{1,2})?(?:\s*\p{Sc})?$/;
-            
-            
-
-            
-
-            if (!document.getElementById('nom_article').value.match(REGEX_NOM)) {
-                valide = false;
-                document.getElementById('erreur-nom').innerHTML = 'Le nom est obligatoire et doit contenir entre 2 et 50 lettres.';
-            }
-
-            if (!document.getElementById('inputQuantite').value.match(REGEX_QUANTITE)) {
-                valide = false;
-                document.getElementById('erreur-quantite').innerHTML = 'La quantité est obligatoire et doit être un nombre positif inférieur ou égal à 1000.';
-            }
-
-            if (!document.getElementById('inputMontant').value.match(REGEX_MONTANT)) {
-                valide = false;
-                document.getElementById('erreur-montant').innerHTML = "Le montant est invalide.";
-            }
-
-            if (!document.getElementById('id_motif').value) {
-                valide = false;
-                document.getElementById('erreur-motif').innerHTML = 'Le motif est obligatoire.';
-            }
-
-            if (!valide) {
-                // permet de ne pas submit le formulaire si on utilise la fonction addEventListener
-                e.preventDefault();
-            }
-
-            return valide;
-        });
-
 </script>
 </body>
 </html>

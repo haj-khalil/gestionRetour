@@ -10,9 +10,14 @@ $nom_article = isset($_GET['nom_article']) ? strip_tags(strval(trim($_GET['nom_a
 $id_retour = isset($_GET['id_retour']) ? $_GET['id_retour'] : null;
 $id_article = isset($_GET['id_article']) ? $_GET['id_article'] : null;
 $quantite = isset($_GET['quantite']) ? intval($_GET['quantite']) : null;
+$value = null;
 if (isset($_GET['montant_piece']) && !empty($_GET['montant_piece'])) {
     $value = str_replace(',', '', $_GET['montant_piece']);
-        if (is_numeric($value)) {  $montant_piece = floatval(number_format($value, 2));}}; //n
+    if (is_numeric($value)) {
+        $montant_piece = floatval(number_format($value, 2));
+    }
+}
+ //n
 //$montant_piece = isset($_GET['montant_piece']) ? floatval(number_format(str_replace(',', '', $_GET['montant_piece']), 2)) : null;
 $id_motif = isset($_GET['id_motif']) ? intval($_GET['id_motif']) : null;
 $valider = isset($_GET['valider']) ? $_GET['valider'] : null;
@@ -50,14 +55,14 @@ $erreurs = [
 
 $REGEX_NOM = "/^[a-zA-Z]{2,50}$/";
 $REGEX_QUANTITE = "/^([1-9]|[1-9][0-9]{1,5}|10000)(\.[0-9]+)?$/";
-/* $REGEX_MONTANT = "/^(?:\p{Sc}\s*)?([1-9]\d*|0)(?:\.\d{1,2})?(?:\s*\p{Sc})?$/"; */
+ $REGEX_MONTANT = "/^(?:\p{Sc}\s*)?([1-9]\d*|0)(?:\.\d{1,2})?(?:\s*\p{Sc})?$/"; 
 
 
 if ($valider) {
 
     if (preg_match($REGEX_NOM, $nom_article) && $nom_article != null) {
         $valeurs['nom_article'] = $nom_article;
-    } else $erreurs['nom_article'] = 'nom article invalid';
+    } else $erreurs['nom_article'] = 'Nom article invalide';
 
 
 
@@ -68,12 +73,14 @@ if ($valider) {
 
     if ($montant_piece > 0 && $montant_piece) {
         $valeurs['montant_piece'] = $montant_piece;
-    } else $erreurs['montant_piece'] = 'montant piece invalid';
-
+    } else {
+        $erreurs['montant_piece'] = 'Montant piece invalide';
+    }
+    
 
     if ($id_motif) {
         $valeurs['id_motif'] = $id_motif;
-    } else $erreurs['id_motif'] = 'select le motif';
+    } else $erreurs['id_motif'] = 'Selectionnez un motif';
 
     if ($id_retour) {
         $valeurs['id_retour'] = $id_retour;
