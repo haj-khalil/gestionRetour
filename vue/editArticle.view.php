@@ -57,32 +57,32 @@ section{
     
     <?php require_once('../vue/header.php'); ?> 
 
-    <div><h2>Ajoutez des articles au Retour <h2><p id="id_ret"><?php  echo $id_retour;
+    <div><h2>Ajoutez des articles au Retour : <h2><p id="id_ret"><?php  echo $id_retour;
         ?></p></div>
     <div class="container">
     <form  id="formulaire"  class="row g-3" method="GET" action="" name="add">
     <input type="hidden" name="id_article" value="<?= $valeurs['id_article'] ?? '' ?>">
 
         <div class="col-md-6">
-            <label for="inputNom" class="form-label">Article</label>
+            <label for="inputNom" class="form-label">Article: </label>
             <input type="text" name="nom_article" class="form-control" id="nom_article" value="<?= $valeurs['nom_article'] ?? '' ?>">
             <div id="erreur-nom" class="text-danger"></div>
           <span class="text-danger"><?= $erreurs['nom_article'] ?? '' ?></span>
         </div>
         <div class="col-12">
-            <label for="inputQuantite" class="form-label">Quantité</label>
+            <label for="inputQuantite" class="form-label">Quantité: </label>
             <input type="number"  name="quantite" class="form-control" id="inputQuantite" value="<?= $valeurs['quantite'] ?? '' ?>">
           <span class="text-danger"><?= $erreurs['quantite'] ?? '' ?></span>
         </div>
          <div class="col-md-6">
-            <label for="inputMontant" class="form-label">Montant</label>
+            <label for="inputMontant" class="form-label">Montant: </label>
             <input type="number" name="montant_piece" class="form-control" id="inputMontant" value="<?= $valeurs['montant_piece'] ?? '' ?>" >
             <span class="input-group-text">€</span>
             <div id="erreur-montant" class="text-danger"></div>
         </div>
         <div class="col-md-2">
             <select id="id_motif" class="form-select" aria-label="Default select example" name="id_motif" id="id_motif" value="<?= $valeurs['motif'] ?? '' ?>">
-                <option selected>select motif </option>
+                <option selected>Selectionnez un motif:  </option>
 
                     <?php
                         foreach ($columns as $column) {

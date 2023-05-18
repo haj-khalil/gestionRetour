@@ -19,7 +19,7 @@
         }
     </style>
     <header>
-        <h1> Formulaire inscription </h1>
+        <h1> Formulaire d'inscription:  </h1>
     </header>
 
     <section>
@@ -82,7 +82,7 @@
 
 
                 <tr>
-                    <td><label for="mdpRep">confimez le mot de passe</label></td>
+                    <td><label for="mdpRep">Confimez votre mot de passe</label></td>
                     <td><input type="password" name="mdpRep" id="mdpRep" placeholder="confirmation de mot de passe" class="form-control" value="" /></td>
                     <td><span class="text-danger"><?= $erreurs['mdp'] ?? '' ?></span></td>
                 </tr>
