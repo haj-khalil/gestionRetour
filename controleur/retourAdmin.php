@@ -100,10 +100,12 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
                 $ch .= '<td colspan="2" class="article">' . $uneArticle['id_article'] . '</td>';
                 $ch .= '<td colspan="2" class="article">' . $uneArticle['montant_piece'] . " €" . '</td>';
                 $ch .= '<td colspan="2" class="article">' . $uneArticle['quantite'] . '</td>';
-                $ch .= '<td colspan="4" class="article">' . $uneArticle['motif'] . '</td>';
+                $ch .= '<td colspan="3" class="article">' . $uneArticle['motif'] . '</td>';
 
                 
-
+                $ch .= '<td class="article"><a href="../controleur/editArticle.php?op=mA&id_article='
+                    . urlencode($uneArticle['id_article']) 
+                    . '"><img src="../vue/style/modification.png"></a></td>';
                 $ch .= '<td class="article"><a  onclick="javascript:return confirm(\'Etes-vous sûr de vouloir supprimer ? \') " id="supp"
 		        href="../controleur/retourAdmin.php?op=sA&id_article='
                     . urlencode($uneArticle['id_article'])

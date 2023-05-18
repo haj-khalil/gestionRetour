@@ -3,15 +3,23 @@ session_start();
 
 require_once('../modele/motifClass.php');
 require_once('../modele/motifDAO.php');
-
+require_once('../modele/retourClass.php');
+require_once('../modele/retourDAO.php');
 
 $nom_article = isset($_GET['nom_article']) ? strip_tags(strval(trim($_GET['nom_article']))) : null;
 $id_retour = isset($_GET['id_retour']) ? $_GET['id_retour'] : null;
+$id_article = isset($_GET['id_article']) ? $_GET['id_article'] : null;
 $quantite = isset($_GET['quantite']) ? intval($_GET['quantite']) : null;
-$montant_piece = isset($_GET['montant_piece']) ? floatval(number_format(str_replace(',', '', $_GET['montant_piece']), 2)) : null;
+if (isset($_GET['montant_piece']) && !empty($_GET['montant_piece'])) {
+    $value = str_replace(',', '', $_GET['montant_piece']);
+        if (is_numeric($value)) {  $montant_piece = floatval(number_format($value, 2));}}; //n
+//$montant_piece = isset($_GET['montant_piece']) ? floatval(number_format(str_replace(',', '', $_GET['montant_piece']), 2)) : null;
 $id_motif = isset($_GET['id_motif']) ? intval($_GET['id_motif']) : null;
 $valider = isset($_GET['valider']) ? $_GET['valider'] : null;
 $annuler = isset($_GET['annuler']) ? $_GET['annuler'] : null;
+$op      = (isset($_GET['op']) ? $_GET['op'] : null);
+$modif   = ($op == 'mA');
+$edit_article = ($id_article && $modif);
 
 
 $motif = new MotifDAO();
@@ -98,6 +106,22 @@ if ($valider) {
 }
 if (isset($_GET['annuler'])) {
     header("location: retourAdmin.php");
+}
+require_once('../modele/articleDAO.php');
+require_once('../modele/articleClass.php');
+$valeurs['id_article'] = null;
+$unArticleDAO = new ArticleDAO();
+if ($modif || $edit_article) {
+    $valeurs['id_article'] = $id_article;
+    $unArticle = $unArticleDAO->getByIdArticle($id_article);
+}
+if($modif){
+    $valeurs['id_article']		= $unArticle->getId_article();
+    $valeurs['nom_article'] = $unArticle->getNom_article();
+	$valeurs['quantite'] = $unArticle->getQuantite();		
+	$valeurs['montant_piece'] 	= $unArticle->getMontant_piece();	
+	$valeurs['id_motif'] 	= $unArticle->getId_motif();
+
 }
 
 

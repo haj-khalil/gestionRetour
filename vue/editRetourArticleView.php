@@ -10,24 +10,6 @@
 
     <form name="add" action="editRetourArticle.php?op=a" method="post">
 
-<<<<<<< HEAD
-      <section class="mb-3">
-        <div class="col-md-6">
-
-          <?php 
-          if($_SESSION['login'] === "root"){
-          if (($editid_client)) { ?>
-           <label for="id_client" class="form-label">Numéro Client :</label>
-            <input id="id_client" name="id_client" type="text" class="form-control" size="5" maxlength="5" value="<?= htmlentities($valeurs['id_client']) ?>" />
-            <br />
-            <span class="text-danger"><?= ($erreurs['id_client']) ?></span>
-          <?php } else { ?>
-            <p class="form-control-static"><?= htmlentities($valeurs['id_client'] ?? '') ?></p>
-          <?php } 
-          } else{?>
-        </div>
-      </section>
-=======
      
 <section class="mb-3">
   <label for="id_client" class="form-label">Numéro Client :</label>
@@ -41,7 +23,6 @@
     <?php } ?>
   </div>
 </section>
->>>>>>> 6eb62ce1ad66b58486457dfcf7a8ecf4a2397147
 
       <section class="mb-3">
         <label for="id_ens" class="form-label">Enseignes:</label>
