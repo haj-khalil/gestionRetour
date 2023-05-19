@@ -14,9 +14,9 @@
                 <div class="col">
                     <section>
 
-                        <h2>effacer une enseigne </h2>
+                        <h2>Effacer une enseigne </h2>
                         <select class="form-select" aria-label="Default select example" name="select_id_ens" id="select_id_ens">
-                            <option selected>select l'entreprise</option>
+                            <option selected>Selectionnez l'enseigne</option>
                             <?php
                             foreach ($lignes as $ligne) {
                                 echo $ligne;
@@ -38,9 +38,9 @@
 
                 <div class="col">
                     <section>
-                        <h2>effacer un statut </h2>
+                        <h2>Effacer un statut </h2>
                         <select class="form-select" aria-label="Default select example" name="select_id_statut" id="select_id_statut">
-                            <option selected>select statut à effacer </option>
+                            <option selected>Selectionnez un statut à effacer </option>
                             <?php
                             foreach ($rows as $row) {
                                 echo $row;
@@ -64,7 +64,7 @@
                     <section>
                         <h2>Suppression Motif</h2>
                         <select class="form-select" aria-label="Default select example" name="select_id_motif" id="select_id_motif">
-                            <option selected>Choix motif à éffacer </option>
+                            <option selected>Choisissez un motif à effacer </option>
                             <?php
                             foreach ($rowsMotifs as $row) {
                                 echo $row;
@@ -87,7 +87,7 @@
             <div class="row">
                 <div class="col">
                     <section>
-                        <h2>Ajout Enseigne</h2>
+                        <h2>Ajout d'une enseigne</h2>
                         <label for="nomEns">Entrez le nom de l'enseigne</label>
                         <input id="nomEns" name="nomEns" type="text" size="15" value="<?= htmlentities($valeurs['nomEns'] ?? '') ?>" />
                         <br />
@@ -103,7 +103,7 @@
                 <div class="col">
                     <section>
                         <h2>Ajout statut</h2>
-                        <label for="nomStatut">Entrez le nom de l'enseigne</label>
+                        <label for="nomStatut">Entrez un statut</label>
                         <input id="nomStatut" name="nomStatut" type="text" size="15" value="<?= htmlentities($valeurs['nomStatut'] ?? '') ?>" />
                         <br />
                         <span class="erreur"><?= $erreurs['nomStatut'] ?? '' ?></span>

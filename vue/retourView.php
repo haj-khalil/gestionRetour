@@ -4,7 +4,7 @@
 
     <head>
     <meta charset="utf-8">
-    <title>Liste des infractions</title>
+    <title>Liste des retours</title>
     <!-- ///** */ -->
     <link rel="stylesheet" href="../vue/style/style3.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
@@ -48,17 +48,17 @@
                                 <tr>
                                     <th onclick="">Numéro Retour</th>
                                     <th>Enseigne</th>
-                                    <th>date Achat</th>
-                                    <th>lable</th>
-                                    <th>Date Envoie</th>
-                                    <th>nom</th>
-                                    <th>prénom</th>
+                                    <th>Date d'achat</th>
+                                    <th>Label</th>
+                                    <th>Date d'envoi</th>
+                                    <th>Nom</th>
+                                    <th>Prénom</th>
                                     <th>Montant</th>
                                     <th>Articles</th>
-                                    <th>supprimer</th>
-                                    <th>modifier</th>
-                                    <th>ajouter article</th>
-                                    <th>changer statut</th>
+                                    <th>Supprimer</th>
+                                    <th>Modifier</th>
+                                    <th>Ajouter article</th>
+                                    <th>Changer statut</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -100,9 +100,9 @@
                     </div>
                     <div class="modal-body">
 
-                        <h2>actualiser</h2>
+                        <h2>Actualiser</h2>
                         <select class="form-select" required aria-label="Default select example" name="select_id_statut" id="select_id_statut">
-                            <option selected>Choix statut </option>
+                            <option selected>Choisissez un statut </option>
                             <?php
                             foreach ($rows as $row) {
                                 echo $row;
@@ -111,7 +111,7 @@
                         </select>
                     </div>
                     <div>
-                        <label for="date_remboursement">Date remboursement</label>
+                        <label for="date_remboursement">Date de remboursement</label>
                         <input type="date" id="date_remboursement" name="date_remboursement" value="<?php echo date("Y-m-d"); ?>">
 
 

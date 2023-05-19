@@ -1,17 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit article</title>
+</head>
+
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+input[type=number], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  margin-top: 100px;
+}
+h2{
+    
+}
+a {
+    color: #0d6efd;
+    text-decoration: none;
+}
+section{
+    display: inline;
+}
+</style>
 <body>
     
 
     <span >ajoutez des articles au Retour <b><span id="id_ret" ><?php  echo $id_retour;?></b></span></span>
 
     <form  method="GET" action="" name="add">
+    <div><h2>Ajoutez des articles au Retour : <h2><p id="id_ret"><?php  echo $id_retour;
+        ?></p></div>
+    <div class="container">
+    <form  id="formulaire"  class="row g-3" method="GET" action="" name="add">
+    <input type="hidden" name="id_article" value="<?= $valeurs['id_article'] ?? '' ?>">
+
         <div class="col-md-6">
-            <label for="inputNom"  class="form-label">Article</label>
-            <input type="text" required  name="nom_article" class="form-control" id="nom_article" value="<?= htmlentities($valeurs['nom_article'] ?? '') ?>">
-            <div id="erreur-nom" class="text-danger"></div>
-            <span class="erreur"><?= $erreurs['nom_article'] ?? '' ?></span>
-
-
-            
+            <label for="inputNom" class="form-label">Article: </label>
+            <input type="text" name="nom_article" class="form-control" id="nom_article" value="<?= $valeurs['nom_article'] ?? '' ?>">
+          <span class="text-danger"><?= $erreurs['nom_article'] ?? '' ?></span>
         </div>
 
         <div class="col-12">
@@ -64,6 +130,7 @@
 
         </section>
 </form>
+</div>
 <script>
     // recuperer id_retour de retourAdmin.php et l'envoyer a edistArticle.php
     valeur= document.getElementById('id_ret').innerHTML
