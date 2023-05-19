@@ -25,21 +25,16 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
     }
     //n
 
-
-
-
-
-
     // isAmin est un variable pour definir l'utilisateur  admin ou non
     if ($_SESSION['login'] == 'root') {
         $isAdmin = true;
     } else $isAdmin = false;
 
     $id                         = isset($_GET['id']) ? $_GET['id'] : null;
-    $input_id_statut            = isset($_GET['select_id_statut']) ? $_GET['select_id_statut'] : null;
-    $date_remboursement         = isset($_GET['date_remboursement']) ? $_GET['date_remboursement'] : null;
-    $updateStatut               = isset($_GET['updateStatut']) ? $_GET['updateStatut'] : null;
-    $id_retour_modif_statut     = isset($_GET['id_retour_modif_statut']) ? $_GET['id_retour_modif_statut'] : 2;
+    echo $input_id_statut            = isset($_GET['select_id_statut']) ? $_GET['select_id_statut'] : null;
+    echo $date_remboursement         = isset($_GET['date_remboursement']) ? $_GET['date_remboursement'] : null;
+    echo $updateStatut               = isset($_GET['updateStatut']) ? $_GET['updateStatut'] : null;
+    echo $id_retour_modif_statut     = isset($_GET['id_retour_modif_statut']) ? $_GET['id_retour_modif_statut'] : 2;
     $adminRechercheClientRetour = isset($_GET['adminRechercheClientRetour']) ? $_GET['adminRechercheClientRetour'] : null;
     $EmailClient                = isset($_GET['EmailClient']) ? $_GET['EmailClient'] : null;
     $op                         = isset($_GET['op']) ? $_GET['op'] : null;
@@ -189,11 +184,11 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
         if ($date_remboursement) {
             $retour->udateDateRemboursement($id_retour_modif_statut, $date_remboursement);
         }
-        header("refresh:0;url=retourAdmin.php");
+      //  header("refresh:0;url=retourAdmin.php");
     }
     unset($lesRetours);
 
-    require_once('../vue/retourView.php');
+   // require_once('../vue/retourView.php');
 } else {
     echo "<h2 style=' text-align: center;'>Désolé, il y a une erreur : vous ne pouvez pas accéder à cette page.</h2>";
     header("refresh:2;url=login.php");
