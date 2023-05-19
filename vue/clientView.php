@@ -17,7 +17,7 @@
                         <th>Adresse</th>
                         <th>Téléphone</th>
                         <th>Retours</th>
-                        <th>effacer</th>
+                        <th>Effacer</th>
                     </tr>
                 </thead>
                 <tbody>

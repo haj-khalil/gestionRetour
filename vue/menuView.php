@@ -87,7 +87,7 @@
                     <div class="col-md-6">
                         <div class="card text-center">
                             <div class="card-body">
-                                <h2 class="card-title">Montant En Attente</h2>
+                                <h2 class="card-title">Montant en attente</h2>
                                 <?php echo $montantTotaleEnAttente . " €"; ?>
                             </div>
                         </div>
