@@ -9,16 +9,18 @@ require_once('../modele/retourDAO.php');
 $nom_article = isset($_GET['nom_article']) ? strip_tags(strval(trim($_GET['nom_article']))) : null;
 $id_retour = isset($_GET['id_retour']) ? $_GET['id_retour'] : null;
 $id_article = isset($_GET['id_article']) ? $_GET['id_article'] : null;
+$id_article = isset($_GET['id_article']) ? $_GET['id_article'] : null;
 $quantite = isset($_GET['quantite']) ? intval($_GET['quantite']) : null;
-$value = null;
-if (isset($_GET['montant_piece']) && !empty($_GET['montant_piece'])) {
-    $value = str_replace(',', '', $_GET['montant_piece']);
-    if (is_numeric($value)) {
-        $montant_piece = floatval(number_format($value, 2));
-    }
-}
+
+// $value = null;
+// if (isset($_GET['montant_piece']) && !empty($_GET['montant_piece'])) {
+//     $value = str_replace(',', '', $_GET['montant_piece']);
+//     if (is_numeric($value)) {
+//         $montant_piece = floatval(number_format($value, 2));
+//     }
+// }
  //n
-//$montant_piece = isset($_GET['montant_piece']) ? floatval(number_format(str_replace(',', '', $_GET['montant_piece']), 2)) : null;
+$montant_piece = isset($_GET['montant_piece']) ? floatval(number_format(str_replace(',', '', $_GET['montant_piece']), 2)) : null;
 $id_motif = isset($_GET['id_motif']) ? intval($_GET['id_motif']) : null;
 $valider = isset($_GET['valider']) ? $_GET['valider'] : null;
 $annuler = isset($_GET['annuler']) ? $_GET['annuler'] : null;
