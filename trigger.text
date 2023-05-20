@@ -19,6 +19,9 @@ declare v_date_remboursement varchar(100);
 declare v_id_client varchar(100);
 declare v_id_ens varchar(100);
 declare v_id_statut varchar(100);
+
+
+
 if(old.date_achat != new.date_achat)then
 set v_date_achat := concat("date_achat : ",old.date_achat ," => ",new.date_achat,"  ");
 else set v_date_achat := "";
@@ -32,24 +35,31 @@ set v_date_remboursement := concat("date_remboursement : ",old.date_remboursemen
 else set v_date_remboursement := "";
 end if;
 if(old.id_client != new.id_client)then
-set v_id_client := concat("id_client : " ,old.id_client ," => ",new.id_client,"  ");
+set v_id_client := concat("id_client : " ,
+(select concat(nom ," , ",prenom ," , ", email) from client where id_client=old.id_client limit 1 )," => ",
+(select concat(nom ," , ",prenom ," , ", email) from client where id_client=new.id_client limit 1 ),"  ");
 else set v_id_client := "";
 end if;
+
 if(old.id_ens != new.id_ens)then
-set v_id_ens := concat("id_ens : ",old.id_ens ," => ",new.id_ens,"  ");
+set v_id_ens := concat("id_ens : ",(select nom_ens from enseigne where id_ens = old.id.ens limit 1) ,
+" => ",(select nom_ens from enseigne where id_ens = new.id.ens limit 1),"  ");
 else set v_id_ens := "";
 end if;
+
 if(old.id_statut != new.id_statut)then
-set v_id_statut := concat("id_statut : ",old.id_statut ," => ",new.id_statut,"  ");
+set v_id_statut := concat("id_statut : ",(select label from statut where id_statut=old.id_statut limit 1)
+ ," => ",(select label from statut where id_statut=new.id_statut limit 1),"  ");
 else set v_id_statut := "";
 end if;
-set res := concat("id_retour : ",old.id_retour,"   " ,v_date_achat,v_date_envoi,v_date_remboursement,v_id_client,v_id_ens,v_id_statut);
 
+set res := concat("id_retour : ",old.id_retour,"   " ,v_date_achat,v_date_envoi,v_date_remboursement,v_id_client,v_id_ens,v_id_statut);
+if (LENGTH(res)>20)then 
 insert into audit (user_id , time_date ,event_nom ,table_affecte ,detaille) values 
 (user() , now() , 'update un retour','retour',res );
+end if;
 
 END
-
 
 
 -- AFTER DELETE ON `retour`

@@ -55,9 +55,9 @@ $erreurs = [
     'id_motif' => ""
 ];
 
-$REGEX_NOM = "/^[a-zA-Z]{2,50}$/";
-$REGEX_QUANTITE = "/^([1-9]|[1-9][0-9]{1,5}|10000)(\.[0-9]+)?$/";
- $REGEX_MONTANT = "/^(?:\p{Sc}\s*)?([1-9]\d*|0)(?:\.\d{1,2})?(?:\s*\p{Sc})?$/"; 
+$REGEX_NOM = "/^[a-zA-Z]{2,25}$/";
+//$REGEX_QUANTITE = "/^([1-9]|[1-9][0-9]{1,5}|10000)(\.[0-9]+)?$/";
+/* $REGEX_MONTANT = "/^(?:\p{Sc}\s*)?([1-9]\d*|0)(?:\.\d{1,2})?(?:\s*\p{Sc})?$/"; */
 
 
 if ($valider) {
@@ -68,7 +68,7 @@ if ($valider) {
 
 
 
-    if ($quantite != null && preg_match($REGEX_QUANTITE, $quantite)) {
+    if ($quantite != null && is_numeric($quantite)) {
         $valeurs['quantite'] = $quantite;
     } elseif ($quantite == null) $valeurs['quantite'] = 1;
 
