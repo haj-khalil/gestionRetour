@@ -51,9 +51,7 @@ input[type=submit]:hover {
   padding: 20px;
   margin-top: 100px;
 }
-h2{
-    
-}
+
 a {
     color: #0d6efd;
     text-decoration: none;

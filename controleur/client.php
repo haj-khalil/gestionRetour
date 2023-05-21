@@ -38,22 +38,17 @@ if ($suppr && !empty($id_client)&& $id_client) {
 
 		foreach ($lesClients as $unClient) {
 			$ch = '';
-
-			$ch .= '<td>' . $unClient->getId_client() . '</td>';
-			$ch .= '<td>' . $unClient->getNom() . '</td>';
-			$ch .= '<td>' . $unClient->getPrenom() . '</td>';
-			$ch .= '<td>' . $unClient->getEmail() . '</td>';
-			$ch .= '<td>' . $unClient->getAddress() . '</td>';
-			$ch .= '<td>' . $unClient->getTel() . '</td>';
-            $ch .= '<td><a href="../controleur/retourAdmin.php?EmailClient='
-			.  $unClient->getEmail()
-			. '"><img src="../vue/style/visu.png"></a></td>';
+            $ch .= '<td class="'.$unClient->getId_client().'"id="'.$unClient->getId_client().  '">' . $unClient->getId_client() . '</td>';
+			$ch .= '<td class="'.$unClient->getNom().'"id="'.$unClient->getNom().        '">' . $unClient->getNom() . '</td>';
+			$ch .= '<td class="'.$unClient->getPrenom().'"id="'.$unClient->getPrenom().     '">' . $unClient->getPrenom() . '</td>';
+			$ch .= '<td class="'.$unClient->getEmail().'"id="'.$unClient->getEmail().      '">' . $unClient->getEmail() . '</td>';
+			$ch .= '<td class="'.$unClient->getAddress().'"id="'.$unClient->getAddress().    '">' . $unClient->getAddress() . '</td>';
+			$ch .= '<td class="'.$unClient->getTel().'"id="'.$unClient->getTel().        '">' . $unClient->getTel() . '</td>';
+			$ch .= '<td><a href="../controleur/retourAdmin.php?EmailClient='.  $unClient->getEmail(). '"><img src="../vue/style/visu.png"></a></td>';
 			
-			//n
 			$ch .= '<td class="article"><a  onclick="javascript:return confirm(\'Etes-vous sûr de vouloir supprimer ? \') " id="supp" href="../controleur/client.php?op=sC&id_client='
 		    . urlencode( $unClient->getId_client() )
 		    . '" ><img src="../vue/style/corbeille.png"></a></td>';
-			//n
 
 			$lignes[] = "<tr>$ch</tr>";
 		}
