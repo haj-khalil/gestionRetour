@@ -48,11 +48,10 @@
                 let groupClass = document.getElementsByClassName(motCherche.substring(1))
                 if(groupClass.length==0){
                     document.getElementById('messageRecherch').style.display="grid"
-
                 }
                 let lesCase = document.getElementsByTagName('td')
                 for (let caseTable of groupClass) {
-                    caseTable.style.backgroundColor = '#00FF7F'
+                    caseTable.style.backgroundColor = 'lightskyblue'
                 }
 
             }
