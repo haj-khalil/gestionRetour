@@ -9,7 +9,12 @@ require_once("../modele/retourDAO.php");
 require_once("../modele/statutDAO.php");
 
 session_start();
-
+if (isset($_SESSION['login'])){
+    if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
+        echo '<h2 style=" text-align: center;">session time est terminé !</h2>';
+        header("refresh:3;url=login.php");
+}else
+	
 $op = (isset($_GET['op']) ? $_GET['op'] : null);
 $ajout = ($op == 'a');
 $modif = ($op == 'm');
@@ -139,4 +144,7 @@ if ($retour)
 }	
 
 require_once('../vue/editRetourArticleView.php');
-?>
+}else {
+	echo "<h2 style=' text-align: center;'>Désolé, il y a une erreur : vous ne pouvez pas accéder à cette page.</h2>";
+    header( "refresh:3;url=login.php" );
+}

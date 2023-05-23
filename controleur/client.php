@@ -3,11 +3,9 @@ require_once('../modele/clientDAO.php');
 require_once('../modele/clientClass.php');
 session_start();
 
-if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
-	echo '<h2 style=" text-align: center;">session time est terminé !</h2>';
-	header("refresh:3;url=login.php");
 
-}else if (isset($_SESSION['login'])) {
+
+ if (isset($_SESSION['login']) && $_SESSION["login"]=="root") {
 
 
 

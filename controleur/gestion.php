@@ -9,10 +9,8 @@ require_once("../modele/retourDAO.php");
 require_once("../modele/statutDAO.php");
 require_once("../modele/motifDAO.php");
 session_start();
-if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
-    echo '<h2 style=" text-align: center;">session time est terminé !</h2>';
-    header("refresh:3;url=login.php");
-} else if (isset($_SESSION['login'])) {
+
+if (isset($_SESSION['login']) && $_SESSION['login']=="root" ) {
 
 
 
