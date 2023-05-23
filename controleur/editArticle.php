@@ -1,11 +1,18 @@
 <?php
-session_start();
 
 require_once('../modele/motifClass.php');
 require_once('../modele/motifDAO.php');
 require_once('../modele/retourClass.php');
 require_once('../modele/retourDAO.php');
 
+session_start();
+if (isset($_SESSION['login'])){
+    if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
+        echo '<h2 style=" text-align: center;">session time est terminé !</h2>';
+        header("refresh:3;url=login.php");
+}else
+  
+	
 $nom_article = isset($_GET['nom_article']) ? strip_tags(strval(trim($_GET['nom_article']))) : null;
 $id_retour = isset($_GET['id_retour']) ? $_GET['id_retour'] : null;
 $id_article = isset($_GET['id_article']) ? $_GET['id_article'] : null;
@@ -53,9 +60,9 @@ $erreurs = [
     'id_motif' => ""
 ];
 
-$REGEX_NOM = "/^[a-zA-Z]{2,50}$/";
-$REGEX_QUANTITE = "/^([1-9]|[1-9][0-9]{1,5}|10000)(\.[0-9]+)?$/";
- $REGEX_MONTANT = "/^(?:\p{Sc}\s*)?([1-9]\d*|0)(?:\.\d{1,2})?(?:\s*\p{Sc})?$/"; 
+$REGEX_NOM = "/^[a-zA-Z]{2,25}$/";
+//$REGEX_QUANTITE = "/^([1-9]|[1-9][0-9]{1,5}|10000)(\.[0-9]+)?$/";
+/* $REGEX_MONTANT = "/^(?:\p{Sc}\s*)?([1-9]\d*|0)(?:\.\d{1,2})?(?:\s*\p{Sc})?$/"; */
 
 
 if ($valider) {
@@ -66,7 +73,7 @@ if ($valider) {
 
 
 
-    if ($quantite != null && preg_match($REGEX_QUANTITE, $quantite)) {
+    if ($quantite != null && is_numeric($quantite)) {
         $valeurs['quantite'] = $quantite;
     } elseif ($quantite == null) $valeurs['quantite'] = 1;
 
@@ -135,3 +142,7 @@ if($modif){
 
 
 require_once("../vue/editArticle.view.php");
+}else {
+	echo "<h2 style=' text-align: center;'>Désolé, il y a une erreur : vous ne pouvez pas accéder à cette page.</h2>";
+    header( "refresh:3;url=login.php" );
+}
