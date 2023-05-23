@@ -9,7 +9,8 @@ require_once('../modele/retourDAO.php');
 $nom_article = isset($_GET['nom_article']) ? strip_tags(strval(trim($_GET['nom_article']))) : null;
 $id_retour = isset($_GET['id_retour']) ? $_GET['id_retour'] : null;
 $id_article = isset($_GET['id_article']) ? $_GET['id_article'] : null;
-$id_article = isset($_GET['id_article']) ? $_GET['id_article'] : null;
+//$id_article = isset($valeurs['id_article']) && $valeurs['id_article'] !== '' ? intval($valeurs['id_article']) : 0;
+//$id_article = isset($_GET['id_article']) ? $_GET['id_article'] : null;
 $quantite = isset($_GET['quantite']) ? intval($_GET['quantite']) : null;
 
 // $value = null;
@@ -58,7 +59,14 @@ $erreurs = [
 $REGEX_NOM = "/^[a-zA-Z]{2,25}$/";
 //$REGEX_QUANTITE = "/^([1-9]|[1-9][0-9]{1,5}|10000)(\.[0-9]+)?$/";
 /* $REGEX_MONTANT = "/^(?:\p{Sc}\s*)?([1-9]\d*|0)(?:\.\d{1,2})?(?:\s*\p{Sc})?$/"; */
-
+require_once('../modele/articleDAO.php');
+require_once('../modele/articleClass.php');
+$valeurs['id_article'] = null;
+$unArticleDAO = new ArticleDAO();
+if ($modif || $edit_article) {
+    $valeurs['id_article'] = $id_article;
+    $unArticle = $unArticleDAO->getByIdArticle($id_article);
+}
 
 if ($valider) {
 
@@ -116,14 +124,7 @@ if ($valider) {
 if (isset($_GET['annuler'])) {
     header("location: retourAdmin.php");
 }
-require_once('../modele/articleDAO.php');
-require_once('../modele/articleClass.php');
-$valeurs['id_article'] = null;
-$unArticleDAO = new ArticleDAO();
-if ($modif || $edit_article) {
-    $valeurs['id_article'] = $id_article;
-    $unArticle = $unArticleDAO->getByIdArticle($id_article);
-}
+
 if($modif){
     $valeurs['id_article']		= $unArticle->getId_article();
     $valeurs['nom_article'] = $unArticle->getNom_article();

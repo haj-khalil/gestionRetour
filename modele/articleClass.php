@@ -9,7 +9,7 @@ class Article
 	private $id_retour;
 
 	function __construct(
-		string $id_article = '',
+		int $id_article = 0,
 		string $nom_article = '',
 		float $montant_piece = 0.00,
 		int $quantite = 1,
@@ -24,11 +24,11 @@ class Article
 		$this->id_retour	= $id_retour;
 	}
 
-	function getId_article(): string
+	function getId_article(): int
 	{
 		return $this->id_article;
 	}
-	function setId_article(string $id_article)
+	function setId_article(int $id_article)
 	{
 		$this->id_article = $id_article;
 	}
