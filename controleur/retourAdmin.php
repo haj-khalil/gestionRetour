@@ -25,21 +25,12 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
     }
     //n
 
-
-
-
-
-
     // isAmin est un variable pour definir l'utilisateur  admin ou non
     if ($_SESSION['login'] == 'root') {
         $isAdmin = true;
     } else $isAdmin = false;
 
     $id                         = isset($_GET['id']) ? $_GET['id'] : null;
-    $input_id_statut            = isset($_GET['select_id_statut']) ? $_GET['select_id_statut'] : null;
-    $date_remboursement         = isset($_GET['date_remboursement']) ? $_GET['date_remboursement'] : null;
-    $updateStatut               = isset($_GET['updateStatut']) ? $_GET['updateStatut'] : null;
-    $id_retour_modif_statut     = isset($_GET['id_retour_modif_statut']) ? $_GET['id_retour_modif_statut'] : 2;
     $adminRechercheClientRetour = isset($_GET['adminRechercheClientRetour']) ? $_GET['adminRechercheClientRetour'] : null;
     $EmailClient                = isset($_GET['EmailClient']) ? $_GET['EmailClient'] : null;
     $op                         = isset($_GET['op']) ? $_GET['op'] : null;
@@ -80,11 +71,6 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
     if ($lesArticles != []) {
         $lesRows[] = "
 				<tr class='article'>
-				<th colspan='2'>nom_article </th>
-				<th colspan='2'>id_article</th>
-				<th colspan='2'> montant_piece</th>
-				<th colspan='2'>quantite</th>
-				<th colspan='3'>motif</th>
 				
 
 				<th><button type='button'><img id='img_x'  onclick='casherTableArticle()' src='../vue/style/x.jpg'></button>
@@ -153,7 +139,6 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
             '"><img src="../vue/style/ajout.png"></a></td>';
 
         $ch .= '<td><input type="button" onclick="getIdRetour(this.value)" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"
-	    " value=' . urlencode($unRetour['id_retour']) . '></input></td>';
 
 
         $lignes[] = "<tr>$ch</tr>";
@@ -191,11 +176,10 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
         if ($date_remboursement) {
             $retour->udateDateRemboursement($id_retour_modif_statut, $date_remboursement);
         }
-        header("refresh:0;url=retourAdmin.php");
+      //  header("refresh:0;url=retourAdmin.php");
     }
     unset($lesRetours);
 
-    require_once('../vue/retourView.php');
 } else {
     echo "<h2 style=' text-align: center;'>Désolé, il y a une erreur : vous ne pouvez pas accéder à cette page.</h2>";
     header("refresh:2;url=login.php");

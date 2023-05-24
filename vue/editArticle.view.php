@@ -62,8 +62,7 @@ section{
 </style>
 <body>
     
-
-    <span >ajoutez des articles au Retour <b><span id="id_ret" ><?php  echo $id_retour;?></b></span></span>
+    <?php require_once('../vue/header.php'); ?> 
 
     <form  method="GET" action="" name="add">
     <div><h2>Ajoutez des articles au Retour : <h2><p id="id_ret"><?php  echo $id_retour;
