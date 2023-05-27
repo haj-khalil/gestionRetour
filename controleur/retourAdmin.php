@@ -9,7 +9,7 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
     header("refresh:3;url=login.php");
 } else if (isset($_SESSION['login'])) {
 
-
+    
 
 
     // effacer un article  //n
@@ -24,10 +24,6 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
         $articleDAO->delete($id_article);
     }
     //n
-
-
-
-
 
 
     // isAmin est un variable pour definir l'utilisateur  admin ou non
@@ -135,9 +131,9 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
         $ch .= '<td>' . $unRetour['prenom'] . '</td>';
         $ch .= '<td>' . $montantRetour . " €" . '</td>';
 
-        $ch .= '<td ><a href="../controleur/retourAdmin.php?op=d&id='
-            .  $unRetour['id_retour']
-            . '"><img onclick="casherTableArticle()"  src="../vue/style/visu.png"></a></td>';
+        $ch .= '<td ><a onclick="casherTableArticle()" href="../controleur/retourAdmin.php?op=d&id='
+            .  urlencode($unRetour['id_retour'])
+            . '"><img    src="../vue/style/visu.png"></a></td>';
 
         $ch .= '<td><a onclick="javascript:return confirm(\'Etes-vous sûr de vouloir supprimer ? \') " id="supp" href="../controleur/retourAdmin.php?op=s&id='
             . urlencode($unRetour['id_retour'])

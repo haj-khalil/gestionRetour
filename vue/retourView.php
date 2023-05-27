@@ -145,12 +145,10 @@
                 width: 60px;
             }
         </style>
-        <script>
-
-        </script>
         <script src="../vue/style.js"></script>
 
     </form>
+    
 </body>
 
 

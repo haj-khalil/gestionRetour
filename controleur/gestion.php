@@ -31,34 +31,39 @@ if (isset($_SESSION['login']) && $_SESSION['login']=="root" ) {
             $ch .= '<option value=' . $ens->getId_ens() . '>' . $ens->getNom_ens() . '</option>';
             $lignes[] = "<tr>$ch</tr>";
         }
-    
-
-
-
 
     //effacer une enseigne  
 
         $id_ens = isset($_GET['select_id_ens']) ? $_GET['select_id_ens'] : null;
         $effacerEns = isset($_GET['effacerEns']) ? $_GET['effacerEns'] : null;
+        
     if ($effacerEns) {
         if (is_numeric($id_ens)) {
-            $lesEns = $enseigne->delete($id_ens);
+            $lesEns = $enseigne->desactiverEnseigne($id_ens);
             header("refresh:0;url=gestion.php");
         } else $erreurs["id_ens"] = "il faut selecter l'enseigne !";
     }
 
-
-
     // ajouter une enseigne 
     $nomEns = isset($_GET['nomEns']) ? strip_tags(trim($_GET['nomEns'])) : null;
     $ajouterEns = isset($_GET['ajouterEns']) ? $_GET['ajouterEns'] : null;
+
     if ($ajouterEns) {
         if ($nomEns && strlen($nomEns) > 1) {
+
+
             $lesEns = $enseigne->existeByNom_ens($nomEns);
+            $existeEnseigneNotActif = $enseigne->existeEnseigneNotActif($nomEns);
+
             if (!$lesEns) {
                 $lesEns = $enseigne->insert($nomEns);
                 header("refresh:0;url=gestion.php");
-            } else $erreurs["nomEns"] = " enseigne déjà existant ! ";
+
+            }if ($existeEnseigneNotActif){
+                $lesEns = $enseigne->activerEns($nomEns);
+                header("refresh:0;url=gestion.php");
+        
+            } else if ($lesEns && !$existeEnseigneNotActif) $erreurs["nomEns"] = " enseigne déjà existant ! ";
         } else $erreurs["nomEns"] = "il faut saisir le nom de l'enseigne ! ";
     }
 
@@ -73,30 +78,36 @@ if (isset($_SESSION['login']) && $_SESSION['login']=="root" ) {
         $rows[] = "<tr>$ch</tr>";
     }
 
-
-
     // effacer un statut
     $id_statut = isset($_GET['select_id_statut']) ? $_GET['select_id_statut'] : null;
     $effacerStatut = isset($_GET['effacerStatut']) ? $_GET['effacerStatut'] : null;
+    
     if ($effacerStatut) {
         if (is_numeric($id_statut)) {
-            $lesStatut = $statut->delete($id_statut);
+            $lesStatut = $statut->desactiverStatut($id_statut);
             header("refresh:0;url=gestion.php");
         } else $erreurs["id_statut"] = "il faut selecter l'enseigne !";
     }
-
-
-
+    
     // ajouter un statut 
     $nomStatut = isset($_GET['nomStatut']) ? strip_tags(trim($_GET['nomStatut'])) : null;
     $ajouterStatut = isset($_GET['ajouterStatut']) ? $_GET['ajouterStatut'] : null;
+    
     if ($ajouterStatut) {
         if ($nomStatut && strlen($nomStatut) > 1) {
+        
             $lesStatut = $statut->existeByLabel($nomStatut);
-            if (!$lesStatut) {
+            $existeLabelNotActif = $statut->existeLabelNotActif($nomStatut);
+
+            if (!$lesStatut ) {
                 $lesStatut = $statut->insert($nomStatut);
                 header("refresh:0;url=gestion.php");
-            } else $erreurs["nomStatut"] = " statut déjà existant ! ";
+            }
+            
+            if ($existeLabelNotActif){
+                $lesStatut = $statut->activerStatut($nomStatut);
+                header("refresh:0;url=gestion.php");
+            }else if ($lesStatut && !$existeLabelNotActif) $erreurs["nomStatut"] = " statut déjà existant ! ";
         } else $erreurs["nomStatut"] = "il faut saisir le nom du statut ! ";
     }
 
@@ -111,34 +122,39 @@ if (isset($_SESSION['login']) && $_SESSION['login']=="root" ) {
         $rowsMotifs[] = "<tr>$ch</tr>";
     }
 
-
-
     // effacer un motif
     $id_motif = isset($_GET['select_id_motif']) ? $_GET['select_id_motif'] : null;
     $effacerMotif = isset($_GET['effacerMotif']) ? $_GET['effacerMotif'] : null;
+
     if ($effacerMotif) {
         if (is_numeric($id_motif)) {
-            $lesMotifs = $motif->delete($id_motif);
+            $lesMotifs = $motif->desactiverMotif($id_motif);
             header("refresh:0;url=gestion.php");
         } else $erreurs["id_motif"] = "il faut selecter le motif !";
     }
 
-
-
     //;ajouter un motif
     $nomMotif = isset($_GET['nomMotif']) ? strip_tags(trim($_GET['nomMotif'])) : null;
     $ajouterMotif = isset($_GET['ajouterMotif']) ? $_GET['ajouterMotif'] : null;
+
     if ($ajouterMotif) {
         if ($nomMotif && strlen($nomMotif) > 1) {
+
             $lesMotif = $motif->existeByMotif($nomMotif);
+            $existeMotifNotActif = $motif->existeMotifNotActif($nomMotif);
+
             if (!$lesMotif) {
                 $lesMotif = $motif->insert($nomMotif);
                 header("refresh:0;url=gestion.php");
-            } else $erreurs["nomMotif"] = "  motif déjà existant ! ";
+
+            }if ($existeMotifNotActif){
+                $lesMotif = $motif->activerMotif($nomMotif);
+                header("refresh:0;url=gestion.php");
+            
+            }else if ($lesMotif && !$existeMotifNotActif) $erreurs["nomMotif"] = " Motif déjà existant ! ";
+            
         } else $erreurs["nomMotif"] = "il faut saisir le motif ! ";
     }
-
-    
 
     require_once('../vue/gestionView.php');
 } else {
