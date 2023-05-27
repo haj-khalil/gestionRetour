@@ -1,5 +1,6 @@
-<?php require_once('../vue/header.php'); ?>
-
+<section class="container my -10" style=" margin-bottom: 50px;">
+    <?php require_once('../vue/header.php'); ?> 
+</section>
 <body>
 
     <div class="container my-5">
@@ -10,19 +11,22 @@
 
         <form name="add" action="editRetourArticle.php?op=a" method="post">
 
+      <section class="mb-3">
+        <div class="col-md-6">
 
-            <section class="mb-3">
-                <label for="id_client" class="form-label">Numéro Client :</label>
-                <div class="col-md-6">
-                    <?php if ($ajout) { ?>
-                        <input id="id_client" name="id_client" type="text" class="form-control" size="5" maxlength="5" value="<?= htmlentities($valeurs['id_client'] ?? '') ?>" />
-                        <br />
-                        <span class="text-danger"><?= ($erreurs['id_client'] ?? '') ?></span>
-                    <?php } else { ?>
-                        <p class="form-control-static"><?= $id_client ?></p>
-                    <?php } ?>
-                </div>
-            </section>
+          <?php 
+          if($_SESSION['login'] === "root"){
+          if (!($editid_client)) { ?>
+           <label for="id_client" class="form-label">Numéro Client :</label>
+            <input id="id_client" name="id_client" type="text" class="form-control" size="5" maxlength="5" value="<?= htmlentities($valeurs['id_client']) ?>" />
+            <br />
+            <span class="text-danger"><?= ($erreurs['id_client']) ?></span>
+          <?php } else { ?>
+            <p class="form-control-static"><?= htmlentities($valeurs['id_client'] ?? '') ?></p>
+          <?php } 
+          } ?>
+        </div>
+      </section>
 
             <section class="mb-3">
                 <label for="id_ens" class="form-label">Enseignes:</label>

@@ -23,7 +23,7 @@
         <section class="container my-5">
             <?php
             if (isset($lignes) && $lignes != []) : {
-                    $nombre_par_page = 10; // nombre d'éléments à afficher par page
+                    $nombre_par_page = 15; // nombre d'éléments à afficher par page
                     $nombre_total = count($lignes); // nombre total d'éléments
                     $nombre_de_pages = ceil($nombre_total / $nombre_par_page); // nombre de pages à afficher
                     $page_actuelle = isset($_GET['page']) ? $_GET['page'] : 1; // numéro de la page actuelle (si non spécifié, afficher la première page)

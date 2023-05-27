@@ -13,15 +13,15 @@ if (isset($_SESSION['login'])) {
     if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
         echo '<h2 style=" text-align: center;">session time est terminé !</h2>';
         header("refresh:3;url=login.php");
-    } else
-
-    $op = (isset($_GET['op']) ? $_GET['op'] : null);
-    $ajout = ($op == 'a');
-    $modif = ($op == 'm');
-    $suppr = ($op == 's');
-    $id_client = (isset($_GET['id_client']) ? $_GET['id_client'] : null);
-    $editid_client = ($modif && $id_client);
-    $titre = (($ajout) ? 'Nouveau Retour' : (($modif) ? "Retour - édition des informations" : null));
+}else
+	
+$op = (isset($_GET['op']) ? $_GET['op'] : null);
+$ajout = ($op == 'a');
+$modif = ($op == 'm');
+$suppr = ($op == 's');
+$id_client = (isset($_GET['id_client']) ? $_GET['id_client'] : null);
+$editid_client = ($id_client && $modif);
+$titre = (($ajout)?'Nouveau Retour':(($modif)?"Retour - édition des informations":null));
 
     if (($id_client != null && $ajout) || (($id_client == null) && ($modif || $suppr))) {
         header("location: ../controleur/retourAdmin.php");
@@ -67,67 +67,52 @@ if (isset($_SESSION['login'])) {
 
 
 
-    $retour = false;
+$retour = false;
+if (isset($_POST['Valider'])) {
+	
+	if (!isset($valeurs['id_client']) or strlen($valeurs['id_client'])==0) 	{ $erreurs['id_client']	= 'saisie obligatoire du numéro client';	}
+	if (!isset($valeurs['statut']) or strlen($valeurs['statut'])==0) { 
+		$erreurs['statut'] = 'Statut non valide.'; 
+	}
+	if (!isset($valeurs['date_achat']) or strlen($valeurs['date_achat'])==0) 	{ $erreurs['date_achat']	= 'saisie obligatoire de la date d\'achat';	}
+	
 
-    if (isset($_POST['Valider'])) {
+ 	$nbErreurs = 0;
+ 	foreach ($erreurs as $erreur){
+ 		if ($erreur != "") $nbErreurs++;
+ 	}
+	
+	
+ 	if ($nbErreurs === 0){
+		$RetourDAO = new RetourDAO();
 
+        $unRetour = [$valeurs['id_client'],$valeurs['date_achat'], $valeurs['date_envoi'],$valeurs['enseigne'],  $valeurs['statut']];
 
-        // Vérifier si l'id client est renseigné et valide
-        // 	if($ajout){
+		if ($ajout)	{
+			$RetourDAO->insert($unRetour);
+			$retour = true;
 
-        // 	if (!isset($valeurs['id_client']) || strlen(trim($valeurs['id_client'])) == 0) {
-        // 		$erreurs['id_client'] = 'Saisie obligatoire du numéro client.';
-        // 	} elseif (!is_numeric(trim($valeurs['id_client']))) {
-        // 		$erreurs['id_client'] = 'Numéro client non valide.';
-        // 	}
-        // }
-        // Vérifier si le statut est renseigné
-        if (!isset($valeurs['statut']) || strlen(trim($valeurs['statut'])) == 0) {
-            $erreurs['statut'] = 'Saisie obligatoire du statut.';
-        }
-
-        // Vérifier si la date d'achat est renseignée et valide
-        if (!isset($valeurs['date_achat']) || strlen(trim($valeurs['date_achat'])) == 0) {
-            $erreurs['date_achat'] = 'Saisie obligatoire de la date d\'achat.';
-        } else {
-            $dateAchat = DateTime::createFromFormat('Y-m-d', trim($valeurs['date_achat']));
-            $today = new DateTime();
-
-            if (!$dateAchat) {
-                $erreurs['date_achat'] = 'Date d\'achat non valide.';
-            } elseif ($dateAchat > $today) {
-                $erreurs['date_achat'] = 'La date d\'achat ne peut pas être dans le futur.';
-            }
-        }
-
-        $nbErreurs = 0;
-        foreach ($erreurs as $erreur) {
-            if ($erreur != "") $nbErreurs++;
-        }
-
-
-        if ($nbErreurs === 0) {
-            $RetourDAO = new RetourDAO();
-            $unRetour = [$valeurs[0], $valeurs[1], $valeurs[2], $valeurs[3],  $valeurs[4]];
-            if ($ajout) {
-                $RetourDAO->insert($unRetour);
-                $retour = true;
-            } else {
-                $RetourDAO->update($unRetour);
-            }
-        }
-    } else if (isset($_POST['annuler'])) {
-        $retour = true;
-    } else if ($suppr) {
-        // suppression
-        $RetourDAO->delete($id_client);
-        $retour = true;
-    } else if ($modif) {
-        $valeurs['id_client']        = $unRetour->getid_client();
-        $valeurs['statut'] = $unRetour->getId_statut();
-        $valeurs['date_achat']     = $unRetour->getDate_achat();
-        $valeurs['date_remb']     = $unRetour->getDate_remboursement();
-    }
+		}	
+		else {
+			$RetourDAO->update($unRetour);
+		}
+	}
+}
+else if (isset($_POST['annuler']))	{
+	$retour = true;
+}
+else if ($suppr) {
+// suppression
+	$RetourDAO->delete($id_client);
+	$retour = true;
+}
+else if ($modif)	{
+	$valeurs['id_client']		= $unRetour->getid_client();
+	$valeurs['statut'] = $unRetour->getId_statut();		
+	$valeurs['date_achat'] 	= $unRetour->getDate_achat();	
+	$valeurs['date_remb'] 	= $unRetour->getDate_remboursement();		
+	
+}
 
 
     if ($retour) {

@@ -137,11 +137,10 @@ class RetourDAO
         );
     }
 
-    function udateRetourStatut(int $id_statut, int $id_retour)
-    {
-
-        $this->bd->execSQL(
-            "UPDATE retour SET  
+	function udateRetourStatut(int $id_statut, int $id_retour)
+	{
+		$this->bd->execSQL(
+			"UPDATE retour SET  
 		id_statut =:id_statut
 		WHERE id_retour=:id_retour",
             [

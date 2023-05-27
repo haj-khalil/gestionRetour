@@ -27,7 +27,7 @@
                         <label>&nbsp;</label>
                         <span class="erreur"><?= $erreurs['id_ens'] ?? '' ?></span>
                         <div>
-                            <input type="submit" id="effacerEns" name="effacerEns" value="effacerEns" />
+                            <input type="submit" id="effacerEns" name="effacerEns" value="Supprimer" />
                             <br>
                             <input type="submit" id="annuler" name="annuler" value="Annuler" />
                         </div>
@@ -51,7 +51,7 @@
                         <span class="erreur"><?= $erreurs['id_statut'] ?? '' ?></span>
                         <label>&nbsp;</label>
                         <div>
-                            <input type="submit" id="effacerStatut" name="effacerStatut" value="effacerStatut" />
+                            <input type="submit" id="effacerStatut" name="effacerStatut" value="Supprimer" />
                             <br>
                             <input type="submit" id="annuler" name="annuler" value="Annuler" />
                         </div>
@@ -75,7 +75,7 @@
                         <span class="erreur"><?= $erreurs['id_motif'] ?? '' ?></span>
                         <label>&nbsp;</label>
                         <div>
-                            <input type="submit" id="effacerMotif" name="effacerMotif" value="effacerMotif" />
+                            <input type="submit" id="effacerMotif" name="effacerMotif" value="Supprimer" />
                             <br>
                             <input type="submit" id="annuler" name="annuler" value="Annuler" />
                         </div>
@@ -94,7 +94,7 @@
                         <span class="erreur"><?= $erreurs['nomEns'] ?? '' ?></span>
                         <label>&nbsp;</label>
                         <div>
-                            <input type="submit" id="ajouterEns" name="ajouterEns" value="ajouterEns" />
+                            <input type="submit" id="ajouterEns" name="ajouterEns" value="Ajout" />
                             <br>
                             <input type="submit" id="annuler" name="annuler" value="Annuler" />
                         </div>
@@ -110,7 +110,7 @@
 
                         <label>&nbsp;</label>
                         <div>
-                            <input type="submit" id="ajouterStatut" name="ajouterStatut" value="ajouterStatut" />
+                            <input type="submit" id="ajouterStatut" name="ajouterStatut" value="Ajout" />
                             <br>
                             <input type="submit" id="annuler" name="annuler" value="Annuler" />
                         </div>
@@ -127,7 +127,7 @@
 
                         <label>&nbsp;</label>
                         <div>
-                            <input type="submit" id="ajouterMotif" name="ajouterMotif" value="ajouterMotif" />
+                            <input type="submit" id="ajouterMotif" name="ajouterMotif" value="Ajout" />
                             <br>
                             <input type="submit" id="annuler" name="annuler" value="Annuler" />
                         </div>
