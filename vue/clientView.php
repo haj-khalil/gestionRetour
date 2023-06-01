@@ -11,7 +11,8 @@
             <input class="form-control w-50 me-2" type="search" placeholder="Search" onfocus="notSouligne()" onchange="searchClient()" aria-label="Search" id="cherch">
             <button class="btn btn-outline-success" type="submit"> <a id="btn_search" href="">Search</a> </button>
             
-            <div id="messageRecherch" style="display: none;"  class="alert alert-danger  w-50 " role="alert"> le mot que tu cherche n'existe pas ! </div>
+            <div id="messageRecherch" style="display: none;"  class="alert alert-danger  w-50 " role="alert"> 
+            le mot que tu cherche n'existe pas ! </div>
         </form>
         <!-- hamid -->
         <?php if(isset($lignes) && $lignes != []) : ?>
@@ -24,8 +25,10 @@
                         <th>Email</th>
                         <th>Adresse</th>
                         <th>Téléphone</th>
+                        <th>Etat</th>
                         <th>Retours</th>
-                        <th>Effacer</th>
+                        <th>Desactiver</th>
+                        <th>Activer</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -9,7 +9,7 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
     header("refresh:3;url=login.php");
 } else if (isset($_SESSION['login'])) {
 
-
+    
 
 
     // effacer un article  //n
@@ -24,6 +24,7 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
         $articleDAO->delete($id_article);
     }
     //n
+
 
     // isAmin est un variable pour definir l'utilisateur  admin ou non
     if ($_SESSION['login'] == 'root') {
@@ -130,9 +131,9 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
         $ch .= '<td>' . $unRetour['prenom'] . '</td>';
         $ch .= '<td>' . $montantRetour . " €" . '</td>';
 
-        $ch .= '<td ><a href="../controleur/retourAdmin.php?op=d&id='
-            .  $unRetour['id_retour']
-            . '"><img onclick="casherTableArticle()"  src="../vue/style/visu.png"></a></td>';
+        $ch .= '<td ><a onclick="casherTableArticle()" href="../controleur/retourAdmin.php?op=d&id='
+            .  urlencode($unRetour['id_retour'])
+            . '"><img    src="../vue/style/visu.png"></a></td>';
 
         $ch .= '<td><a onclick="javascript:return confirm(\'Etes-vous sûr de vouloir supprimer ? \') " id="supp" href="../controleur/retourAdmin.php?op=s&id='
             . urlencode($unRetour['id_retour'])
@@ -147,7 +148,7 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
             . urlencode($unRetour['id_retour']) .
             '"><img src="../vue/style/ajout.png"></a></td>';
 
-        $ch .= '<td><button type="button" onclick="getIdRetour(this.value)" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" value="' . '"></button></td>';
+        $ch .= '<td><input type="button" onclick="getIdRetour(this.value)" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"
 
 
         $lignes[] = "<tr>$ch</tr>";
@@ -185,10 +186,11 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
         if ($date_remboursement) {
             $retour->udateDateRemboursement($id_retour_modif_statut, $date_remboursement);
         }
-      //  header("refresh:0;url=retourAdmin.php");
+        header("refresh:0;url=retourAdmin.php");
     }
     unset($lesRetours);
 
+    require_once('../vue/retourView.php');
     require_once('../vue/retourView.php');
 } else {
     echo "<h2 style=' text-align: center;'>Désolé, il y a une erreur : vous ne pouvez pas accéder à cette page.</h2>";

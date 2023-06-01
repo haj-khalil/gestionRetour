@@ -14,6 +14,7 @@ error_reporting(E_ALL);
 
 session_start();
 if (isset($_SESSION['login'])) {
+if (isset($_SESSION['login'])) {
     if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
         echo '<h2 style="text-align: center;">La session a expiré !</h2>';
         header("refresh:3;url=login.php");
@@ -33,9 +34,8 @@ $id_client = isset($_GET['id_client']) ? $_GET['id_client'] : null;
 $editid_client = ($id_client && $modif);
 $titre = $ajout ? 'Nouveau Retour' : ($modif ? 'Retour - édition des informations' : null);
 
-if (($id_client != null && $ajout) || ($id_client == null && ($modif || $suppr))) {
+if (($id_client != null && $ajout) || (($id_client == null) && ($modif || $suppr))) {
     header("location: ../controleur/retourAdmin.php");
-    exit();
 }
 
 $ens = new EnseigneDAO();
@@ -156,10 +156,22 @@ if (isset($_POST['Valider'])) {
     $RetourDAO->delete($id_client);
     $retour = true;
 }
-
-if ($retour) {
-    header("location: retourAdmin.php");
-    exit();
+else if ($modif)	{
+	$valeurs['id_client']		= $unRetour->getid_client();
+	$valeurs['statut'] = $unRetour->getId_statut();		
+	$valeurs['date_achat'] 	= $unRetour->getDate_achat();	
+	$valeurs['date_remb'] 	= $unRetour->getDate_remboursement();		
+	
 }
 
+
+if ($retour)
+{
+	header("location: retourAdmin.php");
+}	
+
 require_once('../vue/editRetourArticleView.php');
+}else {
+	echo "<h2 style=' text-align: center;'>Désolé, il y a une erreur : vous ne pouvez pas accéder à cette page.</h2>";
+    header( "refresh:3;url=login.php" );
+}

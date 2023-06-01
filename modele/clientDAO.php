@@ -12,8 +12,9 @@ class ClientDAO
 		$this->bd = new Connexion();
 		$this->select = 'SELECT
 		id_client ,nom ,prenom  ,email,  
-		address  ,tel ,mdp,naissance
-		FROM client ORDER BY id_client';
+		address  ,tel ,mdp,naissance ,etat_client
+		FROM client 
+        ORDER BY id_client';
 	}
 
 	function insert(Client $Client): void
@@ -31,7 +32,8 @@ class ClientDAO
 				":address" => $Client->getAddress(),
 				":tel" => $Client->getTel(),
 				":mdp" => $Client->getMdp(),
-				":naissance" => $Client->getNaissance()
+				":naissance" => $Client->getNaissance(),
+				":etat_client" => $Client->getEtat_client()
 			]
 		);
 	}
@@ -40,6 +42,26 @@ class ClientDAO
 	{
 		$this->bd->execSQL(
 			"DELETE FROM client WHERE id_client = :id_client",
+			[':id_client' => $id_client]
+		);
+	}
+    // desactiver le client 
+	function desactiver(string $id_client): void
+	{
+		$this->bd->execSQL(
+			"UPDATE  client
+            set etat_client='inactif'
+            WHERE id_client = :id_client",
+			[':id_client' => $id_client]
+		);
+	}
+    // activer le client 
+	function activer(string $id_client): void
+	{
+		$this->bd->execSQL(
+			"UPDATE  client
+            set etat_client='actif'
+            WHERE id_client = :id_client",
 			[':id_client' => $id_client]
 		);
 	}
@@ -58,7 +80,8 @@ class ClientDAO
 				":address  " => $Client->getAddress(),
 				":tel " => $Client->getTel(),
 				":mdp" => $Client->getMdp(),
-				":naissance" => $Client->getNaissance()
+				":naissance" => $Client->getNaissance(),
+				":etat_client" => $Client->getEtat_client()
 			]
 		);
 	}
@@ -77,6 +100,7 @@ class ClientDAO
 			$Client->setTel($row['tel']);
 			$Client->setMdp($row['mdp']);
 			$Client->setNaissance($row['naissance']);
+			$Client->setEtat_client($row['etat_client']);
 
 			$Clients[] = $Client;
 		}
