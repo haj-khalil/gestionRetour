@@ -87,27 +87,29 @@ class ClientDAO
 	{
 		return ($this->loadQuery($this->bd->execSQL($this->select)));
 	}
-
-	/* function getById($id_retour): Retour
+	function getById($id_client)
 	{
-		$uneRetour = new Retour();
-
-		$lesRetours = $this->loadQuery($this->bd->execSQL(
-			"SELECT id_retour ,date_achat ,date_envoi  ,date_remboursement,  
-			id_client  ,id_ens ,id_statut
-			FROM retour WHERE
-			id_retour= :id_retour",
-			[
-				":id_retour" => $id_retour
-			]
-		));
-
-		if (count($lesRetours) > 0) {
-			$unRetour = $lesRetours[0];
+		$req = 'SELECT id_client, nom, prenom, email, address, tel, mdp, naissance FROM client WHERE id_client = :id_client';
+		$params = [':id_client' => $id_client];
+		$result = $this->bd->execSQL($req, $params);
+	
+		if ($result && count($result) > 0) {
+			$row = $result[0];
+			$client = new Client();
+			$client->setId_client($row['id_client']);
+			$client->setNom($row['nom']);
+			$client->setPrenom($row['prenom']);
+			$client->setEmail($row['email']);
+			$client->setAddress($row['address']);
+			$client->setTel($row['tel']);
+			$client->setMdp($row['mdp']);
+			$client->setNaissance($row['naissance']);
+			return $client;
 		}
-		return $unRetour;
+	
+		return null;
 	}
- */
+	
 
 	function existeTel(string $tel): bool 
 	{

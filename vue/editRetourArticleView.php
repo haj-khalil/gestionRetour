@@ -1,32 +1,43 @@
-<section class="container my -10" style=" margin-bottom: 50px;">
-    <?php require_once('../vue/header.php'); ?> 
+<section class="container my-10" style="margin-bottom: 50px;">
+  <?php require_once('../vue/header.php'); ?>
 </section>
+
 <body>
-
   <div class="container my-5">
-
-    <section>
-      <h1 class="mb-3"><?php echo $titre ?></h1>
-    </section>
-
-    <form name="add" action="editRetourArticle.php?op=a" method="post">
-
+    <form method="POST" action="editRetourArticle.php"> <!-- Remplacez "votre_script.php" par le nom de votre script de traitement -->
       <section class="mb-3">
         <div class="col-md-6">
-
-          <?php 
-          if($_SESSION['login'] === "root"){
-          if (!($editid_client)) { ?>
-           <label for="id_client" class="form-label">Numéro Client :</label>
-            <input id="id_client" name="id_client" type="text" class="form-control" size="5" maxlength="5" value="<?= htmlentities($valeurs['id_client']) ?>" />
-            <br />
-            <span class="text-danger"><?= ($erreurs['id_client']) ?></span>
-          <?php } else { ?>
-            <p class="form-control-static"><?= htmlentities($valeurs['id_client'] ?? '') ?></p>
-          <?php } 
-          } ?>
+          <?php
+          if ($_SESSION['login'] === "root") {
+            if ($ajout) {
+          ?>
+              <label for="id_client" class="form-label">Nom Client :</label>
+              <select id="id_client" name="id_client" class="form-select">
+                <option value=""></option>
+                <?php
+                foreach ($Tabs as $client) {
+                  echo $client;
+                }
+                ?>
+              </select>
+              <br />
+              <span class="text-danger"><?= $erreurs['id_client'] ?? '' ?></span>
+            <?php
+            } elseif (!$ajout) {
+              echo $id_client;
+            ?>
+              <p class="form-control-static"><?= htmlentities($nom_client ?? '') ?> <?= htmlentities($prenom_client ?? '') ?></p>
+          <?php
+            } else {
+              echo "<h2 style='text-align: center;'>Le client avec l'ID $id_client n'existe pas.</h2>";
+              header("refresh:3;url=retourAdmin.php");
+              exit();
+            }
+          }
+          ?>
         </div>
       </section>
+
 
       <section class="mb-3">
         <label for="id_ens" class="form-label">Enseignes:</label>
@@ -37,6 +48,8 @@
               echo $ligne;
             } ?>
           </select>
+          <br />
+          <span class="text-danger"><?= $erreurs['enseigne'] ?? '' ?></span>
         </div>
       </section>
 
@@ -49,37 +62,39 @@
               echo $row;
             } ?>
           </select>
+          <br />
+          <span class="text-danger"><?= $erreurs['statut'] ?? '' ?></span>
         </div>
       </section>
 
       <section class="mb-3">
         <label for="date_achat" class="form-label">Date achat :</label>
         <div class="col-md-6">
-          <input id="date_achat" name="date_achat" type="text" class="form-control" size="30" maxlength="30" value="<?= htmlentities($valeurs['date_achat'] ?? '') ?>" />
+          <input id="date_achat" name="date_achat" type="date" class="form-control" size="30" maxlength="30" value="<?= htmlentities($valeurs['date_achat'] ?? '') ?>" />
           <br />
           <span class="text-danger"><?= $erreurs['date_achat'] ?? '' ?></span>
         </div>
       </section>
 
       <section class="mb-3">
-        <label for="date_envoi" class="form-label">Date envoie :</label>
+        <label for="date_envoi" class="form-label">Date envoi :</label>
         <div class="col-md-6">
-          <input id="date_envoi" name="date_envoi" type="text" class="form-control" size="30" maxlength="30" value="<?= htmlentities($valeurs['date_envoi']) ?>" />
+          <input id="date_envoi" name="date_envoi" type="date" class="form-control" size="30" maxlength="30" value="<?= htmlentities($valeurs['date_envoi'] ?? '') ?>" />
           <br />
-          <span class="text-danger"><?= $erreurs['date_envoi'] ?></span>
+          <span class="text-danger"><?= $erreurs['date_envoi'] ?? '' ?></span>
         </div>
       </section>
 
       <section class="mb-3">
         <div class="col-md-6">
-          <input type="submit" id="Valider" name="Valider" class="btn btn-primary" value="Valider" />
+          <button type="submit" id="Valider" name="Valider" class="btn btn-primary">Valider</button>
           &emsp;
-          <input type="submit" name="annuler" class="btn btn-secondary" value="Annuler" />
+          <button type="submit" name="annuler" class="btn btn-secondary">Annuler</button>
         </div>
       </section>
 
     </form>
-
+  </div>
 </body>
 
 <?php require_once('../vue/footer.php'); ?>

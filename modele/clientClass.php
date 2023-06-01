@@ -33,7 +33,7 @@ class Client
 		$this->naissance	= $naissance;
 	}
 
-	function getId_client(): int
+	public function getId_client()
 	{
 		return $this->id_client;
 	}

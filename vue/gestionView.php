@@ -137,10 +137,10 @@
         </div>
 
     </form>
-    <style>
+    <!-- <style>
         section {
             color: #219cee;
-            background-color: #040e29;
+            background-color: red;
             border: 2px solid blue;
             border-radius:  25px;
             text-align: center;
@@ -163,7 +163,7 @@
         header section {
             border-radius:  0px; 
         }
-    </style>
+    </style> -->
 </body>
 
 <?php require_once("../vue/footer.php") ?>
