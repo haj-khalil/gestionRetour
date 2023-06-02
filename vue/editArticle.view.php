@@ -62,7 +62,7 @@ section{
 </style>
 <body>
     
-    <?php require_once('../vue/header.php'); ?> 
+    <!-- <?php //require_once('../vue/header.php'); ?>  -->
 
     <form  method="GET" action="" name="add">
     <div><h2>Ajoutez des articles au Retour : <h2><p id="id_ret"><?php  echo $id_retour;
@@ -70,6 +70,7 @@ section{
     <div class="container">
     <form  id="formulaire"  class="row g-3" method="GET" action="" name="add">
     <input type="hidden" name="id_article" value="<?= $valeurs['id_article'] ?? '' ?>">
+    
 
         <div class="col-md-6">
             <label for="inputNom" class="form-label">Article: </label>
@@ -98,7 +99,7 @@ section{
         </div>
 
         <div class="col-md-2">
-            <select  required id="id_motif" class="form-select" aria-label="Default select example" name="id_motif" id="id_motif" value="<?= htmlentities($valeurs['id_motif'] ?? '') ?>">
+            <select  required id="id_motif" class="form-select" aria-label="Default select example" name="id_motif" id="id_motif" value="<?($valeurs['id_motif'] ?? '') ?>">
                 <option selected>select motif </option>
                 
                 <?php
@@ -121,10 +122,8 @@ section{
                 <a href="../controleur/retourAdmin.php">
 
                 &emsp;
-                <input type="submit" id="annuler" name="annuler" value="Annuler" />
-                <a href="../controleur/retourAdmin.php">
+            <input type="submit" onclick="window.location.href='../controleur/retourAdmin.php'" id="annuler" name="annuler" value="Annuler" />
             </div>
-
         </section>
 </form>
 </div>
@@ -132,7 +131,7 @@ section{
     // recuperer id_retour de retourAdmin.php et l'envoyer a edistArticle.php
     valeur= document.getElementById('id_ret').innerHTML
     document.getElementById('id_retour').value=valeur; 
-/* 
+ 
 document.getElementById('valider').onclick=function (event){
     
             let valide = true;
@@ -173,9 +172,12 @@ document.getElementById('valider').onclick=function (event){
                 console.log("arret l'/excution" )
                 event.preventDefault();
             }
-
+            
             return valide;
-        };  */
+        };  
+
+        let motif = document.getElementById("nom_article").value;
+        console.log(motif);
 
 </script>
 </body>
