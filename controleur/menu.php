@@ -8,7 +8,6 @@ if (isset($_SESSION['login'])){
 	
 
     require_once('../modele/retourByArticleDAO.php');
-
     $isAdmin = false;
     if ($_SESSION['login'] == 'root') {
         $isAdmin = true;

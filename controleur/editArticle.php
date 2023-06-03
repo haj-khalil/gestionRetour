@@ -11,23 +11,20 @@ if (isset($_SESSION['login'])) {
         echo '<h2 style=" text-align: center;">session time est terminé !</h2>';
         header("refresh:3;url=login.php");
     } else
+    echo $motif_demande         = isset($_GET['motif_demande']) ? $_GET['motif_demande'] : null;
+    $tableDesDemandes[]=[];
+    if ($motif_demande){
+        $tableDesDemandes[]=$motif_demande;
+        
+    }
+    echo "<pre>";
+    print_r($tableDesDemandes);
+    echo "<pre>";
 
-
-        $nom_article = isset($_GET['nom_article']) ? strip_tags(strval(trim($_GET['nom_article']))) : null;
+    $nom_article = isset($_GET['nom_article']) ? strip_tags(strval(trim($_GET['nom_article']))) : null;
     $id_retour = isset($_GET['id_retour']) ? $_GET['id_retour'] : null;
     $id_article = isset($_GET['id_article']) ? $_GET['id_article'] : null;
-    //$id_article = isset($valeurs['id_article']) && $valeurs['id_article'] !== '' ? intval($valeurs['id_article']) : 0;
-//$id_article = isset($_GET['id_article']) ? $_GET['id_article'] : null;
-$quantite = isset($_GET['quantite']) ? intval($_GET['quantite']) : null;
-    
-// $value = null;
-    // if (isset($_GET['montant_piece']) && !empty($_GET['montant_piece'])) {
-    //     $value = str_replace(',', '', $_GET['montant_piece']);
-    //     if (is_numeric($value)) {
-    //         $montant_piece = floatval(number_format($value, 2));
-    //     }
-    // }
-    //n
+    $quantite = isset($_GET['quantite']) ? intval($_GET['quantite']) : null;
     $montant_piece = isset($_GET['montant_piece']) ? floatval(number_format(str_replace(',', '', $_GET['montant_piece']), 2)) : null;
     $id_motif = isset($_GET['id_motif']) ? intval($_GET['id_motif']) : null;
     $valider = isset($_GET['valider']) ? $_GET['valider'] : null;
@@ -125,7 +122,7 @@ if ($modif || $edit_article) {
             $articleDAO = new ArticleDAO();
             $articleDAO->insert($article);
             $erreurs = [];
-            header("location: retourAdmin.php");
+          //  header("location: retourAdmin.php");
         }
     }
 

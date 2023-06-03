@@ -9,9 +9,6 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
     header("refresh:3;url=login.php");
 } else if (isset($_SESSION['login'])) {
 
-    
-
-
     // effacer un article  //n
     $op     = (isset($_GET['op']) ? $_GET['op'] : null);
     $suppr = ($op == 'sA');
@@ -30,6 +27,8 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
     if ($_SESSION['login'] == 'root') {
         $isAdmin = true;
     } else $isAdmin = false;
+
+    
 
     $id                         = isset($_GET['id']) ? $_GET['id'] : null;
     $input_id_statut            = isset($_GET['select_id_statut']) ? $_GET['select_id_statut'] : null;

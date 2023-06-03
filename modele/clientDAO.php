@@ -21,8 +21,8 @@ class ClientDAO
 	{
 		
 			$req="INSERT INTO client
-		(prenom,nom,email,address,tel,mdp,naissance)
-            VALUE (:nom, :prenom, :email, :address, :tel, :mdp, :naissance)";
+		(prenom,nom,email,address,tel,mdp,naissance,etat_client)
+            VALUE (:nom, :prenom, :email, :address, :tel, :mdp, :naissance, :etat_client)";
 
         $this->bd->execSQL($req ,
 			[
@@ -70,15 +70,14 @@ class ClientDAO
 	{
 		$this->bd->execSQL(
 			"UPDATE client SET  
-			nom ,prenom  ,email,address  ,tel ,mdp,naissance
+			nom,prenom,email,address,tel,mdp,naissance
 			WHERE id_client=:id_client",
 			[
 				":nom" => $Client->getNom(),
-				":prenom  " => $Client->getPrenom(),
-				":email  " => $Client->getEmail(),
-
-				":address  " => $Client->getAddress(),
-				":tel " => $Client->getTel(),
+				":prenom" => $Client->getPrenom(),
+				":email" => $Client->getEmail(),
+				":address" => $Client->getAddress(),
+				":tel" => $Client->getTel(),
 				":mdp" => $Client->getMdp(),
 				":naissance" => $Client->getNaissance(),
 				":etat_client" => $Client->getEtat_client()

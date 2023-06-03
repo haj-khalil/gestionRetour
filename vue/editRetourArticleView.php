@@ -89,8 +89,7 @@
                 search: true
             })
         </script>
-        </script>
-
+²                           
 </body>
 
 <?php require_once('../vue/footer.php'); ?>
