@@ -99,8 +99,8 @@ section{
         </div>
 
         <div class="col-md-2">
-            <select  required id="id_motif" class="form-select" aria-label="Default select example" name="id_motif" id="id_motif" value="<?($valeurs['id_motif'] ?? '') ?>">
-                <option selected>select motif </option>
+            <select  required id="id_motif" class="form-select" aria-label="Default select example" name="id_motif"  value="<?($valeurs['id_motif'] ?? '') ?>">
+                <option disabled selected>select motif </option>
                 
                 <?php
                         foreach ($columns as $column) {
@@ -176,8 +176,7 @@ document.getElementById('valider').onclick=function (event){
             return valide;
         };  
 
-        let motif = document.getElementById("nom_article").value;
-        console.log(motif);
+      
 
 </script>
 </body>

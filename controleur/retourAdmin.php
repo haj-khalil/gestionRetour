@@ -9,7 +9,7 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
     header("refresh:3;url=login.php");
 } else if (isset($_SESSION['login'])) {
 
-
+    
 
 
     // effacer un article  //n
@@ -24,10 +24,6 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
         $articleDAO->delete($id_article);
     }
     //n
-
-
-
-
 
 
     // isAmin est un variable pour definir l'utilisateur  admin ou non
@@ -84,7 +80,7 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
 				<th colspan='2'>id_article</th>
 				<th colspan='2'> montant_piece</th>
 				<th colspan='2'>quantite</th>
-				<th colspan='2'>motif</th>
+				<th colspan='3'>motif</th>
 				
 
 				<th><button type='button'><img id='img_x'  onclick='casherTableArticle()' src='../vue/style/x.jpg'></button>
@@ -103,7 +99,7 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
                 $ch .= '<td colspan="2" class="article">' . $uneArticle['id_article'] . '</td>';
                 $ch .= '<td colspan="2" class="article">' . $uneArticle['montant_piece'] . " €" . '</td>';
                 $ch .= '<td colspan="2" class="article">' . $uneArticle['quantite'] . '</td>';
-                $ch .= '<td colspan="2" class="article">' . $uneArticle['motif'] . '</td>';
+                $ch .= '<td colspan="3" class="article">' . $uneArticle['motif'] . '</td>';
 
                 
                 $ch .= '<td class="article"><a href="../controleur/editArticle.php?op=mA&id_article='
@@ -135,9 +131,9 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
         $ch .= '<td>' . $unRetour['prenom'] . '</td>';
         $ch .= '<td>' . $montantRetour . " €" . '</td>';
 
-        $ch .= '<td ><a href="../controleur/retourAdmin.php?op=d&id='
-            .  $unRetour['id_retour']
-            . '"><img onclick="casherTableArticle()"  src="../vue/style/visu.png"></a></td>';
+        $ch .= '<td ><a onclick="casherTableArticle()" href="../controleur/retourAdmin.php?op=d&id='
+            .  urlencode($unRetour['id_retour'])
+            . '"><img    src="../vue/style/visu.png"></a></td>';
 
         $ch .= '<td><a onclick="javascript:return confirm(\'Etes-vous sûr de vouloir supprimer ? \') " id="supp" href="../controleur/retourAdmin.php?op=s&id='
             . urlencode($unRetour['id_retour'])
@@ -146,6 +142,11 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
         $ch .= '<td><a href="../controleur/editRetourArticle.php?op=m&id_client='
             . urlencode($unRetour['id_retour']) .
             '"><img src="../vue/style/modification.png"></a></td>';
+
+        //nadine
+        $ch .= '<td><a href="editArticle.php?&id_retour='
+            . urlencode($unRetour['id_retour']) .
+            '"><img src="../vue/style/ajout.png"></a></td>';
 
         $ch .= '<td><input type="button" onclick="getIdRetour(this.value)" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"
 	    " value=' . urlencode($unRetour['id_retour']) . '></input></td>';

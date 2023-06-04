@@ -10,6 +10,7 @@ class Client
 	private $tel;
 	private $mdp;
 	private $naissance;
+    private $etat_client;
 
 	function __construct(
 		int $id_client = 0,
@@ -19,7 +20,8 @@ class Client
 		string $address = '',
 		string $tel = "",
 		string $mdp = '',
-		string $naissance = ''
+		string $naissance = '',
+        string $etat_client='actif'
 	) {
 		$this->id_client	    	= $id_client;
 		$this->nom		            = $nom;
@@ -31,9 +33,10 @@ class Client
 		$this->tel          = $tel;
 		$this->mdp     	    = $mdp;
 		$this->naissance	= $naissance;
+		$this->etat_client	= $etat_client;
 	}
 
-	function getId_client(): int
+	public function getId_client()
 	{
 		return $this->id_client;
 	}
@@ -102,5 +105,13 @@ class Client
 	function setNaissance(string $naissance)
 	{
 		$this->naissance = $naissance;
+	}
+	function getEtat_client(): string
+	{
+		return $this->etat_client;
+	}
+	function setEtat_client(string $etat_client)
+	{
+		$this->etat_client = $etat_client;
 	}
 }

@@ -12,7 +12,9 @@ class StatutDAO
 		$this->bd = new Connexion();
 		$this->select = 'SELECT 
 		id_statut ,label 
-		FROM statut ORDER BY id_statut';
+		FROM statut
+        where etat_statut ="actif"            
+        ORDER BY label';
 	}
 
 	function insert(string $nomStatut): void
@@ -25,6 +27,15 @@ class StatutDAO
 			]
 		);
 	}
+    // activer un statut
+    function activerStatut(string $nomStatut): void
+    {
+        $this->bd->execSQL(
+            "UPDATE statut SET etat_statut='actif'
+                WHERE label = :nomStatut",
+            [':nomStatut' => $nomStatut]
+        );
+    }
 
 	function delete(string $id_statut): void
 	{
@@ -33,12 +44,12 @@ class StatutDAO
 			[':id_statut' => $id_statut]
 		);
 	}
-
-
-
+    
+    
+    
 	private function loadQuery(array $result): array
 	{
-		$Statuts = [];
+        $Statuts = [];
 		foreach ($result as $row) {
 			$Statut = new Statut();
 			$Statut->setId_statut($row['id_statut']);
@@ -55,7 +66,7 @@ class StatutDAO
 		return ($this->loadQuery($this->bd->execSQL($this->select)));
 	}
 
-
+    
 	function getById($id_statut)
 	{
 		$uneStatut = new Statut();
@@ -79,4 +90,25 @@ class StatutDAO
 		$res 	= ($this->loadQuery($this->bd->execSQL($req, [':label' => $label])));
 		return ($res != []);
 	}
-}
+// vérifier si label existe mais not actif 
+	function existeLabelNotActif(string $label): bool | null
+	{
+		$req 	= "SELECT *  FROM  statut
+			WHERE etat_statut='inactif'
+            and label = :label"
+            ;
+		$res 	= ($this->loadQuery($this->bd->execSQL($req, [':label' => $label])));
+		return ($res != []);
+	}
+    
+    // desactiver un statut
+    function desactiverStatut(string $id_statut): void
+    {
+        $this->bd->execSQL(
+            "UPDATE statut SET etat_statut='inactif'
+                WHERE id_statut = :id_statut",
+            [':id_statut' => $id_statut]
+        );
+    }
+    
+}               

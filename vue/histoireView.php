@@ -1,90 +1,51 @@
-
-
-</html>
-<?php
-require_once("../vue/footer.php") ?>
-
-<section class="container my -10" style=" margin-bottom: 50px;">
-    <?php require_once('../vue/header.php'); ?>
-
+<section class="container my-10" style="margin-bottom: 50px;">
+  <?php require_once('../vue/header.php'); ?>
 </section>
 
 <body>
 
-    <form method="GET" action="../controleur/histoire.php" name="add">
-        <section class="container my-5">
-            <?php
-            if (isset($lignes) && $lignes != []) : {
-                    $nombre_par_page = 10; // nombre d'éléments à afficher par page
-                    $nombre_total = count($lignes); // nombre total d'éléments
-                    $nombre_de_pages = ceil($nombre_total / $nombre_par_page); // nombre de pages à afficher
-                    $page_actuelle = isset($_GET['page']) ? $_GET['page'] : 1; // numéro de la page actuelle (si non spécifié, afficher la première page)
-                    $indice_depart = ($page_actuelle - 1) * $nombre_par_page; // indice de départ pour afficher les éléments de la page actuelle
-                    $elements_a_afficher = array_slice($lignes, $indice_depart, $nombre_par_page); // extraire les éléments à afficher pour la page actuelle
-            ?>
+    <?php require_once('../vue/header.php'); ?>
 
-                    <div class="table-responsive">
-                        <table class="table table-striped table-hover align-middle">
-                            <thead>
-                                <tr>
-                                    <td colspan="12" style="text-align:right">
-                                        <a href="../controleur/editRetourArticle.php?op=a">
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Numéro changement</th>
-                                    <th>Utilisateur</th>
-                                    <th>Temps </th>
-                                    <th>Table</th>
-                                    <th>Action</th>
-                                    <th>Détail</th>
+    <section class="container my-5">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Numéro changement</th>
+                        <th>Utilisateur</th>
+                        <th>Temps</th>
+                        <th>Table</th>
+                        <th>Action</th>
+                        <th>Détail</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($lignes as $ligne) : ?>
+                        <tr>
+                            <td><?php echo $ligne['numero_changement']; ?></td>
+                            <td><?php echo $ligne['utilisateur']; ?></td>
+                            <td><?php echo $ligne['temps']; ?></td>
+                            <td><?php echo $ligne['table']; ?></td>
+                            <td><?php echo $ligne['action']; ?></td>
+                            <td><?php echo $ligne['detail']; ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+        <?php if (empty($lignes)) : ?>
+            <p class="text-center">Historique vide !</p>
+        <?php endif; ?>
+    </section>
 
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                foreach ($lignes as $ligne) {
-                                    echo $ligne; // tableau de lignes à créer dans /controleur/salles.php
-                                }
-                                ?>
-                            </tbody>
-                        </table>
-                    </div>
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-center">
-                            <?php for ($i = 1; $i <= $nombre_de_pages; $i++) : ?>
-                                <li class="page-item <?php if ($page_actuelle == $i) {
-                                                            echo 'active';
-                                                        } ?>">
-                                    <a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
-                                </li>
-                            <?php endfor; ?>
-                        </ul>
-                    </nav>
-            <?php
-                }
-            else : echo "<p class='text-center' > historic vide ! </p>";
-            endif;
-            ?>
-        </section>
-        <style>
-            .article {
-                background-color: blanchedalmond;
-            }
+  <footer class="footer mt-auto bg-dark text-light" style="width: 100%; height:15%">
+    <div class="container">
+      <span class="text-muted">© 2023 Tous droits réservés.</span>
+    </div>
+  </footer>
 
-            #img_x {
-                width: 24px;
-                height: 24px;
-            }
-
-            td {
-                text-align: center;
-            }
-        </style>
-        <script src="../vue/style.js"></script>
-    </form>
+    <!-- Inclure le script JavaScript de Bootstrap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
 </body>
 
-
-<?php require_once("../vue/footer.php") ?>
+</html>

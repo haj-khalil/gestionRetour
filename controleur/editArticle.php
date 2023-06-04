@@ -6,20 +6,13 @@ require_once('../modele/motifDAO.php');
 require_once('../modele/retourClass.php');
 require_once('../modele/retourDAO.php');
 
+  
+	
 $nom_article = isset($_GET['nom_article']) ? strip_tags(strval(trim($_GET['nom_article']))) : null;
 $id_retour = isset($_GET['id_retour']) ? $_GET['id_retour'] : null;
 $id_article = isset($_GET['id_article']) ? $_GET['id_article'] : null;
 $quantite = isset($_GET['quantite']) ? intval($_GET['quantite']) : null;
-
-// $value = null;
-// if (isset($_GET['montant_piece']) && !empty($_GET['montant_piece'])) {
-//     $value = str_replace(',', '', $_GET['montant_piece']);
-//     if (is_numeric($value)) {
-//         $montant_piece = floatval(number_format($value, 2));
-//     }
-// }
- //n
- $montant_piece = isset($_GET['montant_piece']) ? floatval(str_replace(',', '.', $_GET['montant_piece'])) : null;
+$montant_piece = isset($_GET['montant_piece']) ? floatval(str_replace(',', '.', $_GET['montant_piece'])) : null;
 $id_motif = isset($_GET['id_motif']) ? intval($_GET['id_motif']) : null;
 $valider = isset($_GET['valider']) ? $_GET['valider'] : null;
 $annuler = isset($_GET['annuler']) ? $_GET['annuler'] : null;
@@ -28,31 +21,31 @@ $modif   = ($op == 'mA');
 $edit_article = ($id_article && $modif);
 
 
-$motif = new MotifDAO();
-$lesMotifs = $motif->getAll();
-$columns = [];
-foreach ($lesMotifs as $column) {
-    $ch = '';
-    $ch .= '<option value=' . $column->getId_motif() . '>' . $column->getMotif() . '</option>';
-    $columns[] = "<tr>$ch</tr>";
-}
+    $motif = new MotifDAO();
+    $lesMotifs = $motif->getAll();
+    $columns = [];
+    foreach ($lesMotifs as $column) {
+        $ch = '';
+        $ch .= '<option value=' . $column->getId_motif() . '>' . $column->getMotif() . '</option>';
+        $columns[] = "<tr>$ch</tr>";
+    }
 
 
-$valeurs = [
-    'id_retour' => null,
-    'nom_article' => null,
-    'quantite' => null,
-    'montant_piece' => null,
-    'id_motif' => null
-];
+    $valeurs = [
+        'id_retour' => null,
+        'nom_article' => null,
+        'quantite' => null,
+        'montant_piece' => null,
+        'id_motif' => null
+    ];
 
-$erreurs = [
-    'id_retour' => "",
-    'nom_article' => '',
-    'quantite' => "",
-    'montant_piece' => "",
-    'id_motif' => ""
-];
+    $erreurs = [
+        'id_retour' => "",
+        'nom_article' => '',
+        'quantite' => "",
+        'montant_piece' => "",
+        'id_motif' => ""
+    ];
 
 $REGEX_NOM = "/^[a-zA-Z]{2,25}$/";
 //$REGEX_QUANTITE = "/^([1-9]|[1-9][0-9]{1,5}|10000)(\.[0-9]+)?$/";
@@ -60,15 +53,15 @@ $REGEX_NOM = "/^[a-zA-Z]{2,25}$/";
 
 if ($valider && $id_retour) {
 
-    if (preg_match($REGEX_NOM, $nom_article) && $nom_article != null) {
-        $valeurs['nom_article'] = $nom_article;
-    } else $erreurs['nom_article'] = 'Nom article invalide';
+        if (preg_match($REGEX_NOM, $nom_article) && $nom_article != null) {
+            $valeurs['nom_article'] = $nom_article;
+        } else $erreurs['nom_article'] = 'Nom article invalide';
 
 
 
-    if ($quantite != null && is_numeric($quantite)) {
-        $valeurs['quantite'] = $quantite;
-    } elseif ($quantite == null) $valeurs['quantite'] = 1;
+        if ($quantite != null && is_numeric($quantite)) {
+            $valeurs['quantite'] = $quantite;
+        } elseif ($quantite == null) $valeurs['quantite'] = 1;
 
     if ($montant_piece > 0 && $montant_piece) {
         $valeurs['montant_piece'] = $montant_piece;
@@ -83,14 +76,15 @@ if ($valider && $id_retour) {
     } else $erreurs['id_motif'] = 'Selectionnez un motif';
 
     if ($id_retour) {
-        $valeurs['id_retour'] = $id_retour;
-    }
+            $valeurs['id_retour'] = $id_retour;
+    
+        }
 
 
-    $nbErreurs = 0;
-    foreach ($erreurs as $erreur) {
-        if ($erreur != "") $nbErreurs++;
-    }
+        $nbErreurs = 0;
+        foreach ($erreurs as $erreur) {
+            if ($erreur != "") $nbErreurs++;
+        }
 
     if ($nbErreurs == 0 && $id_retour) {
         require_once('../modele/articleClass.php');

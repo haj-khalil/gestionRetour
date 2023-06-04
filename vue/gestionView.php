@@ -1,11 +1,11 @@
 <header>
 
-<?php require_once('../vue/header.php'); ?>
+    <?php require_once('../vue/header.php'); ?>
 
 </header>
 
-<body> 
-  
+<body>
+
 
     <form method="GET" action="../controleur/gestion.php" name="add">
 
@@ -120,7 +120,7 @@
                     <section>
                         <h2>Ajout motif</h2>
                         <label for="nomMotif">Entrez le motif</label>
-                    
+
                         <input id="nomMotif" name="nomMotif" type="text" size="15" value="<?= htmlentities($valeurs['nomMotif'] ?? '') ?>" />
                         <br />
                         <span class="erreur"><?= $erreurs['nomMotif'] ?? '' ?></span>
@@ -137,12 +137,12 @@
         </div>
 
     </form>
-    <style>
+    <!-- <style>
         section {
             color: #219cee;
-            background-color: #040e29;
+            background-color: red;
             border: 2px solid blue;
-            border-radius:  25px;
+            border-radius: 25px;
             text-align: center;
         }
 
@@ -160,10 +160,25 @@
             background-color: red;
             font-weight: bolder;
         }
+
         header section {
-            border-radius:  0px; 
+            border-radius: 0px;
         }
     </style>
+    <script>
+        let select_id_ens = document.getElementById("select_id_ens");
+        dselect(select_id_ens, {
+            search: true
+        })
+        let select_id_motif = document.getElementById("select_id_motif");
+        dselect(select_id_motif, {
+            search: true
+        })
+        let select_id_statut = document.getElementById("select_id_statut");
+        dselect(select_id_statut, {
+            search: true
+        })
+    </script>
 </body>
 
 <?php require_once("../vue/footer.php") ?>

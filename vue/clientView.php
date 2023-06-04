@@ -43,8 +43,10 @@
                         <th>Email</th>
                         <th>Adresse</th>
                         <th>Téléphone</th>
+                        <th>Etat</th>
                         <th>Retours</th>
-                        <th>Effacer</th>
+                        <th>Desactiver</th>
+                        <th>Activer</th>
                     </tr>
                 </thead>
                 <tbody>

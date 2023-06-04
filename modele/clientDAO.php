@@ -12,8 +12,9 @@ class ClientDAO
 		$this->bd = new Connexion();
 		$this->select = 'SELECT
 		id_client ,nom ,prenom  ,email,  
-		address  ,tel ,mdp,naissance
-		FROM client ORDER BY id_client';
+		address  ,tel ,mdp,naissance ,etat_client
+		FROM client 
+        ORDER BY id_client';
 	}
 
 	function insert(Client $Client): void
@@ -31,7 +32,8 @@ class ClientDAO
 				":address" => $Client->getAddress(),
 				":tel" => $Client->getTel(),
 				":mdp" => $Client->getMdp(),
-				":naissance" => $Client->getNaissance()
+				":naissance" => $Client->getNaissance(),
+				":etat_client" => $Client->getEtat_client()
 			]
 		);
 	}
@@ -40,6 +42,26 @@ class ClientDAO
 	{
 		$this->bd->execSQL(
 			"DELETE FROM client WHERE id_client = :id_client",
+			[':id_client' => $id_client]
+		);
+	}
+    // desactiver le client 
+	function desactiver(string $id_client): void
+	{
+		$this->bd->execSQL(
+			"UPDATE  client
+            set etat_client='inactif'
+            WHERE id_client = :id_client",
+			[':id_client' => $id_client]
+		);
+	}
+    // activer le client 
+	function activer(string $id_client): void
+	{
+		$this->bd->execSQL(
+			"UPDATE  client
+            set etat_client='actif'
+            WHERE id_client = :id_client",
 			[':id_client' => $id_client]
 		);
 	}
@@ -58,7 +80,8 @@ class ClientDAO
 				":address  " => $Client->getAddress(),
 				":tel " => $Client->getTel(),
 				":mdp" => $Client->getMdp(),
-				":naissance" => $Client->getNaissance()
+				":naissance" => $Client->getNaissance(),
+				":etat_client" => $Client->getEtat_client()
 			]
 		);
 	}
@@ -77,6 +100,7 @@ class ClientDAO
 			$Client->setTel($row['tel']);
 			$Client->setMdp($row['mdp']);
 			$Client->setNaissance($row['naissance']);
+			$Client->setEtat_client($row['etat_client']);
 
 			$Clients[] = $Client;
 		}
@@ -87,27 +111,29 @@ class ClientDAO
 	{
 		return ($this->loadQuery($this->bd->execSQL($this->select)));
 	}
-
-	/* function getById($id_retour): Retour
+	function getById($id_client)
 	{
-		$uneRetour = new Retour();
-
-		$lesRetours = $this->loadQuery($this->bd->execSQL(
-			"SELECT id_retour ,date_achat ,date_envoi  ,date_remboursement,  
-			id_client  ,id_ens ,id_statut
-			FROM retour WHERE
-			id_retour= :id_retour",
-			[
-				":id_retour" => $id_retour
-			]
-		));
-
-		if (count($lesRetours) > 0) {
-			$unRetour = $lesRetours[0];
+		$req = 'SELECT id_client, nom, prenom, email, address, tel, mdp, naissance FROM client WHERE id_client = :id_client';
+		$params = [':id_client' => $id_client];
+		$result = $this->bd->execSQL($req, $params);
+	
+		if ($result && count($result) > 0) {
+			$row = $result[0];
+			$client = new Client();
+			$client->setId_client($row['id_client']);
+			$client->setNom($row['nom']);
+			$client->setPrenom($row['prenom']);
+			$client->setEmail($row['email']);
+			$client->setAddress($row['address']);
+			$client->setTel($row['tel']);
+			$client->setMdp($row['mdp']);
+			$client->setNaissance($row['naissance']);
+			return $client;
 		}
-		return $unRetour;
+	
+		return null;
 	}
- */
+	
 
 	function existeTel(string $tel): bool 
 	{
