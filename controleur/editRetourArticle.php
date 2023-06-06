@@ -6,36 +6,21 @@ require_once("../modele/enseigneDAO.php");
 require_once("../modele/retourByArticleDAO.php");
 require_once("../modele/retourDAO.php");
 require_once("../modele/statutDAO.php");
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-
 session_start();
-if (isset($_SESSION['login'])) {
-if (isset($_SESSION['login'])) {
-    if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
-        echo '<h2 style="text-align: center;">La session a expiré !</h2>';
-        header("refresh:3;url=login.php");
-        exit();
-    }
-} else {
-    echo "<h2 style='text-align: center;'>Désolé, il y a une erreur : vous ne pouvez pas accéder à cette page.</h2>";
-    header("refresh:3;url=login.php");
-    exit();
-}
 
 $op = isset($_GET['op']) ? $_GET['op'] : null;
 $ajout = ($op == 'a');
 $modif = ($op == 'm');
 $suppr = ($op == 's');
 $id_client = isset($_GET['id_client']) ? $_GET['id_client'] : null;
-$editid_client = ($id_client && $modif);
+$id_retour = isset($_GET['id_retour']) ? $_GET['id_retour'] : null;
+
+$edit_Retour = ($id_retour && $modif);
 $titre = $ajout ? 'Nouveau Retour' : ($modif ? 'Retour - édition des informations' : null);
 
-if (($id_client != null && $ajout) || (($id_client == null) && ($modif || $suppr))) {
+if (($id_client != null && $ajout) || (($id_retour != null || $id_client == null) && ($modif || $suppr))) {
     header("location: ../controleur/retourAdmin.php");
+    exit();
 }
 
 $ens = new EnseigneDAO();
@@ -64,65 +49,35 @@ foreach ($lesClients as $client) {
     $Tabs[] = $ch;
 }
 
-// Gestion des zones non modifiables en mode "modif"
-$valeurs = [
-    'id_client' => null,
-    'statut' => null,
-    'date_achat' => null,
-    'id_ens' => null,
-];
+$valeurs['id_client'] = isset($_POST['id_client']) ? trim($_POST['id_client']) : null;
+$valeurs['id_ens'] = isset($_POST['id_ens']) ? trim($_POST['id_ens']) : null;
+$valeurs['select_id_statut'] = isset($_POST['select_id_statut']) ? trim($_POST['select_id_statut']) : null;
+$valeurs['date_achat'] = isset($_POST['date_achat']) ? trim($_POST['date_achat']) : '2000-01-01';
+$valeurs['date_envoi'] = isset($_POST['date_envoi']) ? trim($_POST['date_envoi']) : '2002-01-01';
 
-$unRetourDAO = new RetourDAO();
-if ($modif || $editid_client) {
-    $valeurs['id_client'] = $id_client;
-    $unRetour = $unRetourDAO->getById($id_client);
-
-    if ($unRetour !== null) {
-        $valeurs['id_client'] = $unRetour->getid_client();
-        $valeurs['statut'] = $unRetour->getId_statut();
-        $valeurs['date_achat'] = $unRetour->getDate_achat();
-        $valeurs['date_remb'] = $unRetour->getDate_remboursement();
-    } else {
-        echo "<h2 style='text-align: center;'>Le retour avec l'ID $id_client n'existe pas.</h2>";
-        header("refresh:3;url=retourAdmin.php");
-        exit();
-    }
-}
+$retour = false;
 
 $erreurs = [
     'id_client' => "",
-    'statut' => "",
-    'enseigne' => "",
+    'select_id_statut' => "",
+    'id_ens' => "",
     'date_achat' => "",
-    'date_remb' => "",
     'date_envoi' => "",
 ];
 
-if ($_SESSION['login'] === "root") {
-    $valeurs['id_client'] = isset($_POST['id_client']) ? trim($_POST['id_client']) : null;
-} else {
-    $valeurs['id_client'] = $_SESSION['id'];
-}
-
-$valeurs['enseigne'] = isset($_POST['id_ens']) ? trim($_POST['id_ens']) : null;
-$valeurs['statut'] = isset($_POST['select_id_statut']) ? trim($_POST['select_id_statut']) : null;
-$valeurs['date_achat'] = isset($_POST['date_achat']) ? trim($_POST['date_achat']) : '2000-01-01';
-$valeurs['date_envoi'] = isset($_POST['date_envoi']) ? trim($_POST['date_envoi']) : '2002-01-01';
-$retour = false;
-
 if (isset($_POST['Valider'])) {
-   
-     if (!isset($valeurs['id_client']) || empty($valeurs['id_client'])) {
-            $erreurs['id_client'] = 'Choix obligatoire du Nom client';
-        
+    $erreurs = array();
+
+    if (empty($valeurs['id_client'])) {
+        $erreurs['id_client'] = 'Choix obligatoire du Nom client';
     }
-    if (!isset($valeurs['statut']) || empty($valeurs['statut'])) {
-        $erreurs['statut'] = 'Choix obligatoire du Statut';
+    if (empty($valeurs['select_id_statut'])) {
+        $erreurs['select_id_statut'] = 'Choix obligatoire du Statut';
     }
-    if (!isset($valeurs['enseigne']) || empty($valeurs['enseigne'])) {
-        $erreurs['enseigne'] = 'Choix obligatoire de l\'enseigne';
+    if (empty($valeurs['id_ens'])) {
+        $erreurs['id_ens'] = 'Choix obligatoire de l\'enseigne';
     }
-    if (!isset($valeurs['date_achat']) || empty($valeurs['date_achat'])) {
+    if (empty($valeurs['date_achat'])) {
         $erreurs['date_achat'] = 'Saisie obligatoire de la date d\'achat.';
     }
 
@@ -133,45 +88,48 @@ if (isset($_POST['Valider'])) {
             "id_client" => $valeurs['id_client'],
             "date_achat" => $valeurs['date_achat'],
             "date_envoi" => $valeurs['date_envoi'],
-            "id_ens" => $valeurs['enseigne'],
-            "id_statut" => $valeurs['statut']
+            "id_ens" => (int) $valeurs['id_ens'],
+            "id_statut" => (int) $valeurs['select_id_statut']
         ];
-        if (isset($ajout)) {
+        if ($ajout) {
             $RetourDAO->insert($unRetour);
             $retour = true;
-        } else {
-			$RetourDAO->update($unRetour);
-        } 
-		// else {
-        //     echo "<h2 style='text-align: center;'>Le client avec l'ID $id_client n'existe pas.</h2>";
-        //     header("refresh:3;url=retourAdmin.php");
-        //     exit();
-        // }
+        } else if ($modif) {
+            $RetourDAO->update($unRetour);
+            $retour = true;
+        }
     }
-} elseif (isset($_POST['annuler'])) {
+}
+
+if ($modif) {
+    $RetourDAO = new RetourDAO();
+    $unRetour = $RetourDAO->getById($id_client); // Récupère les informations du retour à modifier
+    if ($unRetour != null) {
+        $valeurs['id_client'] = $unRetour->getId_client();
+        $valeurs['select_id_statut'] = $unRetour->getId_statut();
+        $valeurs['id_ens'] = $unRetour->getId_ens();
+        $valeurs['date_achat'] = $unRetour->getDate_achat();
+        $valeurs['date_envoi'] = $unRetour->getDate_envoi();
+    } else {
+        // Gérer le cas où le retour n'est pas trouvé
+    }
+}
+
+if (isset($_POST['annuler'])) {
     header("location: retourAdmin.php");
     exit();
-} elseif ($suppr) {
-    // Suppression
+}
+
+if ($suppr) {
+    $RetourDAO = new RetourDAO();
     $RetourDAO->delete($id_client);
     $retour = true;
 }
-else if ($modif)	{
-	$valeurs['id_client']		= $unRetour->getid_client();
-	$valeurs['statut'] = $unRetour->getId_statut();		
-	$valeurs['date_achat'] 	= $unRetour->getDate_achat();	
-	$valeurs['date_remb'] 	= $unRetour->getDate_remboursement();		
-	
+
+if ($retour) {
+    header("location: retourAdmin.php");
+    exit();
 }
-
-
-if ($retour)
-{
-	header("location: retourAdmin.php");
-}	
 
 require_once('../vue/editRetourArticleView.php');
-}else {
-	echo "<h2 style=' text-align: center;'>Désolé, il y a une erreur : vous ne pouvez pas accéder à cette page.</h2>";
-    header( "refresh:3;url=login.php" );
-}
+?>

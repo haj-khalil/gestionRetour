@@ -13,7 +13,7 @@ class EnseigneDAO
 		$this->select = 'SELECT 
 		id_ens ,nom_ens 
 		FROM enseigne 
-        where etat_ens="actif"
+        -- where etat_ens="actif"
         ORDER BY nom_ens';
 	}
 

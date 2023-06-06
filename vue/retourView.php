@@ -35,7 +35,7 @@
                         <table class="table table-striped table-hover align-middle">
                             <thead>
                                 <tr>
-                                    <td colspan="12" style="text-align:right">
+                                    <td colspan="13" style="text-align:right">
                                         <a href="../controleur/editRetourArticle.php?op=a">
 
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">

@@ -38,22 +38,28 @@ class RetourDAO
             [':id_retour' => $id_retour]
         );
     }
-
     function update(array $Retour): void
     {
+        $id_client = $Retour['id_client'];
+        $id_statut = $Retour['id_statut'];
+        $date_achat = $Retour['date_achat'];
+        $date_envoi = $Retour['date_envoi'];
+        $id_ens = $Retour['id_ens'];
+    
         $this->bd->execSQL(
-            "UPDATE retour SET id_client=:id_client, date_achat=:date_achat, 
-            date_envoi=:date_envoi, id_ens=:id_ens, id_statut=:id_statut
+            "UPDATE retour SET id_statut=:id_statut, date_achat=:date_achat, 
+            date_envoi=:date_envoi, id_ens=:id_ens
             WHERE id_client=:id_client",
             [
-                ":id_client" => $Retour['id_client'],
-                ":date_achat" => $Retour['date_achat'],
-                ":date_envoi" => $Retour['date_envoi'],
-                ":id_ens" => $Retour['id_ens'],
-                ":id_statut" => $Retour['id_statut'],
+                ":id_client" => $id_client,
+                ":id_statut" => $id_statut,
+                ":date_achat" => $date_achat,
+                ":date_envoi" => $date_envoi,
+                ":id_ens" => $id_ens,
             ]
         );
     }
+    
 
 
 
