@@ -11,7 +11,7 @@ class Connexion {
 		$db_config['HOST']		= 'localhost';
 		$db_config['DB_NAME']	= 'BDD_Retour';
 		$db_config['USER']		= 'root';
-		$db_config['PASSWORD']	= 'root';
+		$db_config['PASSWORD']	= '';
 		try
 		{
 			$this->db = new PDO($db_config['SGBD'] .':host='. $db_config['HOST'] .';dbname='. $db_config['DB_NAME'],

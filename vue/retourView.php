@@ -1,8 +1,27 @@
+<style>
+    .input-control {
+  display: flex;
+  align-items: center;
+  background-color: #f2f2f2;
+  border-radius: 20px;
+  padding: 8px;
+  width: 30%;
+}
 
+.input-control input[type="text"] {
+  flex: 1;
+  height: 30px;
+  border: none;
+  padding: 0 8px;
+  font-size: 14px;
+  
+}
+</style>
 <section class="container my -10" style=" margin-bottom: 50px;">
     <?php require_once('../vue/header.php'); ?>
 
     <head>
+
     <meta charset="utf-8">
     <title>Liste des retours</title>
     <!-- ///** */ -->
@@ -19,10 +38,16 @@
 <body>
 
     <form method="GET" action="../controleur/retourAdmin.php" name="add">
-
+         
         <section class="container my-5">
+            <div class="input-control">
+                <input type="text" id="searchInput" class="form-control w-50 me-2" placeholder="Recherche..." oninput="filterTable()" aria-label="Search">
+                <div id="messageRecherch" style="display: none;" class="alert alert-danger w-50" role="alert">Pas de résultat !</div>
+            </div>
+
+
             <?php
-            if (isset($lignes) && $lignes != []) : {
+                if (isset($lignes) && $lignes != []) : {
                     $nombre_par_page = 15; // nombre d'éléments à afficher par page
                     $nombre_total = count($lignes); // nombre total d'éléments
                     $nombre_de_pages = ceil($nombre_total / $nombre_par_page); // nombre de pages à afficher
@@ -57,7 +82,7 @@
                                     <th>Articles</th>
                                     <th>Supprimer</th>
                                     <th>Modifier</th>
-                                    <th>Ajouter article</th>
+                                    <!-- <th>Ajouter article</th> -->
                                     <th>Changer statut</th>
                                 </tr>
                             </thead>
@@ -146,10 +171,16 @@
             }
         </style>
         <script src="../vue/style.js"></script>
-
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="../vue/retourAdmin.js"></script>
     </form>
     
 </body>
+
+
 
 
 <?php require_once("../vue/footer.php") ?>

@@ -45,8 +45,8 @@ if ($activer && !empty($id_client)&& $id_client) {
 
 		foreach ($lesClients as $unClient) {
 			$ch = '';
-            $ch .= '<td class="'.$unClient->getId_client().'"id="'.$unClient->getId_client().  '">' . $unClient->getId_client() . '</td>';
-			$ch .= '<td class="'.$unClient->getNom().'"id="'.$unClient->getNom().        '">' . $unClient->getNom() . '</td>';
+            $ch .= '<td >' . $unClient->getId_client() . '</td>';
+			$ch .= '<td>' . $unClient->getNom() . '</td>';
 			$ch .= '<td class="'.$unClient->getPrenom().'"id="'.$unClient->getPrenom().     '">' . $unClient->getPrenom() . '</td>';
 			$ch .= '<td class="'.$unClient->getEmail().'"id="'.$unClient->getEmail().      '">' . $unClient->getEmail() . '</td>';
 			$ch .= '<td class="'.$unClient->getAddress().'"id="'.$unClient->getAddress().    '">' . $unClient->getAddress() . '</td>';
