@@ -12,7 +12,9 @@ DROP TABLE IF EXISTS audit ; -- CASCADE ;
 
    create table  enseigne (
    id_ens int  AUTO_INCREMENT primary key ,
-   nom_ens varchar(255) unique );
+   nom_ens varchar(255) unique ),
+   etat_ens varchar(255) default "actif"
+   ;
    
    create table client (
    id_client int auto_increment primary key ,
@@ -22,18 +24,24 @@ DROP TABLE IF EXISTS audit ; -- CASCADE ;
    address varchar (255) ,
    tel varchar (10) unique  not null,
    mdp varchar(255)  not null ,
-   naissance date   
+   naissance date ,
+   etat_client varchar(255) default "actif"
+  
    );
    
    
  create table statut (
  id_statut int auto_increment  primary key,
- label varchar(255) unique
+ label varchar(255) unique,
+  etat_statut varchar(255) default "actif"
+
  );
  
  create table motif (
  id_motif  int auto_increment  primary key,
- motif varchar(255) unique
+ motif varchar(255) unique ,
+  etat_motif varchar(255) default "actif"
+
  );
  
 
