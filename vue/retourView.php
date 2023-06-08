@@ -90,8 +90,9 @@
                                     <th>Montant</th>
                                     <th>Articles</th>
                                     <th>Supprimer</th>
+                                    <th>Modifier</th>
                                     <th>Ajouter article</th>
-                                    <th>Mis a jour</th>
+                                    <th>Changer statut</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -133,7 +134,7 @@
                     </div>
                     <div class="modal-body">
 
-                        <h2>Mis a jour</h2>
+                        <h2>Actualiser</h2>
                         <select class="form-select" required aria-label="Default select example" name="select_id_statut" id="select_id_statut">
                             <option selected>Choisissez un statut </option>
                             <?php
