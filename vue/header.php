@@ -21,9 +21,9 @@
     <link rel="icon" href="https://getbootstrap.com/docs/5.1/assets/img/favicons/favicon.ico">
     <meta name="theme-color" content="#7952b3">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
-<!-- library pour la par de recherch  -->
-<link rel="stylesheet" href="https://unpkg.com/@jarstone/dselect/dist/css/dselect.css">
-<script src="https://unpkg.com/@jarstone/dselect/dist/js/dselect.js"></script>
+    <!-- library pour la par de recherch  -->
+    <link rel="stylesheet" href="https://unpkg.com/@jarstone/dselect/dist/css/dselect.css">
+    <script src="https://unpkg.com/@jarstone/dselect/dist/js/dselect.js"></script>
 
     <style>
         .bd-placeholder-img {
@@ -33,9 +33,9 @@
             -moz-user-select: none;
             user-select: none;
         }
-   
-    
-    @media (min-width: 768px) {
+
+
+        @media (min-width: 768px) {
             .bd-placeholder-img-lg {
                 font-size: 3.5rem;
             }
@@ -62,12 +62,12 @@
                                 <span class="navbar-toggler-icon"></span>
                             </button>
                             <div class="collapse navbar-collapse" id="navbarCollapse">
-                                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                                <ul class="navbar-nav ms-auto mb-2 mb-md-0">
                                     <li class="nav-item">
                                         <a style="color: #219cee; " class="nav-link active" aria-current="page" href="../controleur/menu.php">Menu</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a style="color: #219cee; " class="nav-link <?php echo !empty($index) ? 'active' : ''; ?>" href="../controleur/retourAdmin.php">Retours</a>
+                                        <a style="color: #219cee; " class="nav-link <?php echo !empty($index) ? 'active' : ''; ?>" href="../controleur/retour.php">Retours</a>
                                     </li>
                                     <?php if ($_SESSION['login'] == 'root') : { ?>
                                             <li class="nav-item">
@@ -82,23 +82,17 @@
                                     <?php }
                                     endif;
                                     ?>
-                                    <?php if ($_SESSION['login'] != 'root') : {
-                                    ?>
-                                            <li class="nav-item">
-                                                <a style="color: #219cee; " class="nav-link active" aria-current="page" href="../controleur/editRetourArticle.php">Ajouter</a>
-                                            </li>
-                                    <?php }
-                                    endif;
-                                    ?>
+                                    <?php if ($_SESSION['login'] != 'root') { ?>
+                                        <li class="nav-item">
+                                        <a style="color: #219cee; " class="nav-link active" aria-current="page" href="../controleur/editRetour.php?op=a&id_client=<?php echo urlencode($_SESSION['id_client']); ?>">Ajouter</a>
+                                        </li>
+                                    <?php } ?>
+
                                     <li class="nav-item">
                                         <a style="color: #219cee; " class="nav-link" href="../controleur/logout.php">Déconnexion</a>
                                     </li>
 
                                 </ul>
-                                <form class="d-flex">
-                                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                                    <button class="btn btn-outline-success" type="submit">Recherche</button>
-                                </form>
                             </div>
                         </div>
                 <?php }

@@ -22,7 +22,7 @@ class ClientDAO
 		
 			$req="INSERT INTO client
 		(prenom,nom,email,address,tel,mdp,naissance,etat_client)
-            VALUE (:nom, :prenom, :email, :address, :tel, :mdp, :naissance, :etat_client)";
+            VALUES (:nom, :prenom, :email, :address, :tel, :mdp, :naissance, :etat_client)";
 
         $this->bd->execSQL($req ,
 			[
@@ -110,7 +110,29 @@ class ClientDAO
 	{
 		return ($this->loadQuery($this->bd->execSQL($this->select)));
 	}
-
+	function getById($id_client)
+	{
+		$req = 'SELECT id_client, nom, prenom, email, address, tel, mdp, naissance FROM client WHERE id_client = :id_client';
+		$params = [':id_client' => $id_client];
+		$result = $this->bd->execSQL($req, $params);
+	
+		if ($result && count($result) > 0) {
+			$row = $result[0];
+			$client = new Client();
+			$client->setId_client($row['id_client']);
+			$client->setNom($row['nom']);
+			$client->setPrenom($row['prenom']);
+			$client->setEmail($row['email']);
+			$client->setAddress($row['address']);
+			$client->setTel($row['tel']);
+			$client->setMdp($row['mdp']);
+			$client->setNaissance($row['naissance']);
+			return $client;
+		}
+	
+		return null;
+	}
+	
 
 	function existeTel(string $tel): bool 
 	{

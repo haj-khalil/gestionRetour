@@ -13,11 +13,11 @@
 
 		}
 
-		function getId_statut	    	() : int			    { return $this->id_statut;		        	}
-		function setId_statut	    	(int $id_statut)			{ $this->id_statut=$id_statut;	        		}
+		function getId_statut	    	() 			    { return $this->id_statut;		        	}
+		function setId_statut	    	($id_statut)			{ $this->id_statut=$id_statut;	        		}
 		
-		function getLabel 	() : string			    { return $this->label; 			}
-		function setLabel	(string $label)		{ $this->label=$label; 			}
+		function getLabel 	() 			    { return $this->label; 			}
+		function setLabel	( $label)		{ $this->label=$label; 			}
 		
 			
 	

@@ -98,7 +98,7 @@ if ($valider) {
         $client->setTel($tel);
         $client->setMdp($mdp);
         $client->setNaissance($naissance);
-       
+        $clientDAO->insert($client);
         header( "refresh:3;url=login.php" );
         $messageInscription=true;
     

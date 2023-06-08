@@ -9,13 +9,11 @@
         private $id_client;
         private $id_ens;
         private $id_statut;
-		
 
-
-		function __construct( int $id_retour=0,
-		string $date_achat='', string $date_envoi='', 
-		string $date_remboursement='', string $id_client = '', 
-		string $id_ens = '', string $id_statut = '') {
+		function __construct( $id_retour=0,
+		$date_achat='',  $date_envoi='', 
+		$date_remboursement='',  $id_client = '', 
+		$id_ens = '',  $id_statut = '') {
 
 			$this->id_retour	    	=$id_retour;
 			$this->date_achat		=$date_achat;
@@ -28,8 +26,8 @@
             
 		}
 
-		function getId_retour	    	() : int			    { return $this->id_retour;		        	}
-		function setId_retour	    	(int $id_retour)			{ $this->id_retour=$id_retour;	        		}
+		function getId_retour	    	() 			    { return $this->id_retour;		        	}
+		function setId_retour	    	( $id_retour)			{ $this->id_retour=$id_retour;	        		}
 		
 		function getDate_achat 	()			    { return $this->date_achat; 			}
 		function setDate_achat	($date_achat)		{ $this->date_achat=$date_achat; 			}
@@ -48,7 +46,16 @@
 		function setId_ens	( $id_ens)	{ $this->id_ens=$id_ens;  }		
 		
 		function getId_statut	()				{ return $this->id_statut; 		}   
-		function setId_statut	( $id_statut)	{ $this->id_statut=$id_statut;  }		
+		function setId_statut	( $id_statut)	{ $this->id_statut=$id_statut;  }
+	   function toArray()
+		 {
+			return array(
+				'id_client' => $this->id_client,
+				'id_statut' => $this->id_statut,
+				'date_achat' => $this->date_achat,
+				'date_envoi' => $this->date_envoi
+			);
+		}		
 	
 	}
 }

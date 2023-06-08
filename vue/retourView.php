@@ -1,26 +1,51 @@
+<style>
+    .input-control {
+        display: flex;
+        align-items: center;
+        background-color: #f2f2f2;
+        border-radius: 20px;
+        padding: 8px;
+        width: 30%;
+    }
 
+    .input-control input[type="text"] {
+        flex: 1;
+        height: 30px;
+        border: none;
+        padding: 0 8px;
+        font-size: 14px;
+
+    }
+</style>
 <section class="container my -10" style=" margin-bottom: 50px;">
     <?php require_once('../vue/header.php'); ?>
 
     <head>
-    <meta charset="utf-8">
-    <title>Liste des retours</title>
-    <!-- ///** */ -->
-    <link rel="stylesheet" href="../vue/style/style3.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="../vue/style.js"></script>
-    <!-- ///** */ -->
-</head>
+
+        <meta charset="utf-8">
+        <title>Liste des retours</title>
+        <!-- ///** */ -->
+        <link rel="stylesheet" href="../vue/style/style3.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="../vue/style.js"></script>
+        <!-- ///** */ -->
+    </head>
 </section>
 
 <body>
 
-    <form method="GET" action="../controleur/retourAdmin.php" name="add">
+    <form method="GET" action="../controleur/retour.php" name="add">
 
         <section class="container my-5">
+            <div class="input-control">
+                <input type="text" id="searchInput" class="form-control w-50 me-2" placeholder="Recherche..." oninput="filterTable()" aria-label="Search">
+                <div id="messageRecherch" style="display: none;" class="alert alert-danger w-50" role="alert">Pas de résultat !</div>
+            </div>
+
+
             <?php
             if (isset($lignes) && $lignes != []) : {
                     $nombre_par_page = 15; // nombre d'éléments à afficher par page
@@ -34,23 +59,32 @@
                     <div class="table-responsive">
                         <table class="table table-striped table-hover align-middle">
                             <thead>
-                                <tr>
-                                    <td colspan="12" style="text-align:right">
-                                        <a href="../controleur/editRetourArticle.php?op=a">
+                                <?php if ($_SESSION['login'] != 'root') : {
+                                ?>
 
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
-                                                <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z" />
-                                                <a href="../controleur/editRetourArticle.php"></a>
-                                            </svg>
-                                        </a>
-                                    </td>
-                                </tr>
+
+
+                                        <tr>
+                                        
+                                            <td colspan="13" style="text-align:right">
+                                                <a href="../controleur/editRetour.php?op=a&id_client=<?php echo urlencode($_SESSION['id_client']); ?>">
+                                                
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+                                                        <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z" />
+                                                    </svg>
+                                                </a>
+                                            </td>
+
+                                        </tr>
+                                <?php }
+                                endif; ?>
                                 <tr>
                                     <th onclick="">Numéro Retour</th>
                                     <th>Enseigne</th>
-                                    <th>Date d'achat</th>
+                                    <th >Date d'achat</th>
+                                    <th >Date d'envoi</th>
+                                    <th>Date remboursement</th>
                                     <th>Label</th>
-                                    <th>Date d'envoi</th>
                                     <th>Nom</th>
                                     <th>Prénom</th>
                                     <th>Montant</th>
@@ -135,22 +169,29 @@
                 height: 24px;
             }
 
-            td{
+            td {
                 text-align: center;
             }
-            th{
+
+            th {
                 text-align: center;
             }
-            input[type=button]:not(:disabled){
+
+            input[type=button]:not(:disabled) {
                 width: 60px;
             }
         </style>
         <script src="../vue/style.js"></script>
-
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="../vue/retour.js"></script>
     </form>
-    
+
 </body>
 
 
-<?php require_once("../vue/footer.php") ?>
 
+
+<?php require_once("../vue/footer.php") ?>

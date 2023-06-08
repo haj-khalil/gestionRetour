@@ -36,7 +36,7 @@ class Client
 		$this->etat_client	= $etat_client;
 	}
 
-	function getId_client(): int
+	public function getId_client()
 	{
 		return $this->id_client;
 	}

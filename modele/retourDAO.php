@@ -11,26 +11,28 @@ class RetourDAO
     {
         $this->bd = new Connexion();
         $this->select = 'SELECT
-		id_retour ,date_achat ,date_envoi  ,date_remboursement,  
-		id_client  ,id_ens ,id_statut
+		id_retour,date_achat,date_envoi,date_remboursement,id_client,id_ens,id_statut
 		FROM retour ORDER BY id_retour';
     }
-    function insert(array $Retour): void
+
+
+    function insert(Retour $Retour): void
     {
-        $this->bd->execSQL(
-            "INSERT INTO retour
-		(id_client, id_statut, date_achat, id_ens, date_envoi)
-        VALUES (:id_client,:id_statut,:date_achat,:id_ens,  
-			:date_envoi)",
+            
+            $req= "INSERT INTO retour (date_achat,date_envoi,date_remboursement,id_client,id_ens,id_statut)
+            VALUES (:date_achat,:date_envoi,:date_remboursement,:id_client,:id_ens,:id_statut)";
+            $this->bd->execSQL($req,
             [
-                ":id_client" => $Retour[0],
-                ":date_achat" => $Retour[1],
-                ":date_envoi" => $Retour[2],
-                ":id_ens" => $Retour[3],
-                ":id_statut" => $Retour[4]
+                ":date_achat" => $Retour->getDate_achat(),
+                ":date_envoi" => $Retour->getDate_envoi(),
+                ":date_remboursement" => $Retour->getDate_remboursement(),
+                ":id_client" => $Retour->getId_client(),
+                ":id_ens" => $Retour->getId_ens(),
+                ":id_statut" => $Retour->getId_statut(),
             ]
-        );
+        ); 
     }
+
 
     function delete(string $id_retour): void
     {
@@ -39,24 +41,30 @@ class RetourDAO
             [':id_retour' => $id_retour]
         );
     }
-
-
     function update(array $Retour): void
     {
+        $id_client = $Retour['id_client'];
+        $id_statut = $Retour['id_statut'];
+        $date_achat = $Retour['date_achat'];
+        $date_envoi = $Retour['date_envoi'];
+        $id_ens = $Retour['id_ens'];
+    
         $this->bd->execSQL(
-            "UPDATE retour SET id_client=:id_client, date_achat=:date_achat, 
-			date_envoi=:date_envoi, id_ens=:id_ens,
-			id_statut=:id_statut
-			WHERE id_retour=:id_retour",
+            "UPDATE retour SET id_statut=:id_statut, date_achat=:date_achat, 
+            date_envoi=:date_envoi, id_ens=:id_ens
+            WHERE id_client=:id_client",
             [
-                ":id_client" => $Retour[0],
-                ":date_achat" => $Retour[1],
-                ":date_envoi" => $Retour[2],
-                ":id_ens" => $Retour[3],
-                ":id_statut" => $Retour[4]
+                ":id_client" => $id_client,
+                ":id_statut" => $id_statut,
+                ":date_achat" => $date_achat,
+                ":date_envoi" => $date_envoi,
+                ":id_ens" => $id_ens,
             ]
         );
     }
+    
+
+
 
     private function loadQuery(array $result): array
     {
@@ -111,36 +119,12 @@ class RetourDAO
         return ($res != []);
     }
 
-    function insertRetour(
-        int $id_ens,
-        int $id_statut,
-        int $id_client,
-        string     $date_achat,
-        string     $date_remb,
-        string     $date_envoie
+   
 
-    ) {
+    function udateRetourStatut($id_statut, $id_retour)
+    {
         $this->bd->execSQL(
-            "INSERT INTO retour
-(date_achat,date_envoi,date_remboursement,id_client,id_ens,id_statut)
-	VALUES (:date_achat,:date_envoi,:date_remboursement,  
-:id_client,:id_ens,:id_statut)",
-            [
-                ':date_achat' => $date_achat,
-                ':date_envoi' => $date_envoie,
-                ':date_remboursement' => $date_remb,
-                ':id_client' => $id_client,
-                ':id_ens' => $id_ens,
-                ':id_statut' => $id_statut
-
-            ]
-        );
-    }
-
-	function udateRetourStatut(int $id_statut, int $id_retour)
-	{
-		$this->bd->execSQL(
-			"UPDATE retour SET  
+            "UPDATE retour SET  
 		id_statut =:id_statut
 		WHERE id_retour=:id_retour",
             [
@@ -149,7 +133,7 @@ class RetourDAO
             ]
         );
     }
-    function udateDateRemboursement(int $id_retour, string $date_remboursement)
+    function udateDateRemboursement($id_retour, $date_remboursement)
     {
         $this->bd->execSQL(
             "UPDATE retour SET  

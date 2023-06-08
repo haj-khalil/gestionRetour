@@ -137,10 +137,10 @@
         </div>
 
     </form>
-    <style>
+    <!-- <style>
         section {
             color: #219cee;
-            background-color: #040e29;
+            background-color: red;
             border: 2px solid blue;
             border-radius: 25px;
             text-align: center;

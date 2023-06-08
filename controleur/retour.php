@@ -4,9 +4,9 @@ require_once('../modele/retourByArticleDAO.php');
 require_once("../modele/statutDAO.php");
 
 session_start();
-if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
+if ((time() - $_SESSION['last_login']) > 2000 && $_SESSION['login'] != "root") {
     echo '<h2 style=" text-align: center;">session time est terminé !</h2>';
-    header("refresh:3;url=login.php");
+    header("refresh:2;url=login.php");
 } else if (isset($_SESSION['login'])) {
 
     // effacer un article  //n
@@ -105,7 +105,7 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
                     . urlencode($uneArticle['id_article']) 
                     . '"><img src="../vue/style/modification.png"></a></td>';
                 $ch .= '<td class="article"><a  onclick="javascript:return confirm(\'Etes-vous sûr de vouloir supprimer ? \') " id="supp"
-		        href="../controleur/retourAdmin.php?op=sA&id_article='
+		        href="../controleur/retour.php?op=sA&id_article='
                 . urlencode($uneArticle['id_article'])
                 . '" ><img src="../vue/style/corbeille.png"></a></td>';
 
@@ -124,21 +124,22 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
         $ch .= '<td>' . $unRetour['id_retour'] . '</td>';
         $ch .= '<td>' . $unRetour['nom_ens'] . '</td>';
         $ch .= '<td>' . $unRetour['date_achat'] . '</td>';
-        $ch .= '<td>' . $unRetour['label'] . '</td>';
         $ch .= '<td>' . $unRetour['date_envoi'] . '</td>';
+        $ch .= '<td>' . $unRetour['date_remboursement'] . '</td>';
+        $ch .= '<td>' . $unRetour['label'] . '</td>';
         $ch .= '<td>' . $unRetour['nom'] . '</td>';
         $ch .= '<td>' . $unRetour['prenom'] . '</td>';
         $ch .= '<td>' . $montantRetour . " €" . '</td>';
 
-        $ch .= '<td ><a onclick="casherTableArticle()" href="../controleur/retourAdmin.php?op=d&id='
+        $ch .= '<td ><a onclick="casherTableArticle()" href="../controleur/retour.php?op=d&id='
             .  urlencode($unRetour['id_retour'])
             . '"><img    src="../vue/style/visu.png"></a></td>';
 
-        $ch .= '<td><a onclick="javascript:return confirm(\'Etes-vous sûr de vouloir supprimer ? \') " id="supp" href="../controleur/retourAdmin.php?op=s&id='
+        $ch .= '<td><a onclick="javascript:return confirm(\'Etes-vous sûr de vouloir supprimer ? \') " id="supp" href="../controleur/retour.php?op=s&id='
             . urlencode($unRetour['id_retour'])
             . '" ><img src="../vue/style/corbeille.png"></a></td>';
 
-        $ch .= '<td><a href="../controleur/editRetourArticle.php?op=m&id_client='
+        $ch .= '<td><a href="../controleur/editRetour.php?op=m&id_client='
             . urlencode($unRetour['id_retour']) .
             '"><img src="../vue/style/modification.png"></a></td>';
 
@@ -186,10 +187,9 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
         if ($date_remboursement) {
             $retour->udateDateRemboursement($id_retour_modif_statut, $date_remboursement);
         }
-        header("refresh:0;url=retourAdmin.php");
+        header("refresh:0;url=retour.php");
     }
     unset($lesRetours);
-
     require_once('../vue/retourView.php');
 } else {
     echo "<h2 style=' text-align: center;'>Désolé, il y a une erreur : vous ne pouvez pas accéder à cette page.</h2>";

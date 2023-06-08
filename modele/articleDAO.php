@@ -39,19 +39,20 @@ class ArticleDAO
 		);
 	}
 // update article par un autre article 
-	function update(Article $Article): void
+	function update($id_article, $nom_article, $montant_piece, $quantite, $id_motif ): void
 	{
 		$this->bd->execSQL(
 			"UPDATE article SET nom_article=:nom_article, montant_piece=:montant_piece ,
-			quantite=:quantite, id_motif=:id_motif, id_retour=:id_retour,
+			quantite=:quantite, id_motif=:id_motif
 
 			WHERE id_article=:id_article",
 
-			[':nom_article'     => $Article->getNom_article(),
-			':montant_piece'    => $Article->getMontant_piece(),
-			':quantite'         => $Article->getQuantite(),
-			':id_motif'         => $Article->getId_motif(),
-			':id_retour'        => $Article->getId_retour()]
+			[':id_article'     => $id_article,
+			':nom_article'     => $nom_article,
+			':montant_piece'    => $montant_piece,
+			':quantite'         => $quantite,
+			':id_motif'         => $id_motif
+			]
 		);
 	}
 	

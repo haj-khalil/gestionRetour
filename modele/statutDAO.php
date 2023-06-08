@@ -37,7 +37,7 @@ class StatutDAO
         );
     }
 
-	function delete(string $id_statut): void
+	function delete( $id_statut): void
 	{
 		$this->bd->execSQL(
 			"DELETE FROM statut WHERE id_statut = :id_statut",
@@ -102,7 +102,7 @@ class StatutDAO
 	}
     
     // desactiver un statut
-    function desactiverStatut(string $id_statut): void
+    function desactiverStatut( $id_statut): void
     {
         $this->bd->execSQL(
             "UPDATE statut SET etat_statut='inactif'
