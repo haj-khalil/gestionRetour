@@ -139,9 +139,9 @@ if ((time() - $_SESSION['last_login']) > 2000 && $_SESSION['login'] != "root") {
             . urlencode($unRetour['id_retour'])
             . '" ><img src="../vue/style/corbeille.png"></a></td>';
 
-        $ch .= '<td><a href="../controleur/editRetour.php?op=m&id_client='
-            . urlencode($unRetour['id_retour']) .
-            '"><img src="../vue/style/modification.png"></a></td>';
+        // $ch .= '<td><a href="../controleur/editRetour.php?op=m&id_client='
+        //     . urlencode($unRetour['id_retour']) .
+        //     '"><img src="../vue/style/modification.png"></a></td>';
 
         //nadine
         $ch .= '<td><a href="editArticle.php?&id_retour='

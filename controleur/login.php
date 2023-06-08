@@ -1,6 +1,6 @@
 <?php
 session_start();
-$activerMonCompt = isset($_POST['activerMonCompt']) ? $_POST['activerMonCompt'] : null;
+$activerMonCompt= isset($_POST['activerMonCompt']) ? $_POST['activerMonCompt'] : null;
 $identifiants['login']  = $identifiants['motDePasse'] = "";
 $message = "";
 $identifiants['login']        = isset($_POST['login']) ? $_POST['login'] : null;
@@ -15,23 +15,21 @@ function existeUtilisateur(array $identifiants): bool
     $db   = new Connexion();
     $req  = "SELECT mdp ,id_client
             FROM  client
-            WHERE email = :login
-            and etat_client='actif'";
+            WHERE email = :login";
     $res  = $db->execSQL($req, [':login' => $login]);
-
-
-
-
-
-
-
+///
+    $resActif  = "SELECT mdp ,id_client
+            FROM  client
+            WHERE etat_client='actif'
+            and email = :login";
+    $resActif  = $db->execSQL($req, [':login' => $login]);
 
 
     if (isset($res[0]["mdp"])) {
         if (password_verify($mdpass, $res[0]["mdp"])) {
-            if ($resActif) {
-                $_SESSION['id_client'] = $res[0]["id_client"];
-                $ok = true;
+            if($resActif){
+            $_SESSION['id'] = $res[0]["id_client"];
+            $ok = true;
             }
         }
     }
