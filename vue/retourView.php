@@ -37,7 +37,7 @@
 
 <body>
 
-    <form method="GET" action="../controleur/retourAdmin.php" name="add">
+    <form method="GET" action="../controleur/retour.php" name="add">
 
         <section class="container my-5">
             <div class="input-control">
@@ -59,32 +59,39 @@
                     <div class="table-responsive">
                         <table class="table table-striped table-hover align-middle">
                             <thead>
-                                <?php if ($_SESSION['login'] != "root") :
+                                <?php if ($_SESSION['login'] != 'root') : {
                                 ?>
-                                    <tr>
-                                        <td colspan="13" style="text-align:right">
-                                            <a href="../controleur/editRetourArticle.php?op=a&id=<?php  urlencode($valeurs['id_client']); ?>">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
-                                                    <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z" />
-                                                </svg>
-                                            </a>
-                                        </td>
-                                    </tr>
 
-                                <?php endif ?>
+
+
+                                        <tr>
+                                        
+                                            <td colspan="13" style="text-align:right">
+                                                <a href="../controleur/editRetour.php?op=a&id_client=<?php echo urlencode($_SESSION['id_client']); ?>">
+                                                
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+                                                        <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z" />
+                                                    </svg>
+                                                </a>
+                                            </td>
+
+                                        </tr>
+                                <?php }
+                                endif; ?>
                                 <tr>
                                     <th onclick="">Numéro Retour</th>
                                     <th>Enseigne</th>
-                                    <th>Date d'achat</th>
+                                    <th >Date d'achat</th>
+                                    <th >Date d'envoi</th>
+                                    <th>Date remboursement</th>
                                     <th>Label</th>
-                                    <th>Date d'envoi</th>
                                     <th>Nom</th>
                                     <th>Prénom</th>
                                     <th>Montant</th>
                                     <th>Articles</th>
                                     <th>Supprimer</th>
                                     <th>Modifier</th>
-                                    <!-- <th>Ajouter article</th> -->
+                                    <th>Ajouter article</th>
                                     <th>Changer statut</th>
                                 </tr>
                             </thead>
@@ -179,7 +186,7 @@
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <script src="../vue/retourAdmin.js"></script>
+        <script src="../vue/retour.js"></script>
     </form>
 
 </body>

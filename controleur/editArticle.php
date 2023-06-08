@@ -6,8 +6,7 @@ require_once('../modele/motifDAO.php');
 require_once('../modele/retourClass.php');
 require_once('../modele/retourDAO.php');
 
-  
-	
+
 $nom_article = isset($_GET['nom_article']) ? strip_tags(strval(trim($_GET['nom_article']))) : null;
 $id_retour = isset($_GET['id_retour']) ? $_GET['id_retour'] : null;
 $id_article = isset($_GET['id_article']) ? $_GET['id_article'] : null;
@@ -102,10 +101,10 @@ if ($valider && $id_retour) {
         $articleDAO = new ArticleDAO();
         $articleDAO->insert($article);
         $erreurs = [];
-        header("location: retourAdmin.php");
+        header("location: retour.php");
     }
     if($annuler){
-        header("location: retourAdmin.php");
+        header("location: retour.php");
     }
 }
 
@@ -184,11 +183,11 @@ if ($valider && $id_article) {
         $id_motif
     );
     $erreurs = [];
-    header("location: retourAdmin.php");
+    header("location: retour.php");
 }}
 
 if (isset($_GET['annuler'])) {
-    header("location: retourAdmin.php");
+    header("location: retour.php");
 }
 
 

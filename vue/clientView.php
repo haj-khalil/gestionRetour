@@ -45,8 +45,8 @@
                         <th>Téléphone</th>
                         <th>Etat</th>
                         <th>Retours</th>
-                        <th>Desactiver</th>
-                        <th>Activer</th>
+                        <th>Desactiver block</th>
+                        <th>Activer unBlock </th>
                     </tr>
                 </thead>
                 <tbody>

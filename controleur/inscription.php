@@ -34,6 +34,7 @@ if ($valider) {
         'select_pays' => "", 
         'tel' => "", 
         'mdp' => "", 
+        'mdpR' => "", 
         'naissance' => ""
     ];
 
@@ -71,9 +72,9 @@ if ($valider) {
     } else $erreurs['tel'] = 'il faut entrer le tel';
 
 
-    if ($mdp != null  && strlen($mdp) >= 6) {
+    if ($mdp != null    && strlen(trim($_POST['mdp']))>= 6) {
         if (!password_verify($mdpRep, $mdp)) {
-            $erreurs['mdp'] = 'les mots de pass ne dont pas identiques';
+            $erreurs['mdpR'] = 'les mots de pass ne dont pas identiques';
         } else  $valeurs['mdp'] = $mdp;
     } else $erreurs['mdp'] = 'il faut entrer un mdp correct';
 

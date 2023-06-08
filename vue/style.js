@@ -8,9 +8,9 @@ function casherTableArticle() {
 
 
 ///** */
-function getIdRetour(valeur){
+function getIdRetour(valeur) {
     console.log(valeur)
-    document.getElementById('id_retour_modif_statut').value=valeur
+    document.getElementById('id_retour_modif_statut').value = valeur
 }
 ///** */
 ///** */

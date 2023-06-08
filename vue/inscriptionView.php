@@ -83,14 +83,14 @@
 
                 <tr>
                     <td><label for="mdpRep">Confimez votre mot de passe</label></td>
-                    <td><input type="password" name="mdpRep" id="mdpRep" placeholder="confirmation de mot de passe" class="form-control" value="" /></td>
-                    <td><span class="text-danger"><?= $erreurs['mdp'] ?? '' ?></span></td>
+                    <td><input type="password" name="mdpRep" id="mdpRep" placeholder="confirmer le mot de passe" class="form-control" value="" /></td>
+                    <td><span class="text-danger"><?= $erreurs['mdpR'] ?? '' ?></span></td>
                 </tr>
 
 
                 <tr class="centre">
-                <td><input type="submit" id="valid" name="valid" value="valid" /></td>
-                    <td><button type="button" class="btn btn-danger" onclick="window.location.href='../controleur/login.php'">Annuler</button></td>
+                <td><input type="submit" id="valid" name="valid" value="Valider"  style=" width: 74%; margin-left: -16%; height: 44px; "/></td>
+                    <td><button style=" width: 35%; margin-left: 65%; height: 45px;" type="button" class="btn btn-danger" onclick="window.location.href='../controleur/login.php'">Annuler</button></td>
                 </tr>
 
 

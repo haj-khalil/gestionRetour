@@ -11,9 +11,9 @@
         private $id_statut;
 
 		function __construct( $id_retour=0,
-		 $date_achat='',  $date_envoi='', 
-		 $date_remboursement='',  $id_client = '', 
-		 $id_ens = '',  $id_statut = '') {
+		$date_achat='',  $date_envoi='', 
+		$date_remboursement='',  $id_client = '', 
+		$id_ens = '',  $id_statut = '') {
 
 			$this->id_retour	    	=$id_retour;
 			$this->date_achat		=$date_achat;

@@ -1,8 +1,6 @@
 ALTER TABLE statut
 ADD etat_statut varchar(255) default "actif";
 
-select * from enseigne  ;
-select * from enseigne  where nom_ens like "%ali%" or nom_ens like "%ba%";
 
 alter  table  motif add etat_motif varchar (255) default "actif";
 select  * from motif ;

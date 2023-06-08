@@ -7,6 +7,7 @@ class Article
 	private $quantite;
 	private $id_motif;
 	private $id_retour;
+    private $etat_client;
 
 	function __construct(
 		int $id_article = 0,
@@ -15,6 +16,8 @@ class Article
 		int $quantite = 1,
 		int $id_motif = 0,
 		int $id_retour = 0,
+        string $etat_client= 'actif'
+
 	) {
 		$this->id_article	    	= $id_article;
 		$this->nom_article		= $nom_article;
@@ -22,6 +25,7 @@ class Article
 		$this->quantite	= $quantite;
 		$this->id_motif	= $id_motif;
 		$this->id_retour	= $id_retour;
+        $this->etat_client= $etat_client;
 	}
 
 	function getId_article(): int
@@ -76,5 +80,13 @@ class Article
 	function setId_retour(int $id_retour)
 	{
 		$this->id_retour = $id_retour;
+    } 
+	function getEtat_client()
+	{
+		return $this->etat_client;
+	}
+	function setEtat_client( $etat_client)
+	{
+		$this->etat_client = $etat_client;
 	}
 }

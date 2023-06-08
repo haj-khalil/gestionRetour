@@ -11,23 +11,26 @@ class RetourDAO
     {
         $this->bd = new Connexion();
         $this->select = 'SELECT
-		id_retour ,date_achat ,date_envoi  ,date_remboursement,  
-		id_client  ,id_ens ,id_statut
+		id_retour,date_achat,date_envoi,date_remboursement,id_client,id_ens,id_statut
 		FROM retour ORDER BY id_retour';
     }
-    function insert(array $Retour): void
+
+
+    function insert(Retour $Retour): void
     {
-        $this->bd->execSQL(
-            "INSERT INTO retour (id_client, id_statut, date_achat, id_ens, date_envoi)
-            VALUES (:id_client, :id_statut, :date_achat, :id_ens, :date_envoi)",
+            
+            $req= "INSERT INTO retour (date_achat,date_envoi,date_remboursement,id_client,id_ens,id_statut)
+            VALUES (:date_achat,:date_envoi,:date_remboursement,:id_client,:id_ens,:id_statut)";
+            $this->bd->execSQL($req,
             [
-                ":id_client" => $Retour['id_client'],
-                ":date_achat" => $Retour['date_achat'],
-                ":date_envoi" => $Retour['date_envoi'],
-                ":id_ens" => $Retour['id_ens'],
-                ":id_statut" => $Retour['id_statut'],
+                ":date_achat" => $Retour->getDate_achat(),
+                ":date_envoi" => $Retour->getDate_envoi(),
+                ":date_remboursement" => $Retour->getDate_remboursement(),
+                ":id_client" => $Retour->getId_client(),
+                ":id_ens" => $Retour->getId_ens(),
+                ":id_statut" => $Retour->getId_statut(),
             ]
-        );
+        ); 
     }
 
 

@@ -11,7 +11,8 @@ class RetourByArticleDAO
     function __construct()
     {
         $this->bd = new Connexion();
-        $this->select = 'SELECT id_retour,e.nom_ens ,date_achat, s.label ,date_envoi  , c.nom , c.prenom ,s.id_statut        from retour r ,   enseigne e ,statut s , client c 
+        $this->select = 'SELECT id_retour,e.nom_ens ,date_achat,date_remboursement, s.label ,date_envoi  , c.nom , c.prenom ,s.id_statut       
+        from retour r ,   enseigne e ,statut s , client c 
         where r.id_ens =e.id_ens 
         and r.id_statut = s.id_statut
         and r.id_client=c.id_client';
@@ -25,7 +26,7 @@ class RetourByArticleDAO
     function infoRetour(string $email)
     {
 
-        return ($this->bd->execSQL(" SELECT id_retour,e.nom_ens ,date_achat, s.label ,date_envoi  , c.nom , c.prenom ,s.id_statut
+        return ($this->bd->execSQL(" SELECT id_retour,e.nom_ens ,date_achat,date_remboursement, s.label ,date_envoi  , c.nom , c.prenom ,s.id_statut
         from retour r ,   enseigne e ,statut s , client c  
         where r.id_ens =e.id_ens 
         and r.id_statut = s.id_statut
@@ -83,7 +84,7 @@ class RetourByArticleDAO
     function getHistoire()
     {
         $this->select = "SELECT id_changement ,user_id,time_date,table_affecte,event_nom,detaille
-        from audit";
+        from audit order by id_changement desc";
 
         return (($this->bd->execSQL($this->select)));
     }
