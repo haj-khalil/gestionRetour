@@ -8,7 +8,7 @@
   </header>
 
   <div class="container mt-6">
-    <div class="row justify-content-center"> <!-- Centrer les images -->
+    <div class="row"> <!-- Utiliser la classe "row" pour créer une rangée -->
       <div class="col">
         <a href="../controleur/retourAdmin.php" class="text-decoration-none text-dark">
           <div class="card text-center">
@@ -38,7 +38,7 @@
           <a href="../controleur/editRetourArticle.php" class="text-decoration-none text-dark">
             <div class="card text-center">
               <div class="card-body">
-                <h2 class="card-title">Ajout Retour</h2>
+                <h2 class="card-title">Nouveau Retour</h2>
                 <img src="../vue/style/editer.png" class="img-fluid" alt="" style="max-width: 150px; margin: 0 auto;"> <!-- Diminuer la taille des images -->
               </div>
             </div>

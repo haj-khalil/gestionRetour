@@ -11,7 +11,6 @@ if ((time() - $_SESSION['last_login']) > 900 && $_SESSION['login'] != "root") {
 
     
 
-
     // effacer un article  //n
     $op     = (isset($_GET['op']) ? $_GET['op'] : null);
     $suppr = ($op == 'sA');

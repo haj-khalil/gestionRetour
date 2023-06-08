@@ -7,6 +7,7 @@ require_once("../modele/retourByArticleDAO.php");
 require_once("../modele/retourDAO.php");
 require_once("../modele/statutDAO.php");
 session_start();
+var_dump($_SESSION['id']);
 
 $op = isset($_GET['op']) ? $_GET['op'] : null;
 $ajout = ($op == 'a');
@@ -48,17 +49,16 @@ foreach ($lesClients as $client) {
     $ch = '<option value="' . $client->getid_client() . '">' . $client->getNom() . ' ' . $client->getPrenom() . '</option>';
     $Tabs[] = $ch;
 }
-
 $valeurs['id_client'] = isset($_POST['id_client']) ? trim($_POST['id_client']) : null;
 $valeurs['id_ens'] = isset($_POST['id_ens']) ? trim($_POST['id_ens']) : null;
 $valeurs['select_id_statut'] = isset($_POST['select_id_statut']) ? trim($_POST['select_id_statut']) : null;
 $valeurs['date_achat'] = isset($_POST['date_achat']) ? trim($_POST['date_achat']) : '2000-01-01';
 $valeurs['date_envoi'] = isset($_POST['date_envoi']) ? trim($_POST['date_envoi']) : '2002-01-01';
-
+var_dump($valeurs['id_client']);
+exit();
 $retour = false;
 
 $erreurs = [
-    'id_client' => "",
     'select_id_statut' => "",
     'id_ens' => "",
     'date_achat' => "",
@@ -66,26 +66,27 @@ $erreurs = [
 ];
 
 if (isset($_POST['Valider'])) {
-    $erreurs = array();
+   
+$erreurs = array();
 
-    if (empty($valeurs['id_client'])) {
-        $erreurs['id_client'] = 'Choix obligatoire du Nom client';
-    }
-    if (empty($valeurs['select_id_statut'])) {
-        $erreurs['select_id_statut'] = 'Choix obligatoire du Statut';
-    }
-    if (empty($valeurs['id_ens'])) {
-        $erreurs['id_ens'] = 'Choix obligatoire de l\'enseigne';
-    }
-    if (empty($valeurs['date_achat'])) {
-        $erreurs['date_achat'] = 'Saisie obligatoire de la date d\'achat.';
-    }
+// if (empty($valeurs['id_client'])) {
+//     $erreurs['id_client'] = 'Choix obligatoire du Nom client';
+// }
+if (empty($valeurs['select_id_statut'])) {
+    $erreurs['select_id_statut'] = 'Choix obligatoire du Statut';
+}
+if (empty($valeurs['id_ens'])) {
+    $erreurs['id_ens'] = 'Choix obligatoire de l\'enseigne';
+}
+if (empty($valeurs['date_achat'])) {
+    $erreurs['date_achat'] = 'Saisie obligatoire de la date d\'achat.';
+}
 
     $nbErreurs = count(array_filter($erreurs));
     if ($nbErreurs === 0) {
         $RetourDAO = new RetourDAO();
         $unRetour = [
-            "id_client" => $valeurs['id_client'],
+            "id_client" => $_SESSION['id_client'],
             "date_achat" => $valeurs['date_achat'],
             "date_envoi" => $valeurs['date_envoi'],
             "id_ens" => (int) $valeurs['id_ens'],
@@ -100,6 +101,8 @@ if (isset($_POST['Valider'])) {
         }
     }
 }
+var_dump($_POST['id_client']);
+
 
 if ($modif) {
     $RetourDAO = new RetourDAO();
@@ -131,5 +134,5 @@ if ($retour) {
     exit();
 }
 
-require_once('../vue/editRetourArticleView.php');
-?>
+// require_once('../vue/editRetourArticleView.php');
+
