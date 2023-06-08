@@ -29,10 +29,10 @@ function existeUtilisateur(array $identifiants): bool
 
     if (isset($res[0]["mdp"])) {
         if (password_verify($mdpass, $res[0]["mdp"])) {
-            if ($resActif) {
+            
                 $_SESSION['id_client'] = $res[0]["id_client"];
                 $ok = true;
-            }
+            
         }
     }
     if ($login === 'root' && $mdpass === 'root') {
