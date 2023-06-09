@@ -31,7 +31,6 @@
                 <span class="text-muted">© 2023 Tous droits réservés.</span>
             </div>
         </div> -->
-  
         
         
     </footer>

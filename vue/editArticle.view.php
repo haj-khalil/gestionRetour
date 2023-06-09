@@ -71,17 +71,22 @@
     section {
         display: inline;
     }
+    body{
+        padding-top: 5%;
+    }
+    h2{
+        text-align: center;
+    }
 </style>
 
-<body>
+<?php require_once('../vue/header.php'); ?>
+<body >
 
-    <?php require_once('../vue/header.php'); ?>
 
     <form method="GET" action="" name="add">
         <div>
-            <h2>Ajoutez des articles au Retour : <h2>
-                    <p id="id_ret"><?php echo $id_retour;
-                                    ?></p>
+            <h2><spam>Ajoutez des articles au Retour : </spam>
+                    <spam id="id_ret"><?php echo $id_retour;?></spam><h2>
         </div>
         <div class="container">
             <form id="formulaire" class="row g-3" method="GET" action="" name="add">
@@ -94,9 +99,9 @@
                     <span class="text-danger"><?= $erreurs['nom_article'] ?? '' ?></span>
                 </div>
 
-                <div class="col-12">
+                <div class="col-md-6">
                     <label for="inputQuantite" class="form-label">Quantité</label>
-                    <input type="number" name="quantite" class="form-control" id="inputQuantite" placeholder="1" min="1" value="<?= htmlentities($valeurs['quantite'] ?? '') ?>">
+                    <input type="number" name="quantite" class="form-control"  id="inputQuantite" placeholder="1" min="1" value="<?= htmlentities($valeurs['quantite'] ?? '') ?>">
                     <div id="erreur-quantite" class="text-danger"></div>
                     <span class="erreur"><?= $erreurs['quantite'] ?? '' ?></span>
 
@@ -104,16 +109,15 @@
                 </div>
 
                 <div class="col-md-6">
-                    <label for="inputMontant" class="form-label">Montant</label>
+                    <label for="inputMontant" class="form-label">Montant </label>
                     <input type="number" required name="montant_piece" class="form-control" min="0.00" step="0.10" placeholder="0.00" id="inputMontant" value="<?= htmlentities($valeurs['montant_piece'] ?? '') ?>">
-                    <span class="input-group-text">€</span>
                     <div id="erreur-montant" class="text_danger"></div>
                     <span class="erreur"><?= $erreurs['montant_piece'] ?? '' ?></span>
-
-
                 </div>
 
-                <div class="col-md-2">
+                <div class="col-md-6">
+                <label for="inputMontant" class="form-label">Selectionnez un motif </label>
+
                     <select required id="id_motif" class="form-select" aria-label="Default select example" name="id_motif" value="<? ($valeurs['id_motif'] ?? '') ?>">
                         <option disabled selected>select motif </option>
 
@@ -124,7 +128,7 @@
                         ?>
                     </select>
                     <div id="erreur-motif" class="text-danger"></div>
-                    <span class="erreur"><?= $erreurs['id_motif'] ?? '' ?></span>
+                    <span class="text-danger"><?= $erreurs['id_motif'] ?? '' ?></span>
 
                     <!-- // input hidden pour recupere le id_retour -->
                     <input type="text" style="visibility: hidden;" id="id_retour" name="id_retour" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"></input>

@@ -4,19 +4,16 @@
 <?php require_once('../vue/header.php'); ?>
 
 <body>
-  
 
     <div class="container my-5">
 
         <section>
             
-            <!--   <h1 class="mb-3"><?php if (isset($titre)) echo $titre; ?>
-                    </div></h1> -->
+        
                     <?php  if ($messageInscription) : {?>
                         <div class="alert alert-success" role="alert" style="text-align:center ;">
                         vous avez ajouter un retour avec succès.</div> <?php } endif?>
-            <h1 class="mb-3">Nouveau Retour
-            </h1>
+            <h2 class="mb-3">Nouveau Retour</h2>
         </section>
         
         
@@ -103,7 +100,7 @@
                         &emsp;
                         <input type="button" class="btn btn-secondary" onclick="window.location.href='../controleur/retour.php'" value="Annuler" />                    </div>
                 </section>
-               
+
         </form>
 
         <script>

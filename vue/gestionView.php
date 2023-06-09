@@ -20,11 +20,22 @@
   background-size: cover;
   background-repeat: no-repeat;
   filter: blur(5px); /* Appliquer un flou de 5 pixels uniquement à l'image de fond */
+
 }
 
 header {
     margin-bottom: 80px;
   }
+
+  footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background-color: #f8f9fa;
+        padding: 10px;
+        margin: 0;
+        text-align: center;
+    }
         
     </style>
 </head>
@@ -43,7 +54,12 @@ header {
       <a class="btn btn-primary bg-transparent border-0"  role="button" data-toggle="modal" data-target="#modalAjoutEnseigne"><img src="../vue/style/ajout.png"></a>
       </div>
           <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top"  aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Enseigne</text></svg>
+          <svg class="bd-placeholder-img card-img-top" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+  <title>Placeholder</title>
+  <rect width="100%" height="100%" fill="#55595c"/>
+  <image href="../vue/style/enseigne.png" alt="Placeholder Image" style="width: 420px; height: 420px;  "/>
+</svg>
+
             <div class="card-body">
                 <select class="form-select" aria-label="Default select example" name="select_id_ens" id="select_id_ens">
                     <option selected>Selectionnez l'enseigne</option>
@@ -70,7 +86,11 @@ header {
       <a class="btn btn-primary bg-transparent border-0"  role="button" data-toggle="modal" data-target="#modalAjoutStatut"><img src="../vue/style/ajout.png"></a>
       </div>
           <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top"  aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Statut</text></svg>
+          <svg class="bd-placeholder-img card-img-top" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+  <title>Placeholder</title>
+  <rect width="100%" height="100%" fill="#55595c"/>
+  <image href="../vue/style/statut.png" alt="Placeholder Image" style="width:25em; height: 25em;  "/>
+</svg>
             <div class="card-body">
             <select class="form-select" aria-label="Default select example" name="select_id_statut" id="select_id_statut">
                 <option selected>Selectionnez un statut  </option>
@@ -98,7 +118,11 @@ header {
       <a class="btn btn-primary bg-transparent border-0"  role="button" data-toggle="modal" data-target="#modalAjoutMotif"><img src="../vue/style/ajout.png"></a>
       </div>
           <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top"  aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Motif</text></svg>
+          <svg class="bd-placeholder-img card-img-top" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+  <title>Placeholder</title>
+  <rect width="100%" height="100%" fill="#55595c"/>
+  <image href="../vue/style/liste.png" alt="Placeholder Image" style="width:450px; height: 450px;  "/>
+</svg>
             <div class="card-body">
             <select class="form-select" aria-label="Default select example" name="select_id_motif" id="select_id_motif">
                 <option selected>Choisissez un motif </option>
