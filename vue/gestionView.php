@@ -20,11 +20,22 @@
   background-size: cover;
   background-repeat: no-repeat;
   filter: blur(5px); /* Appliquer un flou de 5 pixels uniquement à l'image de fond */
+
 }
 
 header {
     margin-bottom: 80px;
   }
+
+  footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background-color: #f8f9fa;
+        padding: 10px;
+        margin: 0;
+        text-align: center;
+    }
         
     </style>
 </head>
