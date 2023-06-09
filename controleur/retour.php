@@ -141,10 +141,10 @@ if ((time() - $_SESSION['last_login']) > 2000 && $_SESSION['login'] != "root") {
 
         $ch .= '<td><a href="../controleur/editRetour.php?op=m&id_client='
             . urlencode($unRetour['id_retour']) .
-            '"><img src="../vue/style/modification.png"></a></td>';
+            '"><img src="../vue/style/modif.png" style="height: 35px; width: 35px;"></a></td>';
 
-        $ch .= '<td><input type="button" onclick="getIdRetour(this.value)" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"
-	    " value=' . urlencode($unRetour['id_retour']) . '></input></td>';
+        $ch .= '<td><img src="../vue/style/refresh.png" onclick="getIdRetour(this.value)"  data-toggle="modal" data-target="#exampleModalCenter"
+	    " value=' . urlencode($unRetour['id_retour']) . 'style="height=35px; width=35px;"></td>';
 
 
         $lignes[] = "<tr>$ch</tr>";
