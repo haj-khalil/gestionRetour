@@ -79,11 +79,11 @@
                                 <?php }
                                 endif; ?>
                                 <tr>
-                                    <th onclick="">Numéro Retour</th>
+                                    <th onclick="">Numéro de retour</th>
                                     <th>Enseigne</th>
                                     <th >Date d'achat</th>
                                     <th >Date d'envoi</th>
-                                    <th>Date remboursement</th>
+                                    <th>Date de remboursement</th>
                                     <th>Label</th>
                                     <th>Nom</th>
                                     <th>Prénom</th>
@@ -91,7 +91,6 @@
                                     <th>Articles</th>
                                     <th>Supprimer</th>
                                     <th>Modifier</th>
-                                    <th>Ajouter article</th>
                                     <th>Changer statut</th>
                                 </tr>
                             </thead>
