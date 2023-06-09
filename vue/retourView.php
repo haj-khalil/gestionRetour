@@ -79,19 +79,19 @@
                                 <?php }
                                 endif; ?>
                                 <tr>
-                                    <th onclick="">Numéro Retour</th>
+                                    <th onclick="">Numéro de retour</th>
                                     <th>Enseigne</th>
                                     <th >Date d'achat</th>
                                     <th >Date d'envoi</th>
-                                    <th>Date remboursement</th>
+                                    <th>Date de remboursement</th>
                                     <th>Label</th>
                                     <th>Nom</th>
                                     <th>Prénom</th>
                                     <th>Montant</th>
                                     <th>Articles</th>
                                     <th>Supprimer</th>
-                                    <th>Ajouter article</th>
-                                    <th>Mis a jour</th>
+                                    <th>Modifier</th>
+                                    <th>Changer statut</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -133,7 +133,7 @@
                     </div>
                     <div class="modal-body">
 
-                        <h2>Mis a jour</h2>
+                        <h2>Actualiser</h2>
                         <select class="form-select" required aria-label="Default select example" name="select_id_statut" id="select_id_statut">
                             <option selected>Choisissez un statut </option>
                             <?php
@@ -185,7 +185,7 @@
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <script src="../vue/retour.js"></script>
+        <script src="../vue/retourAdmin.js"></script>
     </form>
 
 </body>

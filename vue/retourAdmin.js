@@ -7,30 +7,30 @@ function filterTable() {
     var noResultsMessage = document.getElementById("messageRecherch");
     var hasResults = false;
 
-    rows.forEach(function (row) {
-        var columns = row.getElementsByTagName("td");
-        var found = false;
+    rows.forEach(function(row) {
+      var columns = row.getElementsByTagName("td");
+      var found = false;
 
-        for (var i = 0; i < columns.length; i++) {
-            var columnText = columns[i].textContent.toLowerCase();
+      for (var i = 0; i < columns.length; i++) {
+        var columnText = columns[i].textContent.toLowerCase();
 
-            if (columnText.includes(filter)) {
-                found = true;
-                break;
-            }
+        if (columnText.includes(filter)) {
+          found = true;
+          break;
         }
+      }
 
-        if (found) {
-            row.style.display = "";
-            hasResults = true;
-        } else {
-            row.style.display = "none";
-        }
+      if (found) {
+        row.style.display = "";
+        hasResults = true;
+      } else {
+        row.style.display = "none";
+      }
     });
 
     if (hasResults) {
-        noResultsMessage.style.display = "none";
+      noResultsMessage.style.display = "none";
     } else {
-        noResultsMessage.style.display = "block";
+      noResultsMessage.style.display = "block";
     }
-}
+  }
