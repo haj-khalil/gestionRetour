@@ -20,8 +20,7 @@
                 <div class="col-lg-3">
                     <h5>Contact</h5>
                     <ul class="list-unstyled">
-                    
-                        <li><i class="bi bi-envelope-fill"></i> diallo@example.com</li>
+                        <li><i class="bi bi-envelope-fill"><a href="mailto:diallo@example.com">contactez nous</a></i> </li>
                     </ul>
                 </div>
             </div>
