@@ -79,8 +79,8 @@
     }
 </style>
 
-<?php require_once('../vue/header.php'); ?>
 <body >
+    <?php require_once('../vue/header.php'); ?>
 
 
     <form method="GET" action="" name="add">
@@ -149,7 +149,7 @@
             // recuperer id_retour de retour.php et l'envoyer a edistArticle.php
             valeur = document.getElementById('id_ret').innerHTML
             document.getElementById('id_retour').value = valeur;
-
+        
             document.getElementById('valider').onclick = function(event) {
 
                 let valide = true;
