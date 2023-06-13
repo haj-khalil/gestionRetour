@@ -1,0 +1,293 @@
+@startuml DiagrammeUML
+
+
+class Article {
+  - id_article: int
+  - nom_article: string
+  - montant_piece: float
+  - quantite: int
+  - id_motif: int
+  - id_retour: int
+  - etat_client: string
+
+  + __construct(id_article: int = 0, nom_article: string = '', montant_piece: float = 0.00, quantite: int = 1, id_motif: int = 0, id_retour: int = 0, etat_client: string = 'actif')
+  + getId_article(): int
+  + setId_article(id_article: int): void
+  + getNom_article(): string
+  + setNom_article(nom_article: string): void
+  + getMontant_piece(): float
+  + setMontant_piece(montant_piece: float): void
+  + getQuantite(): int
+  + setQuantite(quantite: int): void
+  + getId_motif(): int
+  + setId_motif(id_motif: int): void
+  + getId_retour(): int
+  + setId_retour(id_retour: int): void
+  + getEtat_client(): string
+  + setEtat_client(etat_client: string): void
+}
+
+class ArticleDAO {
+  - bd: Connexion
+  - select: string
+
+  + __construct()
+  + insert(article: Article): void
+  + delete(id_article: string): void
+  + update(id_article: string, nom_article: string, montant_piece: float, quantite: int, id_motif: int): void
+  + loadQuery(result: array): array
+  + getAll(): array
+  + getByIdArticle(id_article: int): Article
+  + existe(id_article: string): bool
+  + deleteArticle(id_article: string): void
+}
+
+class Client {
+  - id_client: int
+  - nom: string
+  - prenom: string
+  - email: string
+  - address: string
+  - tel: string
+  - mdp: string
+  - naissance: string
+  - etat_client: string
+
+  + __construct(id_client: int = 0, nom: string = '', prenom: string = '', email: string = '', address: string = '', tel: string = '', mdp: string = '', naissance: string = '', etat_client: string = 'actif')
+  + getId_client(): int
+  + setId_client(id_client: int): void
+  + getNom(): string
+  + setNom(nom: string): void
+  + getPrenom(): string
+  + setPrenom(prenom: string): void
+  + getEmail(): string
+  + setEmail(email: string): void
+  + getAddress(): string
+  + setAddress(address: string): void
+  + getTel(): string
+  + setTel(tel: string): void
+  + getMdp(): string
+  + setMdp(mdp: string): void
+  + getNaissance(): string
+  + setNaissance(naissance: string): void
+  + getEtat_client(): string
+  + setEtat_client(etat_client: string): void
+}
+
+class ClientDAO {
+    - bd: Connexion
+    - select: string
+
+    + __construct(): void
+    + insert(Client): void
+    + delete(id_client: string): void
+    + desactiver(id_client: string): void
+    + activer(id_client: string): void
+    + update(Client): void
+    + getAll(): Client[]
+    + getById(id_client): Client
+    + existeTel(tel: string): bool
+    + existeEmail(email: string): bool
+}
+class Enseigne {
+    - id_ens: int
+    - nom_ens: string
+
+    + __construct(id_ens: int = 0, nom_ens: string = ''): void
+    + setId_ens(id_ens: int): void
+    + getId_ens(): int
+    + setNom_ens(nom_ens: string): void
+    + getNom_ens(): string
+}
+
+class EnseigneDAO {
+    - bd: Connexion
+    - select: string
+
+    + __construct(): void
+    + insert(Enseigne: string): void
+    + delete(id_ens: int): void
+    + loadQuery(result: array): array
+    + getAll(): array
+    + getById(id_ens): array
+    + existeByNom_ens(nom_ens: string): bool
+    + activerEns(nom_ens: string): void
+    + existeEnseigneNotActif(nom_ens: string): bool | null
+    + desactiverEnseigne(id_ens: string): void
+}
+class Motif {
+    - id_motif: int
+    - motif: string
+
+    + __construct(id_motif: int = 0, motif: string = ''): void
+    + setId_motif(id_motif: int): void
+    + getId_motif(): int
+    + getMotif(): string
+    + setMotif(motif: string): void
+}
+
+class MotifDAO {
+    - bd: Connexion
+    - select: string
+
+    + __construct(): void
+    + insert(nomMotif: string): void
+    + activerMotif(nomMotif: string): void
+    + delete(id_motif: string): void
+    + loadQuery(result: array): array
+    + getAll(): array
+    + getById(id_motif): array
+    + existeByMotif(motif: string): bool
+    + existeMotifNotActif(motif: string): bool | null
+    + desactiverMotif(id_motif: string): void
+}
+class Connexion {
+    - db: PDO
+
+    + __construct(): void
+    + execSQL(req: string, valeurs: array): array
+}
+class RetourByArticle {
+  - id_article
+  - id_retour
+
+  + RetourByArticle(id_retour: Retour = null, id_article: Article = null)
+  + getRetour(): Retour
+  + setRetour(id_retour: string): void
+  + getArticle(): Article
+  + setArticle(id_article: string): void
+}
+
+class RetourByArticleDAO {
+  - bd
+  - select
+
+  + RetourByArticleDAO()
+  + getAll(): array
+  + infoRetour(email: string)
+  + getAllArticleByIdRetour(id_retour: int)
+  + montantTotaleRetour(id_retour: int)
+  + deleteRetourByIdRetour(id_retour: int): void
+  + getMontantRetoursById_clientEtLabel(id_client: int, label: string)
+  + getMontantRetoursById_clientEtLabelEnAttente(id_client: int, label: string)
+  + getHistoire()
+}
+
+class Retour {
+  - id_retour
+  - date_achat
+  - date_envoi
+  - date_remboursement
+  - id_client
+  - id_ens
+  - id_statut
+
+  + Retour(
+    id_retour: int = 0,
+    date_achat: string = '',
+    date_envoi: string = '',
+    date_remboursement: string = '',
+    id_client: string = '',
+    id_ens: string = '',
+    id_statut: string = ''
+  )
+  + getId_retour(): int
+  + setId_retour(id_retour: int): void
+  + getDate_achat(): string
+  + setDate_achat(date_achat: string): void
+  + getDate_envoi(): string
+  + setDate_envoi(date_envoi: string): void
+  + getDate_remboursement(): string
+  + setDate_remboursement(date_remboursement: string): void
+  + getId_client(): string
+  + setId_client(id_client: string): void
+  + getId_ens(): string
+  + setId_ens(id_ens: string): void
+  + getId_statut(): string
+  + setId_statut(id_statut: string): void
+  + toArray(): array
+}
+
+class RetourDAO {
+  - bd
+  - select
+
+  + RetourDAO()
+  + insert(Retour: Retour): void
+  + delete(id_retour: string): void
+  + update(Retour: array): void
+  + getAll(): array
+  + getById(id_retour: any): Retour
+  + existe(id_retour: int): bool | null
+  + udateRetourStatut(id_statut: any, id_retour: any)
+  + udateDateRemboursement(id_retour: any, date_remboursement: any)
+}
+class Statut {
+  - id_statut: int
+  - label: string
+
+  + __construct(int id_statut = 0, string label = '')
+  + getId_statut(): int
+  + setId_statut(id_statut: int): void
+  + getLabel(): string
+  + setLabel(label: string): void
+}
+
+class StatutDAO {
+  - bd: Connexion
+  - select: string
+
+  + __construct()
+  + insert(nomStatut: string): void
+  + activerStatut(nomStatut: string): void
+  + delete(id_statut: ): void
+  + loadQuery(result: array): array
+  + getAll(): array
+  + getById(id_statut: ): void
+  + existeByLabel(label: string): bool | null
+  + existeLabelNotActif(label: string): bool | null
+  + desactiverStatut(id_statut: ): void
+}
+
+
+ArticleDAO ----> Connexion
+ArticleDAO ----> Article
+Article ----> Motif
+Article ----> RetourByArticle
+
+ClientDAO ----> Connexion
+ClientDAO ----> Client
+
+EnseigneDAO ----> Connexion
+EnseigneDAO ----> Enseigne
+
+MotifDAO ----> Connexion
+MotifDAO ----> Motif
+
+RetourByArticleDAO ----> Connexion
+RetourByArticleDAO ----> RetourByArticle
+
+RetourDAO ----> Connexion
+RetourDAO ----> Retour
+
+StatutDAO ----> Connexion
+StatutDAO ----> Statut
+
+
+
+ RetourByArticle --> Retour
+ RetourByArticle --> Article
+ RetourByArticleDAO --> Connexion
+ RetourByArticleDAO --> RetourByArticle
+ RetourByArticleDAO --> RetourDAO
+ RetourByArticleDAO --> ArticleDAO
+ Retour --> Connexion
+ RetourDAO --> Connexion
+ RetourDAO --> Retour
+
+RetourByArticleDAO *-- RetourByArticle
+RetourDAO *-- Retour
+
+
+
+@enduml

@@ -91,7 +91,6 @@
                                     <th>Articles</th>
                                     <th>Supprimer</th>
                                     <!-- <th>Modifier</th> -->
-                                    <th>Ajouter article</th>
                                     <th>Changer statut</th>
                                 </tr>
                             </thead>

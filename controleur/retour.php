@@ -143,7 +143,7 @@ if ((time() - $_SESSION['last_login']) > 2000 && $_SESSION['login'] != "root") {
         //     . urlencode($unRetour['id_retour']) .
         //     '"><img src="../vue/style/modification.png"></a></td>';
 
-        $ch .= '<td><input type="button" onclick="getIdRetour(this.value)" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"
+        $ch .= '<td><input type="button" onclick="getIdRetour(this.value)"  data-toggle="modal" data-target="#exampleModalCenter"
 	    " value=' . urlencode($unRetour['id_retour']) . '></input></td>';
 
 
