@@ -25,24 +25,7 @@
     <link rel="stylesheet" href="https://unpkg.com/@jarstone/dselect/dist/css/dselect.css">
     <script src="https://unpkg.com/@jarstone/dselect/dist/js/dselect.js"></script>
 
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
 
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-    
-    
-    </style>
 
 
     <!-- Custom styles for this template -->
@@ -53,7 +36,7 @@
     <body class="d-flex flex-column h-100">
         <header>
             <!-- Fixed navbar -->
-            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <nav class="navbar navbar-expand-md  fixed-top ">
                 <?php if (isset($_SESSION['login'])) : { ?>
 
                         <div class="container-fluid">
@@ -107,13 +90,32 @@
     </body>
 
     <style>
+        .container-fluid{
+            margin-top: -10px;
+            background-image: url(../vue/style/backHeader.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
         li {
-
             font-size: 20px;
             font-weight: bolder;
             font-family: 'Signika Negative', sans-serif;
             padding-right: 15px;
 
+        }
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
         }
     </style>
 

@@ -4,6 +4,7 @@ function casherTableArticle() {
     for (let i = 0; i < allClassArticle.length; i++) {
         result += `\n  ${allClassArticle[i].style.display = 'none'}`;
     }
+
 }
 
 

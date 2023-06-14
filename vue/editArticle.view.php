@@ -71,22 +71,26 @@
     section {
         display: inline;
     }
-    body{
+
+    body {
         padding-top: 5%;
     }
-    h2{
+
+    h2 {
         text-align: center;
     }
 </style>
 
-<body >
+<body>
     <?php require_once('../vue/header.php'); ?>
 
 
     <form method="GET" action="" name="add">
         <div>
-            <h2><spam>Ajoutez des articles au Retour : </spam>
-                    <spam id="id_ret"><?php echo $id_retour;?></spam><h2>
+            <h2>
+                <spam>Ajoutez des articles au Retour : </spam>
+                <spam id="id_ret"><?php echo $id_retour; ?></spam>
+                <h2>
         </div>
         <div class="container">
             <form id="formulaire" class="row g-3" method="GET" action="" name="add">
@@ -101,7 +105,7 @@
 
                 <div class="col-md-6">
                     <label for="inputQuantite" class="form-label">Quantité</label>
-                    <input type="number" name="quantite" class="form-control"  id="inputQuantite" placeholder="1" min="1" value="<?= htmlentities($valeurs['quantite'] ?? '') ?>">
+                    <input type="number" name="quantite" class="form-control" id="inputQuantite" placeholder="1" min="1" value="<?= htmlentities($valeurs['quantite'] ?? '') ?>">
                     <div id="erreur-quantite" class="text-danger"></div>
                     <span class="erreur"><?= $erreurs['quantite'] ?? '' ?></span>
 
@@ -110,16 +114,16 @@
 
                 <div class="col-md-6">
                     <label for="inputMontant" class="form-label">Montant </label>
-                    <input type="number" required name="montant_piece" class="form-control" min="0.00" step="0.10" placeholder="0.00" id="inputMontant" value="<?= htmlentities($valeurs['montant_piece'] ?? '') ?>">
+                    <input type="number" required name="montant_piece" class="form-control" min="0.00" step="0.01" placeholder="0.00" id="inputMontant" value="<?= htmlentities($valeurs['montant_piece'] ?? '') ?>">
                     <div id="erreur-montant" class="text_danger"></div>
                     <span class="erreur"><?= $erreurs['montant_piece'] ?? '' ?></span>
                 </div>
 
                 <div class="col-md-6">
-                <label for="inputMontant" class="form-label">Selectionnez un motif </label>
+                    <label for="inputMontant" class="form-label" >Selectionnez un motif </label>
 
-                    <select required id="id_motif" class="form-select" aria-label="Default select example" name="id_motif" value="<? ($valeurs['id_motif'] ?? '') ?>">
-                        <option disabled selected>select motif </option>
+                    <select id="id_motif" class="form-select" aria-label="Default select example" name="id_motif" value="<?= htmlentities($valeurs['id_motif'] ?? '') ?>">
+                        <option>select motif </option>
 
                         <?php
                         foreach ($columns as $column) {
@@ -141,6 +145,8 @@
 
                             &emsp;
                             <input type="submit" onclick="window.location.href='../controleur/retour.php'" id="annuler" name="annuler" value="Annuler" />
+                            <!-- recupere le id_motif -->
+                            <input   type="hidden" id="recupere_id_motif" value="<?= htmlentities($valeurs['id_motif'] ?? '') ?>" />
                     </div>
                 </section>
             </form>
@@ -149,7 +155,7 @@
             // recuperer id_retour de retour.php et l'envoyer a edistArticle.php
             valeur = document.getElementById('id_ret').innerHTML
             document.getElementById('id_retour').value = valeur;
-        
+
             document.getElementById('valider').onclick = function(event) {
 
                 let valide = true;
@@ -162,8 +168,6 @@
                 const REGEX_NOM = /^[a-zA-Z]{2,50}$/;
                 const REGEX_QUANTITE = /^([1-9]|[1-9][0-9]{1,3}|10000)(\.[0-9]+)?$/;
                 const REGEX_MONTANT = /^(?:\p{Sc}\s*)?([1-9]\d*|0)(?:\.\d{1,2})?(?:\s*\p{Sc})?$/;
-
-
 
                 if (!document.getElementById('nom_article').value.match(REGEX_NOM)) {
                     valide = false;
@@ -191,8 +195,19 @@
                     event.preventDefault();
                 }
 
+
                 return valide;
             };
+
+            // mettre le ancian motif au première place 
+            recupere_id_motif = document.getElementById('recupere_id_motif').value
+            lesOptions = document.getElementsByTagName('option')
+            for (let option of lesOptions) {
+                if (option.value == recupere_id_motif) {
+                    option.setAttribute('selected', 'selected')
+                    option.setAttribute('selected', 'selected')
+                }
+            }
         </script>
 </body>
 

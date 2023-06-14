@@ -12,7 +12,7 @@ session_start();
 
 if (isset($_SESSION['login']) && $_SESSION['id_client'] && $_SESSION['login'] != "root") {
 
-    if ((time() - $_SESSION['last_login']) > 2000) {
+    if ((time() - $_SESSION['last_login']) > 5000) {
         echo '<h2 style=" text-align: center;">session time est terminé !</h2>';
         header("refresh:2;url=login.php");
     } else {
@@ -44,7 +44,7 @@ if (isset($_SESSION['login']) && $_SESSION['id_client'] && $_SESSION['login'] !=
         $lesEns = $ens->getAll();
         $lignes = [];
         foreach ($lesEns as $enseigne) {
-            $ch = '<option value="' . $enseigne->getId_ens() . '">' . $enseigne->getNom_ens() . '</option>';
+            $ch = '<option class="option_ens" value="' . $enseigne->getId_ens() . '">' . $enseigne->getNom_ens() . '</option>';
             $lignes[] = $ch;
         }
 
@@ -53,7 +53,7 @@ if (isset($_SESSION['login']) && $_SESSION['id_client'] && $_SESSION['login'] !=
         $lesStatut = $statut->getAll();
         $rows = [];
         foreach ($lesStatut as $row) {
-            $ch = '<option value="' . $row->getId_statut() . '">' . $row->getLabel() . '</option>';
+            $ch = '<option class="option_statut" value="' . $row->getId_statut() . '">' . $row->getLabel() . '</option>';
             $rows[] = $ch;
         }
 
@@ -66,7 +66,7 @@ if (isset($_SESSION['login']) && $_SESSION['id_client'] && $_SESSION['login'] !=
         $select_id_statut = isset($_GET['select_id_statut']) ? trim($_GET['select_id_statut']) : null;
         $date_achat = isset($_GET['date_achat']) ? trim($_GET['date_achat']) : null;
         $date_envoi = isset($_GET['date_envoi']) ? trim($_GET['date_envoi']) : null;
-        $date_remboursement = isset($_GET['date_remboursement']) ? trim($_GET['date_remboursement']) : null;
+        $date_remboursement = isset($_GET['date_remboursement']) ? trim($_GET['date_remboursement']) : "";
 
         
 
@@ -94,9 +94,8 @@ if (isset($_SESSION['login']) && $_SESSION['id_client'] && $_SESSION['login'] !=
                 $valeurs['date_envoi'] = $date_envoi;
             } else  $erreurs['date_envoi'] = 'Saisie obligatoire de la date d\'envoie.';
 
-            if (!empty($date_remboursement) && $date_remboursement != null) {
                 $valeurs['date_remboursement'] = $date_remboursement;
-            } else  $erreurs['date_remboursement'] = 'Saisie obligatoire de la date de remborsement.';
+            
 
 
 
