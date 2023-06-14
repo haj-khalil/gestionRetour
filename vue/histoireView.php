@@ -21,7 +21,6 @@
                 </thead>
                 <tbody>
                     <?php foreach ($lignes as $ligne) : ?>
-                        
                         <?php echo $ligne;  ?>
                     <?php endforeach; ?>
                 </tbody>

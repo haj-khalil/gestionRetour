@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-    <style>
-        body::after {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background-image: url("../vue/style/background.jpg");
-            background-size: cover;
-            background-repeat: no-repeat;
-            filter: blur(5px);
-            /* Appliquer un flou de 5 pixels uniquement à l'image de fond */
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <style>
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background-image: url("../vue/style/background.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      filter: blur(5px);
+      /* Appliquer un flou de 5 pixels uniquement à l'image de fond */
 
         }
 
@@ -43,6 +44,7 @@
 <header>
     <?php require_once('../vue/header.php'); ?>
 </header>
+
 
 <body>
     <?php $messageE ?>
@@ -298,7 +300,8 @@
     </script>
 </body>
 <footer>
-    <?php require_once("../vue/footer.php") ?>
+<?php require_once("../vue/footer.php") ?>
 </footer>
+
 
 </html>

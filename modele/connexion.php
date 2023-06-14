@@ -10,6 +10,8 @@ class Connexion {
         $db_config['SGBD']		= 'mysql';
 		$db_config['HOST']		= 'localhost';
 		$db_config['DB_NAME']	= 'BDD_Retour';
+		$db_config['HOST']		= 'localhost';
+		$db_config['DB_NAME']	= 'BDD_Retour';
 		$db_config['USER']		= 'root';
 		$db_config['PASSWORD']	= 'root';
         /*  $db_config['SGBD']		= 'mysql';
