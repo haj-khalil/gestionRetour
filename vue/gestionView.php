@@ -8,37 +8,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-    <style>
-        body::after {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background-image: url("../vue/style/background.jpg");
-            background-size: cover;
-            background-repeat: no-repeat;
-            filter: blur(5px);
-            /* Appliquer un flou de 5 pixels uniquement à l'image de fond */
-
-        }
-
-        header {
-            margin-bottom: 80px;
-        }
-
-        footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background-color: #f8f9fa;
-            padding: 10px;
-            margin: 0;
-            text-align: center;
-        }
-    </style>
+    
 </head>
 <header>
     <?php require_once('../vue/header.php'); ?>
@@ -300,5 +270,35 @@
 <footer>
     <?php require_once("../vue/footer.php") ?>
 </footer>
+<style>
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: url("../vue/style/background.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            filter: blur(5px);
+            /* Appliquer un flou de 5 pixels uniquement à l'image de fond */
 
+        }
+
+        header {
+            margin-bottom: 80px;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #f8f9fa;
+            padding: 10px;
+            margin: 0;
+            text-align: center;
+        }
+    </style>
 </html>
