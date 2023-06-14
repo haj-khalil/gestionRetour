@@ -11,7 +11,9 @@ require_once("../modele/motifDAO.php");
 session_start();
 
 if (isset($_SESSION['login']) && $_SESSION['login']=="root" ) {
-    $messageE = "";
+    $message_Enseigne = "";
+    $message_Statut = "";
+    $message_Motif = "";
 
 
     $erreurs = [
@@ -41,7 +43,7 @@ if (isset($_SESSION['login']) && $_SESSION['login']=="root" ) {
         if (is_numeric($id_ens)) {
             $lesEns = $enseigne->desactiverEnseigne($id_ens);
             header("refresh:0;url=gestion.php");
-        } else $erreurs["id_ens"] = "il faut selecter l'enseigne !";
+        } else $erreurs["id_ens"] = "Il faut choisir une enseigne !";
     }
 
     // ajouter une enseigne 
@@ -54,7 +56,7 @@ if ($ajouterEns) {
     if ($nomEns && strlen($nomEns) > 1) {
         $lesEns = $enseigne->existeByNom_ens($nomEns);
         $existeEnseigneNotActif = $enseigne->existeEnseigneNotActif($nomEns);
-        $messageE=$nomEns." a été ajouté avec succès";
+        $message_Enseigne=$nomEns." a été ajoutée avec succès";
         
 
 
@@ -99,7 +101,7 @@ if ($effacerStatut) {
     if (is_numeric($id_statut)) {
         $lesStatut = $statut->desactiverStatut($id_statut);
         header("refresh:0;url=gestion.php");
-    } else $erreurs["id_statut"] = "il faut selecter l'enseigne !";
+    } else $erreurs["id_statut"] = "Il faut choisir une enseigne !";
 }
 
 // ajouter un statut 
@@ -111,7 +113,7 @@ if ($ajouterStatut) {
     
         $lesStatut = $statut->existeByLabel($nomStatut);
         $existeLabelNotActif = $statut->existeLabelNotActif($nomStatut);
-        $messageE = "Ajout effectué avec succès";
+        $message_Statut = "Ajout effectué avec succès";
 
         if (!$lesStatut ) {
             $lesStatut = $statut->insert($nomStatut);
@@ -122,7 +124,7 @@ if ($ajouterStatut) {
             $lesStatut = $statut->activerStatut($nomStatut);
             header("refresh:0;url=gestion.php");
         }else if ($lesStatut && !$existeLabelNotActif) $erreurs["nomStatut"] = " statut déjà existant ! ";
-    } else $erreurs["nomStatut"] = "il faut saisir le nom du statut ! ";
+    } else $erreurs["nomStatut"] = "Il faut saisir un statut ! ";
 }
 
 // les option des motif
@@ -143,7 +145,7 @@ if ($effacerMotif) {
     if (is_numeric($id_motif)) {
         $lesMotifs = $motif->desactiverMotif($id_motif);
         header("refresh:0;url=gestion.php");
-    } else $erreurs["id_motif"] = "il faut selecter le motif !";
+    } else $erreurs["id_motif"] = "Il faut choisir un motif !";
 }
 
 //;ajouter un motif
@@ -155,7 +157,7 @@ if ($ajouterMotif) {
 
         $lesMotif = $motif->existeByMotif($nomMotif);
         $existeMotifNotActif = $motif->existeMotifNotActif($nomMotif);
-        $messageE="Ajout effectué avec succès";
+        $message_Motif="Ajout effectué avec succès";
 
         if (!$lesMotif) {
             $lesMotif = $motif->insert($nomMotif);
@@ -167,7 +169,7 @@ if ($ajouterMotif) {
         
         }else if ($lesMotif && !$existeMotifNotActif) $erreurs["nomMotif"] = " Motif déjà existant ! ";
         
-    } else $erreurs["nomMotif"] = "il faut saisir le motif ! ";
+    } else $erreurs["nomMotif"] = "Il faut saisir le motif ! ";
 }
 
     
