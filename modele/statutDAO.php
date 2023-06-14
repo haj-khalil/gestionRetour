@@ -14,7 +14,7 @@ class StatutDAO
 		id_statut ,label 
 		FROM statut
         where etat_statut ="actif"            
-        ORDER BY label';
+        ';
 	}
 
 	function insert(string $nomStatut): void

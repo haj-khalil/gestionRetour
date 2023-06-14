@@ -66,7 +66,7 @@
                                     <th>Date d'achat</th>
                                     <th>Date d'envoi</th>
                                     <th>Date de remboursement</th>
-                                    <th>Label</th>
+                                    <th>Statut</th>
                                     <th>Nom</th>
                                     <th>Prénom</th>
                                     <th>Montant</th>

@@ -1,19 +1,17 @@
-
-
-
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 
 
 
 
-    <section class="container my-10" style="margin-bottom: 50px;">
+<section class="container my-10" style="margin-bottom: 50px;">
     <?php require_once('../vue/header.php'); ?>
-    </section>
+</section>
+
 <body>
     <?php $message_Enseigne ?>
     <form method="GET" action="../controleur/gestion.php" name="add">
@@ -22,17 +20,17 @@
             <div class="container">
                 <div class="row justify-content-center ">
                     <div class="col">
-                        
+
                         <div class="card shadow-sm">
-                            
-                            <svg class="bd-placeholder-img card-img-top" aria-label="Placeholder: Thumbnail"  preserveAspectRatio="xMidYMid slice" focusable="false">
+
+                            <svg class="bd-placeholder-img card-img-top" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
                                 <title>Placeholder</title>
                                 <rect width="100%" height="100%" fill="#55595c" />
                                 <image href="../vue/style/enseigne.png" alt="Placeholder Image" style="width: 420px; height: 420px; background-size: contain;  " />
                             </svg>
 
                             <div class="card-body">
-                                <select   class="form-select" aria-label="Default select example" name="select_id_ens" id="select_id_ens">
+                                <select class="form-select" aria-label="Default select example" name="select_id_ens" id="select_id_ens">
                                     <option selected>Selectionnez l'enseigne</option>
                                     <?php
                                     foreach ($lignes as $ligne) {
@@ -54,7 +52,7 @@
                         <a href="#" class="btn btn-primary btn-lg active select-style" role="button" data-toggle="modal" data-target="#modalAjoutEnseigne" aria-pressed="true">Ajouter</a>
                     </div>
                     <div class="col">
-                    <?php $message_Statut ?>
+                        <?php $message_Statut ?>
                         <div class="card shadow-sm">
                             <svg class="bd-placeholder-img card-img-top" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
                                 <title>Placeholder</title>
@@ -84,8 +82,8 @@
                     </div>
 
                     <div class="col">
-                    <?php $message_M ?>
-                        
+                        <?php $message_M ?>
+
                         <div class="card shadow-sm">
                             <svg class="bd-placeholder-img card-img-top" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
                                 <title>Placeholder</title>
@@ -260,12 +258,10 @@
         dselect(select_id_motif, {
             search: true
         });
-
-     
     </script>
 </body>
 <footer>
-<?php require_once("../vue/footer.php") ?>
+    <?php require_once("../vue/footer.php") ?>
 </footer>
 <style>
     body::after {
@@ -282,24 +278,24 @@
         filter: blur(5px);
         /* Appliquer un flou de 5 pixels uniquement Ã  l'image de fond */
 
-        }
+    }
 
-        header {
-            margin-bottom: 80px;
-        } 
+    header {
+        margin-bottom: 80px;
+    }
 
-        footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background-color: #f8f9fa;
-            padding: 10px;
-            margin: 0;
-            text-align: center;
-        }
-        .select-style {
-    width: 100%;
-    margin-top: 10px;
-}
+    footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background-color: #f8f9fa;
+        padding: 10px;
+        margin: 0;
+        text-align: center;
+    }
 
-    </style>
+    .select-style {
+        width: 100%;
+        margin-top: 10px;
+    }
+</style>

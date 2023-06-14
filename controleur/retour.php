@@ -75,18 +75,12 @@ if ((time() - $_SESSION['last_login']) > 2000 && $_SESSION['login'] != "root") {
     if ($lesArticles != []) {
         $lesRows[] = "
 				<tr class='article'>
-				<th colspan='2'>Numéro</th>
+				<th colspan='1'>Numéro</th>
 				<th colspan='2'>Article </th>
 				<th colspan='2'> Montant</th>
 				<th colspan='2'>Quantité</th>
-				<th colspan='2'>Motif</th>
-				<th colspan='2'>Numéro</th>
-				<th colspan='2'>Article </th>
-				<th colspan='2'> Montant</th>
-				<th colspan='2'>Quantité</th>
-				<th colspan='2'>Motif</th>
-				
-		        <th><a href='../controleur/retour.php'><img id='img_x' src='../vue/style/x.jpg'></a></th>";
+				<th colspan='3'>Motif</th>
+                ";
 
     } else $lesRows[] = "<tr class='article'><th style='text-align: center;' colspan='10'>il n y a pas des articles !</th>
 		<th><a href='../controleur/retour.php'><img id='img_x' src='../vue/style/x.jpg'></a></th>";
@@ -97,7 +91,7 @@ if ((time() - $_SESSION['last_login']) > 2000 && $_SESSION['login'] != "root") {
         foreach ($lesArticles as $uneArticle) {
             $ch = '';
 
-                $ch .= '<td colspan="2" class="article">' . $uneArticle['nom_article'] . '</td>';
+                $ch .= '<td colspan="1" class="article">' . $uneArticle['nom_article'] . '</td>';
                 $ch .= '<td colspan="2" class="article">' . $uneArticle['id_article'] . '</td>';
                 $ch .= '<td colspan="2" class="article">' . $uneArticle['montant_piece'] . " €" . '</td>';
                 $ch .= '<td colspan="2" class="article">' . $uneArticle['quantite'] . '</td>';
@@ -155,9 +149,13 @@ if ((time() - $_SESSION['last_login']) > 2000 && $_SESSION['login'] != "root") {
         // il affiche les detaille de un retour si op==d 
         if ($id == $unRetour['id_retour'] && $detaille) {
 
-            $lesRows[0] .= '<td><a href="editArticle.php?&id_retour='
-                . urlencode($unRetour['id_retour']) .
-                '"><img src="../vue/style/ajout.png"></a></td></tr>';
+            $lesRows[0] .= '
+            
+            <th><a href="editArticle.php?&id_retour='. urlencode($unRetour['id_retour']) .'"><img src="../vue/style/ajout.png"></a></th>
+            
+            <th><a href="../controleur/retour.php"><img id="img_x" src="../vue/style/x.jpg"></a></th>
+            
+            </tr>';
 
             foreach ($lesRows as $row)
                 $lignes[] = $row;
