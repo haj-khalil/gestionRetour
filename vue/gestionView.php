@@ -1,56 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
 
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-  <style>
-    body::after {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background-image: url("../vue/style/background.jpg");
-      background-size: cover;
-      background-repeat: no-repeat;
-      filter: blur(5px);
-      /* Appliquer un flou de 5 pixels uniquement à l'image de fond */
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-        }
 
-        header {
-            margin-bottom: 80px;
-        }
 
-        footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background-color: #f8f9fa;
-            padding: 10px;
-            margin: 0;
-            text-align: center;
-        }
-        .select-style {
-    width: 100%;
-    margin-top: 10px;
-}
 
-    </style>
-</head>
-<header>
+
+    <section class="container my-10" style="margin-bottom: 50px;">
     <?php require_once('../vue/header.php'); ?>
-</header>
-
-
+    </section>
 <body>
     <?php $message_Enseigne ?>
     <form method="GET" action="../controleur/gestion.php" name="add">
@@ -305,10 +268,38 @@
 <?php require_once("../vue/footer.php") ?>
 </footer>
 <style>
-svg{
+    body::after {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background-image: url("../vue/style/background.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        filter: blur(5px);
+        /* Appliquer un flou de 5 pixels uniquement Ã  l'image de fond */
+
+        }
+
+        header {
+            margin-bottom: 80px;
+        } 
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #f8f9fa;
+            padding: 10px;
+            margin: 0;
+            text-align: center;
+        }
+        .select-style {
+    width: 100%;
+    margin-top: 10px;
 }
 
-</style>
-
-
-</html>
+    </style>

@@ -36,7 +36,7 @@
     <body class="d-flex flex-column h-100">
         <header>
             <!-- Fixed navbar -->
-            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <nav class="navbar navbar-expand-md  fixed-top ">
                 <?php if (isset($_SESSION['login'])) : { ?>
 
                         <div class="container-fluid">
@@ -90,8 +90,13 @@
     </body>
 
     <style>
+        .container-fluid{
+            margin-top: -10px;
+            background-image: url(../vue/style/backHeader.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
         li {
-
             font-size: 20px;
             font-weight: bolder;
             font-family: 'Signika Negative', sans-serif;

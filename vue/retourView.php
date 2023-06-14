@@ -1,24 +1,5 @@
-<style>
-    .input-control {
-        display: flex;
-        align-items: center;
-        background-color: #f2f2f2;
-        border-radius: 20px;
-        padding: 8px;
-        width: 30%;
-    }
-
-    .input-control input[type="text"] {
-        flex: 1;
-        height: 30px;
-        border: none;
-        padding: 0 8px;
-        font-size: 14px;
-
-    }
-</style>
+<?php require_once('../vue/header.php'); ?>
 <section class="container my -10" style=" margin-bottom: 50px;">
-    <?php require_once('../vue/header.php'); ?>
 
     <head>
 
@@ -36,8 +17,9 @@
 </section>
 
 <body>
-
+    
     <form method="GET" action="../controleur/retour.php" name="add">
+        <h1 class="text-center mb-4">Liste des Retours</h1>
 
         <section class="container my-5">
             <div class="input-control">
@@ -65,10 +47,10 @@
 
 
                                         <tr>
-                                        
+
                                             <td colspan="13" style="text-align:right">
                                                 <a href="../controleur/editRetour.php?op=a&id_client=<?php echo urlencode($_SESSION['id_client']); ?>">
-                                                
+
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
                                                         <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z" />
                                                     </svg>
@@ -81,8 +63,8 @@
                                 <tr>
                                     <th onclick="">Numéro de retour</th>
                                     <th>Enseigne</th>
-                                    <th >Date d'achat</th>
-                                    <th >Date d'envoi</th>
+                                    <th>Date d'achat</th>
+                                    <th>Date d'envoi</th>
                                     <th>Date de remboursement</th>
                                     <th>Label</th>
                                     <th>Nom</th>
@@ -173,16 +155,58 @@
 
             th {
                 text-align: center;
+                vertical-align: middle;
             }
 
             input[type=button]:not(:disabled) {
                 width: 60px;
             }
-            .article{
+
+            .article {
                 background-color: #5F7780;
             }
-            #table_article{
+
+            #table_article {
                 background-color: lightcyan;
+            }
+
+            .input-control {
+                display: flex;
+                align-items: center;
+                background-color: #f2f2f2;
+                border-radius: 20px;
+                padding: 8px;
+                width: 30%;
+            }
+
+            .input-control input[type="text"] {
+                flex: 1;
+                height: 30px;
+                border: none;
+                padding: 0 8px;
+                font-size: 14px;
+
+            }
+
+            body {
+
+                background-image: url(../vue/style/back7.jpg);
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-attachment: fixed;
+            }
+
+            table {
+                background-color: #f2f2f2;
+                border-radius: 5px;
+                margin-top: 10px;
+
+            }
+
+            .text-center {
+                color: white;
+                font-family: "Times New Roman", Times, serif;
+
             }
         </style>
         <script src="../vue/style.js"></script>

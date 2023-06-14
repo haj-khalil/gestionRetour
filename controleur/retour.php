@@ -80,37 +80,39 @@ if ((time() - $_SESSION['last_login']) > 2000 && $_SESSION['login'] != "root") {
 				<th colspan='2'> Montant</th>
 				<th colspan='2'>Quantité</th>
 				<th colspan='2'>Motif</th>
+				<th colspan='2'>Numéro</th>
+				<th colspan='2'>Article </th>
+				<th colspan='2'> Montant</th>
+				<th colspan='2'>Quantité</th>
+				<th colspan='2'>Motif</th>
 				
+		        <th><a href='../controleur/retour.php'><img id='img_x' src='../vue/style/x.jpg'></a></th>";
 
-				<th><button type='button' ><img id='img_x'  onclick='casherTableArticle()' src='../vue/style/x.jpg'></button>
-				</th>
-				";
-    } else $lesRows[] = "<tr class='article'><th colspan='11'>il n y a pas des articles !</th>
-				<th><button type='button'><img id='img_x'  onclick='casherTableArticle()' src='../vue/style/x.jpg'></button>
-				";
-
-
+    } else $lesRows[] = "<tr class='article'><th style='text-align: center;' colspan='10'>il n y a pas des articles !</th>
+		<th><a href='../controleur/retour.php'><img id='img_x' src='../vue/style/x.jpg'></a></th>";
+                
+                
+                
     if ($lesArticles != '') {
         foreach ($lesArticles as $uneArticle) {
             $ch = '';
 
-            $ch .= '<td colspan="2" class="article">' . $uneArticle['id_article'] . '</td>';
-            $ch .= '<td colspan="2" class="article">' . $uneArticle['nom_article'] . '</td>';
-            $ch .= '<td colspan="2" class="article">' . $uneArticle['montant_piece'] . " €" . '</td>';
-            $ch .= '<td colspan="2" class="article">' . $uneArticle['quantite'] . '</td>';
-            $ch .= '<td colspan="2" class="article">' . $uneArticle['motif'] . '</td>';
+                $ch .= '<td colspan="2" class="article">' . $uneArticle['nom_article'] . '</td>';
+                $ch .= '<td colspan="2" class="article">' . $uneArticle['id_article'] . '</td>';
+                $ch .= '<td colspan="2" class="article">' . $uneArticle['montant_piece'] . " €" . '</td>';
+                $ch .= '<td colspan="2" class="article">' . $uneArticle['quantite'] . '</td>';
+                $ch .= '<td colspan="3" class="article">' . $uneArticle['motif'] . '</td>';
 
-
-            $ch .= '<td class="article"><a href="../controleur/editArticle.php?op=mA&id_article='
-                . urlencode($uneArticle['id_article'])
-                . '"><img src="../vue/style/modification.png"></a></td>';
-
-
-            $ch .= '<td class="article"><a  onclick="javascript:return confirm(\'Etes-vous sûr de vouloir supprimer ? \') " id="supp"
+                
+                $ch .= '<td class="article"><a href="../controleur/editArticle.php?op=mA&id_article='
+                    . urlencode($uneArticle['id_article']) 
+                    . '"><img src="../vue/style/modification.png"></a></td>';
+                $ch .= '<td class="article"><a  onclick="javascript:return confirm(\'Etes-vous sûr de vouloir supprimer ? \') " id="supp"
 		        href="../controleur/retour.php?op=sA&id_article='
                 . urlencode($uneArticle['id_article'])
                 . '" ><img src="../vue/style/corbeille.png"></a></td>';
 
+            $lesRows[] = "<tr id='table_article'>$ch</tr >";
             $lesRows[] = "<tr id='table_article'>$ch</tr >";
 
 
@@ -140,6 +142,7 @@ if ((time() - $_SESSION['last_login']) > 2000 && $_SESSION['login'] != "root") {
         $ch .= '<td><a onclick="javascript:return confirm(\'Etes-vous sûr de vouloir supprimer ? \') " id="supp" href="../controleur/retour.php?op=s&id='
             . urlencode($unRetour['id_retour'])
             . '" ><img src="../vue/style/corbeille.png"></a></td>';
+
 
 
 
@@ -190,3 +193,4 @@ if ((time() - $_SESSION['last_login']) > 2000 && $_SESSION['login'] != "root") {
     echo "<h2 style=' text-align: center;'>Désolé, il y a une erreur : vous ne pouvez pas accéder à cette page.</h2>";
     header("refresh:2;url=login.php");
 }
+

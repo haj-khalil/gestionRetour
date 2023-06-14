@@ -4,9 +4,11 @@
 
 <body>
 
-  <!--   <?php require_once('../vue/header.php'); ?> -->
+    <!--   <?php require_once('../vue/header.php'); ?> -->
 
     <section class="container my-5">
+        <h1 class="text-center mb-4">Liste des Retours</h1>
+
         <div class="table-responsive">
             <table class="table table-striped table-hover">
                 <thead>
@@ -21,7 +23,7 @@
                 </thead>
                 <tbody>
                     <?php foreach ($lignes as $ligne) : ?>
-                        
+
                         <?php echo $ligne;  ?>
                     <?php endforeach; ?>
                 </tbody>
@@ -41,5 +43,36 @@
     <!-- Inclure le script JavaScript de Bootstrap -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
 </body>
+<style>
+    body {
+
+        background-image: url(../vue/style/back7.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+
+    table {
+        background-color: #f2f2f2;
+        border-radius: 5px;
+        margin-top: 10px;
+
+    }
+
+    .text-center {
+        color: white;
+        font-family: "Times New Roman", Times, serif;
+
+    }
+
+    td {
+        text-align: center;
+    }
+
+    th {
+        text-align: center;
+        vertical-align: middle;
+    }
+</style>
 
 </html>
