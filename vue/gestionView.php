@@ -39,6 +39,11 @@
             margin: 0;
             text-align: center;
         }
+        .select-style {
+    width: 100%;
+    margin-top: 10px;
+}
+
     </style>
 </head>
 <header>
@@ -47,21 +52,20 @@
 
 
 <body>
-    <?php $messageE ?>
+    <?php $message_Enseigne ?>
     <form method="GET" action="../controleur/gestion.php" name="add">
 
         <div class="album py-5 bg-body-tertiary">
             <div class="container">
                 <div class="row justify-content-center ">
                     <div class="col">
-                        <div class="btnAjout text-right">
-                            <a class="btn btn-primary bg-transparent border-0" role="button" data-toggle="modal" data-target="#modalAjoutEnseigne"><img src="../vue/style/ajout.png"></a>
-                        </div>
+                        
                         <div class="card shadow-sm">
-                            <svg class="bd-placeholder-img card-img-top" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                            
+                            <svg class="bd-placeholder-img card-img-top" aria-label="Placeholder: Thumbnail"  preserveAspectRatio="xMidYMid slice" focusable="false">
                                 <title>Placeholder</title>
                                 <rect width="100%" height="100%" fill="#55595c" />
-                                <image href="../vue/style/enseigne.png" alt="Placeholder Image" style="width: 420px; height: 420px;  " />
+                                <image href="../vue/style/enseigne.png" alt="Placeholder Image" style="width: 420px; height: 420px; background-size: contain;  " />
                             </svg>
 
                             <div class="card-body">
@@ -75,20 +79,19 @@
                                 </select>
                                 <label>&nbsp;</label>
                                 <span class="erreur"><?= $erreurs['id_ens'] ?? '' ?></span>
-                                <div><?php echo $messageE; ?></div>
+                                <div><?php echo $message_Enseigne; ?></div>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="submit" id="effacerEns" name="effacerEns" value="Supprimer" class="btn btn-sm btn-outline-secondary">Supprimer</button>
-                                        <button type="submit" class="btn btn-sm btn-outline-secondary">Annuler</button>
+                                    <div class="btn-group ms-auto mb-2">
+                                        <button type="submit" id="effacerEns" name="effacerEns" value="Supprimer" class="btn btn-sm btn-outline-secondary" style>Supprimer</button>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <a href="#" class="btn btn-primary btn-lg active select-style" role="button" data-toggle="modal" data-target="#modalAjoutEnseigne" aria-pressed="true">Ajouter</a>
                     </div>
                     <div class="col">
-                        <div class="btnAjout text-right">
-                            <a class="btn btn-primary bg-transparent border-0" role="button" data-toggle="modal" data-target="#modalAjoutStatut"><img src="../vue/style/ajout.png"></a>
-                        </div>
+                    <?php $message_Statut ?>
                         <div class="card shadow-sm">
                             <svg class="bd-placeholder-img card-img-top" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
                                 <title>Placeholder</title>
@@ -106,21 +109,20 @@
                                 </select>
                                 <label>&nbsp;</label>
                                 <span class="erreur"><?= $erreurs['id_statut'] ?? '' ?></span>
-                                <div><?php echo $messageE; ?></div>
+                                <div><?php echo $message_Statut; ?></div>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
+                                    <div class="btn-group ms-auto mb-2">
                                         <button type="submit" id="effacerStatut" name="effacerStatut" value="Supprimer" class="btn btn-sm btn-outline-secondary">Supprimer</button>
-                                        <button type="submit" class="btn btn-sm btn-outline-secondary">Annuler</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <a href="#" class="btn btn-primary btn-lg active select-style" role="button" data-toggle="modal" data-target="#modalAjoutStatut" aria-pressed="true">Ajouter</a>
                     </div>
 
                     <div class="col">
-                        <div class="btnAjout text-right">
-                            <a class="btn btn-primary bg-transparent border-0" role="button" data-toggle="modal" data-target="#modalAjoutMotif"><img src="../vue/style/ajout.png"></a>
-                        </div>
+                    <?php $message_M ?>
+                        
                         <div class="card shadow-sm">
                             <svg class="bd-placeholder-img card-img-top" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
                                 <title>Placeholder</title>
@@ -138,15 +140,15 @@
                                 </select>
                                 <span class="erreur"><?= $erreurs['id_motif'] ?? '' ?></span>
                                 <label>&nbsp;</label>
-                                <div><?php echo $messageE; ?></div>
+                                <div><?php echo $message_Motif; ?></div>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
+                                    <div class="btn-group ms-auto mb-2">
                                         <button type="submit" id="effacerMotif" name="effacerMotif" value="Supprimer" class="btn btn-sm btn-outline-secondary">Supprimer</button>
-                                        <button type="submit" class="btn btn-sm btn-outline-secondary">Annuler</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <a href="#" class="btn btn-primary btn-lg active select-style" role="button" data-toggle="modal" data-target="#modalAjoutMotif" aria-pressed="true">Ajouter</a>
                     </div>
 
 
@@ -166,7 +168,7 @@
                             <form>
                                 <div class="form-group">
                                     <label for="nomEns">Nom de l'enseigne</label>
-                                    <input id="nomEns" name="nomEns" type="text" class="form-control" placeholder="Entrer le nom de l'enseigne" value="<?= htmlentities($valeurs['nomEns'] ?? '') ?>">
+                                    <input id="nomEns" name="nomEns" type="text" class="form-control" placeholder="Entrez le nom de l'enseigne" value="<?= htmlentities($valeurs['nomEns'] ?? '') ?>">
                                     <br />
                                     <span class="erreur"><?= $erreurs['nomEns'] ?? '' ?></span>
                                     <label>&nbsp;</label>
@@ -195,7 +197,7 @@
                             <form>
                                 <div class="form-group">
                                     <label for="nomStatut">Nouveau statut</label>
-                                    <input id="nomStatut" name="nomStatut" type="text" class="form-control" placeholder="Enter un statut" value="<?= htmlentities($valeurs['nomStatut'] ?? '') ?>" />
+                                    <input id="nomStatut" name="nomStatut" type="text" class="form-control" placeholder="Entrez un statut" value="<?= htmlentities($valeurs['nomStatut'] ?? '') ?>" />
                                     <br />
                                     <span class="erreur"><?= $erreurs['nomStatut'] ?? '' ?></span>
 
@@ -230,7 +232,7 @@
                         <form>
                             <div class="form-group">
                                 <label for="nomMotif">Nouveau motif</label>
-                                <input id="nomMotif" name="nomMotif" type="text" class="form-control" placeholder="Enter un motif" value="<?= htmlentities($valeurs['nomMotif'] ?? '') ?>" />
+                                <input id="nomMotif" name="nomMotif" type="text" class="form-control" placeholder="Entrez un motif" value="<?= htmlentities($valeurs['nomMotif'] ?? '') ?>" />
                                 <br />
                                 <span class="erreur"><?= $erreurs['nomStatut'] ?? '' ?></span>
 
@@ -302,6 +304,11 @@
 <footer>
 <?php require_once("../vue/footer.php") ?>
 </footer>
+<style>
+svg{
+}
+
+</style>
 
 
 </html>
