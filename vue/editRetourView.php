@@ -17,7 +17,7 @@
         </section>
         
         
-        <form name="add" action="editRetour.php?op=a" method="GET">
+        <form name="add" action="editRetour.php?op=a" method="GEST">
 
             <?php if ($_SESSION['login'] === "root") : ?>
                 <section class="mb-3">
@@ -98,9 +98,7 @@
                     <div class="col-md-6">
                         <input type="submit" id="Valider" name="Valider" class="btn btn-primary" value="Valider" />
                         &emsp;
-                        <input type="button" class="btn btn-secondary" onclick="window.location.href='../controleur/retour.php'" value="Annuler" />
-
-                    </div>
+                        <input type="button" class="btn btn-secondary" onclick="window.location.href='../controleur/retour.php'" value="Annuler" />                    </div>
                 </section>
 
         </form>

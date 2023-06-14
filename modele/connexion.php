@@ -12,11 +12,6 @@ class Connexion {
 		$db_config['DB_NAME']	= 'suivi_des_retours';
 		$db_config['USER']		= 'root';
 		$db_config['PASSWORD']	= '';
-        /*  $db_config['SGBD']		= 'mysql';
-		$db_config['HOST']		= 'devbdd.iutmetz.univ-lorraine.fr';
-		$db_config['DB_NAME']	= 'hajkhali1u_sae4';
-		$db_config['USER']		= 'hajkhali1u_appli';
-		$db_config['PASSWORD']	= '32219666'; */
 		try
 		{
 			$this->db = new PDO($db_config['SGBD'] .':host='. $db_config['HOST'] .';dbname='. $db_config['DB_NAME'],

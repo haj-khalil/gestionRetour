@@ -40,6 +40,8 @@
                 font-size: 3.5rem;
             }
         }
+    
+    
     </style>
 
 
@@ -84,7 +86,7 @@
                                     ?>
                                     <?php if ($_SESSION['login'] != 'root') { ?>
                                         <li class="nav-item">
-                                        <a style="color: #219cee; " class="nav-link active" aria-current="page" href="../controleur/editRetour.php?op=a&id_client=<?php echo urlencode($_SESSION['id_client']); ?>">Ajouter</a>
+                                        <a style="color: #219cee; " class="nav-link active" aria-current="page" href="../controleur/editRetour.php?op=a&id_client=<?php echo urlencode($_SESSION['id']); ?>">Ajouter</a>
                                         </li>
                                     <?php } ?>
 
@@ -93,6 +95,10 @@
                                     </li>
 
                                 </ul>
+                                <form class="d-flex">
+                                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                                    <button class="btn btn-outline-success" type="submit">Recherche</button>
+                                </form>
                             </div>
                         </div>
                 <?php }
