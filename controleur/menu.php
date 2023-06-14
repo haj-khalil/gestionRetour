@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (isset($_SESSION['login'])){
-    if ((time() - $_SESSION['last_login']) > 2000 && $_SESSION['login'] != "root") {
+    if ((time() - $_SESSION['last_login']) > 5000 && $_SESSION['login'] != "root") {
         echo '<h2 style=" text-align: center;">session time est terminé !</h2>';
         header("refresh:3;url=login.php");
 }else

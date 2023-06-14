@@ -6,13 +6,18 @@ $clientDAO = new ClientDAO();
 
 $valider = (isset($_POST['valid']) ? $_POST['valid'] : null);
 if ($valider) {
+
     $nom = (isset($_POST['nom']) ? htmlspecialchars(trim($_POST['nom'])) : null);
     $prenom = (isset($_POST['prenom']) ? htmlspecialchars(trim($_POST['prenom'])) : null);
     $email = (isset($_POST['email']) ? htmlspecialchars(trim($_POST['email'])) : null);
+
     $address = (isset($_POST['address']) ? htmlspecialchars(trim($_POST['address'])) : null);
     $select_pays = (isset($_POST['select_pays']) ? htmlspecialchars(trim($_POST['select_pays'])) : "France");
     $tel = (isset($_POST['tel']) ? trim($_POST['tel']) : null);
-    $mdp = (isset($_POST['mdp']) ? password_hash(htmlspecialchars(trim($_POST['mdp'])), PASSWORD_BCRYPT) : null); 
+
+    $mdp = (isset($_POST['mdp']) ? password_hash(htmlspecialchars(trim($_POST['mdp'])), PASSWORD_BCRYPT) : null);
+    
+    
     $mdpRep = (isset($_POST['mdpRep']) ? htmlspecialchars(trim($_POST['mdpRep'])) : null); 
     $naissance = (isset($_POST['naissance']) ? $_POST['naissance'] : null);
     

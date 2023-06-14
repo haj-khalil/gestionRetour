@@ -2,7 +2,7 @@
     <?php require_once('../vue/header.php'); ?>
 </section>
 
-<body class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100" >
     <header class="container my-5">
         <?php require_once('../vue/header.php'); ?>
     </header>
@@ -100,5 +100,11 @@
         </div>
     </footer>
 
+    <style>
+        body{
+            background-image: url(../vue/style/);
+
+        }
+    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
 </body>

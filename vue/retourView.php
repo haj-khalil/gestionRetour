@@ -90,7 +90,6 @@
                                     <th>Montant</th>
                                     <th>Articles</th>
                                     <th>Supprimer</th>
-                                    <!-- <th>Modifier</th> -->
                                     <th>Changer statut</th>
                                 </tr>
                             </thead>
@@ -178,6 +177,12 @@
 
             input[type=button]:not(:disabled) {
                 width: 60px;
+            }
+            .article{
+                background-color: #5F7780;
+            }
+            #table_article{
+                background-color: lightcyan;
             }
         </style>
         <script src="../vue/style.js"></script>

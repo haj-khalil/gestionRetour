@@ -28,7 +28,7 @@ if ((time() - $_SESSION['last_login']) > 2000 && $_SESSION['login'] != "root") {
         $isAdmin = true;
     } else $isAdmin = false;
 
-    
+
 
     $id                         = isset($_GET['id']) ? $_GET['id'] : null;
     $input_id_statut            = isset($_GET['select_id_statut']) ? $_GET['select_id_statut'] : null;
@@ -75,14 +75,14 @@ if ((time() - $_SESSION['last_login']) > 2000 && $_SESSION['login'] != "root") {
     if ($lesArticles != []) {
         $lesRows[] = "
 				<tr class='article'>
-				<th colspan='2'>nom_article </th>
-				<th colspan='2'>id_article</th>
-				<th colspan='2'> montant_piece</th>
-				<th colspan='2'>quantite</th>
-				<th colspan='3'>motif</th>
+				<th colspan='2'>Numéro</th>
+				<th colspan='2'>Article </th>
+				<th colspan='2'> Montant</th>
+				<th colspan='2'>Quantité</th>
+				<th colspan='2'>Motif</th>
 				
 
-				<th><button type='button'><img id='img_x'  onclick='casherTableArticle()' src='../vue/style/x.jpg'></button>
+				<th><button type='button' ><img id='img_x'  onclick='casherTableArticle()' src='../vue/style/x.jpg'></button>
 				</th>
 				";
     } else $lesRows[] = "<tr class='article'><th colspan='11'>il n y a pas des articles !</th>
@@ -94,22 +94,24 @@ if ((time() - $_SESSION['last_login']) > 2000 && $_SESSION['login'] != "root") {
         foreach ($lesArticles as $uneArticle) {
             $ch = '';
 
-                $ch .= '<td colspan="2" class="article">' . $uneArticle['nom_article'] . '</td>';
-                $ch .= '<td colspan="2" class="article">' . $uneArticle['id_article'] . '</td>';
-                $ch .= '<td colspan="2" class="article">' . $uneArticle['montant_piece'] . " €" . '</td>';
-                $ch .= '<td colspan="2" class="article">' . $uneArticle['quantite'] . '</td>';
-                $ch .= '<td colspan="3" class="article">' . $uneArticle['motif'] . '</td>';
+            $ch .= '<td colspan="2" class="article">' . $uneArticle['id_article'] . '</td>';
+            $ch .= '<td colspan="2" class="article">' . $uneArticle['nom_article'] . '</td>';
+            $ch .= '<td colspan="2" class="article">' . $uneArticle['montant_piece'] . " €" . '</td>';
+            $ch .= '<td colspan="2" class="article">' . $uneArticle['quantite'] . '</td>';
+            $ch .= '<td colspan="2" class="article">' . $uneArticle['motif'] . '</td>';
 
-                
-                $ch .= '<td class="article"><a href="../controleur/editArticle.php?op=mA&id_article='
-                    . urlencode($uneArticle['id_article']) 
-                    . '"><img src="../vue/style/modification.png"></a></td>';
-                $ch .= '<td class="article"><a  onclick="javascript:return confirm(\'Etes-vous sûr de vouloir supprimer ? \') " id="supp"
+
+            $ch .= '<td class="article"><a href="../controleur/editArticle.php?op=mA&id_article='
+                . urlencode($uneArticle['id_article'])
+                . '"><img src="../vue/style/modification.png"></a></td>';
+
+
+            $ch .= '<td class="article"><a  onclick="javascript:return confirm(\'Etes-vous sûr de vouloir supprimer ? \') " id="supp"
 		        href="../controleur/retour.php?op=sA&id_article='
                 . urlencode($uneArticle['id_article'])
                 . '" ><img src="../vue/style/corbeille.png"></a></td>';
 
-            $lesRows[] = "<tr>$ch</tr id=table_article'>";
+            $lesRows[] = "<tr id='table_article'>$ch</tr >";
 
 
             $lignes    = [];
@@ -139,9 +141,7 @@ if ((time() - $_SESSION['last_login']) > 2000 && $_SESSION['login'] != "root") {
             . urlencode($unRetour['id_retour'])
             . '" ><img src="../vue/style/corbeille.png"></a></td>';
 
-        // $ch .= '<td><a href="../controleur/editRetour.php?op=m&id_client='
-        //     . urlencode($unRetour['id_retour']) .
-        //     '"><img src="../vue/style/modification.png"></a></td>';
+
 
         $ch .= '<td><img src="../vue/style/refresh.png" onclick="getIdRetour(this.value)"  data-toggle="modal" data-target="#exampleModalCenter"
 	    " value=' . urlencode($unRetour['id_retour']) . 'style="height=35px; width=35px;"></td>';
