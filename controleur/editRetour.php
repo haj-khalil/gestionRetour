@@ -8,9 +8,9 @@ require_once("../modele/retourDAO.php");
 require_once("../modele/retourClass.php");
 require_once("../modele/statutDAO.php");
 session_start();
-$retour = false;
 
-if (isset($_SESSION['login']) && $_SESSION['id'] && $_SESSION['login'] != "root") {
+
+if (isset($_SESSION['login']) && $_SESSION['id_client'] && $_SESSION['login'] != "root") {
 
     if ((time() - $_SESSION['last_login']) > 5000) {
         echo '<h2 style=" text-align: center;">session time est terminé !</h2>';
@@ -57,16 +57,21 @@ if (isset($_SESSION['login']) && $_SESSION['id'] && $_SESSION['login'] != "root"
             $rows[] = $ch;
         }
 
-        $id_client= $_SESSION['id'];
+
+
+
+
+        $id_client= $_SESSION['id_client'];
         $id_ens = isset($_GET['id_ens']) ? trim($_GET['id_ens']) : null;
         $select_id_statut = isset($_GET['select_id_statut']) ? trim($_GET['select_id_statut']) : null;
         $date_achat = isset($_GET['date_achat']) ? trim($_GET['date_achat']) : null;
         $date_envoi = isset($_GET['date_envoi']) ? trim($_GET['date_envoi']) : null;
         $date_remboursement = isset($_GET['date_remboursement']) ? trim($_GET['date_remboursement']) : "";
 
+        
+
 
         if (isset($_GET['Valider'])) { //??
-
 
 
             if ($id_client!=null) {
@@ -92,10 +97,14 @@ if (isset($_SESSION['login']) && $_SESSION['id'] && $_SESSION['login'] != "root"
                 $valeurs['date_remboursement'] = $date_remboursement;
             
 
+
+
             $nbErreurs = 0;
             foreach ($erreurs as $erreur) {
                 if ($erreur != "") $nbErreurs++;
             }
+
+
 
             if ($nbErreurs == 0) {
                 //creer un object de type Retour
@@ -111,17 +120,15 @@ if (isset($_SESSION['login']) && $_SESSION['id'] && $_SESSION['login'] != "root"
                 $RetourDAO->insert($unRetour);
                 $messageInscription=true;
                 header( "refresh:2;url=retour.php" );
+    
+
+
             
             }
         }
+    }
 
-
-}
-
-    if ($retour) {
-           header("location: retourAdmin.php");
-             exit();
-         }
+    
 
     require_once('../vue/editRetourView.php');
     

@@ -14,12 +14,12 @@ if (isset($_SESSION['login'])){
     }
     if (!$isAdmin) {
         $retourByArticleDAO = new RetourByArticleDAO();
-        $montantTotaleRembourse = isset($retourByArticleDAO->getMontantRetoursById_clientEtLabel(intval($_SESSION['id']), 'remboursé')[0]["total"]) ?
+        $montantTotaleRembourse = isset($retourByArticleDAO->getMontantRetoursById_clientEtLabel(intval($_SESSION['id_client']), 'remboursé')[0]["total"]) ?
             $retourByArticleDAO->getMontantRetoursById_clientEtLabel(intval($_SESSION['id_client']), 'remboursé')[0]["total"] : 0;
 
 
-        $montantTotaleEnAttente = isset($retourByArticleDAO->getMontantRetoursById_clientEtLabelEnAttente(intval($_SESSION['id']), 'remboursé')[0]["total"]) ?
-            $retourByArticleDAO->getMontantRetoursById_clientEtLabelEnAttente(intval($_SESSION['id']), 'remboursé')[0]["total"] : 0;
+        $montantTotaleEnAttente = isset($retourByArticleDAO->getMontantRetoursById_clientEtLabelEnAttente(intval($_SESSION['id_client']), 'remboursé')[0]["total"]) ?
+            $retourByArticleDAO->getMontantRetoursById_clientEtLabelEnAttente(intval($_SESSION['id_client']), 'remboursé')[0]["total"] : 0;
     }
 
     require_once('../vue/menuView.php');
