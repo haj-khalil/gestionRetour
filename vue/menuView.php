@@ -15,112 +15,37 @@
                 <h1> des retours en ligne</h1>
             </div>
             <!-- icons pour admin -->
-            <?php if ($isAdmin) : ?>
+            <?php if (!$isAdmin) : ?>
             <div class="container icons ">
                 <div class="row">
-                        <!--Retours  -->
-                        <div class="col-3">
-                            <a href="../controleur/retour.php" class="text-decoration-none text-dark">
-                                <div class="card text-center">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Retours</h5>
-                                        <img src="../vue/style/menu.pngx" class="img-fluid" alt="" style="max-width: 20px; margin: 0 auto;"> <!-- Diminuer la taille des images -->
-                                    </div>
+                    <!--Statistic  -->
+                    <div class="col-2"></div>
+                    <div class="col-3">
+                        <div class="col-md-6 montant">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <h2 class="card-title">Montant Remboursé
+                                    <p class="card-text"><?php echo $montantTotaleRembourse . " €"; ?></p></h2>
                                 </div>
-                            </a>
-                        </div>
-                        <!--Clients  -->
-                        <div class="col-3">
-                            <a href="../controleur/client.php" class="text-decoration-none text-dark">
-                                <div class="card text-center">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Clients</h5>
-                                        <img src="../vue/style/client.pngx" class="img-fluid" alt="" style="max-width: 20px; margin: 0 auto;"> <!-- Diminuer la taille des images -->
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <!--Paramètres  -->
-                        <div class="col-3">
-                            <a href="../controleur/gestion.php" class="text-decoration-none text-dark">
-                                <div class="card text-center">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Paramètres</h5>
-                                        <img src="../vue/style/para.pngx" class="img-fluid" alt="" style="max-width: 20px; margin: 0 auto;"> <!-- Diminuer la taille des images -->
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <!--Historiques  -->
-                        <div class="col-3">
-                            <a href="../controleur/histoire.php" class="text-decoration-none text-dark">
-                                <div class="card text-center ">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Historiques</h5>
-                                        <img src="../vue/style/action.pngx" class="img-fluid" alt="" style="max-width: 20px; margin: 0 auto;"> <!-- Diminuer la taille des images -->
-                                    </div>
-                                </div>
-                            </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <?php endif; ?>
-                        <!--fin de partie Admin  -->
-                        <!-- icons pour utilisatur -->
-        
-                    <?php if (!$isAdmin) : ?>
-                        <div class="container icons ">
-                            <div class="row">
-                                <div class="col-6">
-                                    <a href="../controleur/retour.php" class="text-decoration-none text-dark">
-                                        <div style="margin-left: 40px;"  class="card text-center">
-                                            <div class="card-body">
-                                                <h4 class="card-title" >Retours</h4>
-                                                <img src="../vue/style/menu.pngx" class="img-fluid" alt="" style="max-width: 20px; margin: 0 auto;"> <!-- Diminuer la taille des images -->
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-6">
-                                    <a href="../controleur/editRetour.php" class="text-decoration-none text-dark">
-                                        <div style="margin-left: 60px;"  class="card text-center">
-                                            <div class="card-body">
-                                                <h4 class="card-title"> Ajoutez </h4>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>          
-                            </div>          
-                        </div>          
-                        <?php endif; ?>
-                    </div>    
-                    <?php if ($isAdmin) : ?>
-                   <!--  <div class="container icons "> 
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="card text-center">
-                                    <div class="card-body">
-                                        <h2 class="card-title">Montant Remboursé</h2>
-                                        <p class="card-text"><?php echo $montantTotaleRembourse . " €"; ?></p>
-                                    </div>
+                    <div class="col-2"></div>
+                    <div class="col-3">
+                        <div class="col-md-6 montant">
+                            <div class="card text-center">
+                                <div class="card-body ">
+                                    <h2 class="card-title">Montant en attente
+                                    <p class="card-text"><?php echo $montantTotaleEnAttente . " €"; ?></p></h2>
                                 </div>
                             </div>
-
-                            <div class="col-md-6">
-                                <div class="card text-center">
-                                    <div class="card-body">
-                                        <h2 class="card-title">Montant en attente</h2>
-                                        <p class="card-text"><?php echo $montantTotaleEnAttente . " €"; ?></p>
-                                    </div>
-                                </div>
-                            </div>
-
-
                         </div>
-                    </div> -->
-    
-                    <?php endif; ?>
-
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+            </div>
+            <?php endif; ?>
+        </div>
             <!-- grand image -->
         <div class="col-6">
             <img src="../vue/style/colis.jpg" class="img-fluid" alt="" style="max-width: 700px; margin-top: 10%;"> 
@@ -149,28 +74,36 @@
         }
 
         .icons {
-            margin-top: 20px;
             
             margin-left: -256px;
-            margin-top: 150px;
+            margin-top: 70px;
 
         }
-
+        
         .card-body {
-            height: 50px;
-            background-color: rgba(25, 156, 255, 1);
-
-
-        }
-
-        .card-body:hover {
-            height: 52px;
+            height: 180px;
             background-image: linear-gradient(to right, rgba(187, 5, 150, 0.8), rgba(5, 101, 187, 0.8));
-
-
+            border-radius: 5% ;
+            
+            font-family: "Times New Roman", Times, serif;
+            
         }
+        
+        .card-text{
+            margin-top: 5px;
+            color: white;
+            font-family: "Times New Roman", Times, serif;
+            
+            
+        }
+        .montant{
+            border-radius: 10% ;
+            background: none;
+        }
+
+        
         .card{
-            width: 147px;
+            width: 220px;
         }
 
         .titre {
@@ -191,7 +124,7 @@
 
         }
         img {
-  border-radius: 20% ;
-}
+            border-radius: 20% ;
+        }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
