@@ -77,12 +77,16 @@
     body {
         padding-top: 5% ;
     }
-
-
-    h2 {
+    
+    h1 {
+        padding-top: 6% ;
+        font-family: "Times New Roman", Times, serif;
         text-align: center;
     }
+    
+    
 </style>
+
 
 <body>
 <body>
@@ -91,14 +95,10 @@
 
     <form method="GET" action="" name="add">
         <div>
-            <h2>
-                <spam>Ajoutez des articles au Retour : </spam>
-                <spam id="id_ret"><?php echo $id_retour; ?></spam>
-                <h2>
-            <h2>
-                <spam>Ajoutez des articles au Retour : </spam>
-                <spam id="id_ret"><?php echo $id_retour; ?></spam>
-                <h2>
+            
+                <h1><spam>Ajoutez des articles au Retour : </spam>
+                <spam id="id_ret"><?php echo $id_retour; ?></spam></h1>
+            
         </div>
         <div class="container">
             <form id="formulaire" class="row g-3" method="GET" action="" name="add">
@@ -114,7 +114,6 @@
                 <div class="col-md-6">
                     <label for="inputQuantite" class="form-label">Quantité</label>
                     <input type="number" name="quantite" class="form-control" id="inputQuantite" placeholder="1" min="1" value="<?= htmlentities($valeurs['quantite'] ?? '') ?>">
-                    <input type="number" name="quantite" class="form-control" id="inputQuantite" placeholder="1" min="1" value="<?= htmlentities($valeurs['quantite'] ?? '') ?>">
                     <div id="erreur-quantite" class="text-danger"></div>
                     <span class="erreur"><?= $erreurs['quantite'] ?? '' ?></span>
 
@@ -123,7 +122,6 @@
 
                 <div class="col-md-6">
                     <label for="inputMontant" class="form-label">Montant </label>
-                    <input type="number" required name="montant_piece" class="form-control" min="0.00" step="0.01" placeholder="0.00" id="inputMontant" value="<?= htmlentities($valeurs['montant_piece'] ?? '') ?>">
                     <input type="number" required name="montant_piece" class="form-control" min="0.00" step="0.01" placeholder="0.00" id="inputMontant" value="<?= htmlentities($valeurs['montant_piece'] ?? '') ?>">
                     <div id="erreur-montant" class="text_danger"></div>
                     <span class="erreur"><?= $erreurs['montant_piece'] ?? '' ?></span>
@@ -134,9 +132,6 @@
 
                     <select id="id_motif" class="form-select" aria-label="Default select example" name="id_motif" value="<?= htmlentities($valeurs['id_motif'] ?? '') ?>">
                         <option>select motif </option>
-                    <select id="id_motif" class="form-select" aria-label="Default select example" name="id_motif" value="<?= htmlentities($valeurs['id_motif'] ?? '') ?>">
-                        <option>select motif </option>
-
                         <?php
                         foreach ($columns as $column) {
                             echo $column;
@@ -225,16 +220,9 @@
                 }
             }
 
-            // mettre le ancian motif au première place 
-            recupere_id_motif = document.getElementById('recupere_id_motif').value
-            lesOptions = document.getElementsByTagName('option')
-            for (let option of lesOptions) {
-                if (option.value == recupere_id_motif) {
-                    option.setAttribute('selected', 'selected')
-                    option.setAttribute('selected', 'selected')
-                }
-            }
+    
         </script>
 </body>
+
 
 </html>

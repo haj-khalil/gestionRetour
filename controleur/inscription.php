@@ -45,12 +45,12 @@ if ($valider) {
 
 
     if ($nom != null && strlen($nom) > 1) {
-        $valeurs['nom'] = trim($nom);
+        $valeurs['nom'] = ucfirst($nom);
     } else $erreurs['nom'] = 'Nom invalide.';
 
 
     if ($prenom != null  && strlen($prenom) > 1) {
-        $valeurs['prenom'] = $prenom;
+        $valeurs['prenom'] = ucfirst($prenom);
     } else $erreurs['prenom'] = 'Prénom invalide.';
 
 

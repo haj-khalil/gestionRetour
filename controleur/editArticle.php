@@ -53,7 +53,7 @@ $REGEX_NOM = "/^[a-zA-Z]{2,25}$/";
 if ($valider && $id_retour) {
 
         if (preg_match($REGEX_NOM, $nom_article) && $nom_article != null) {
-            $valeurs['nom_article'] = $nom_article;
+            $valeurs['nom_article'] = ucfirst($nom_article);
         } else $erreurs['nom_article'] = 'Nom article invalide';
 
 
@@ -123,7 +123,7 @@ if($modif){
 	$valeurs['montant_piece'] 	= $unArticle->getMontant_piece();
     $valeurs['quantite'] = $unArticle->getQuantite();	
 	$valeurs['id_motif'] 	= $unArticle->getId_motif();
-   
+
 
 }
 

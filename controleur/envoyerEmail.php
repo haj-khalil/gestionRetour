@@ -18,7 +18,7 @@ require_once '../modele/phpMailer/src/SMTP.php';
 
 
     // hamid */
-    $mail= new PHPMailer(true);
+    //$mail= new PHPMailer(true);
     $mail->isSMTP();
     $mail->Host ='smtp.gmail.com';
     $mail->SMTPSecure = "ssl";

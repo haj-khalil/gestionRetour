@@ -81,9 +81,7 @@ if ((time() - $_SESSION['last_login']) > 2000 && $_SESSION['login'] != "root") {
 				<th colspan='2'>Quantité</th>
 				<th colspan='3'>Motif</th>
                 ";
-
-    } else $lesRows[] = "<tr class='article'><th style='text-align: center;' colspan='10'>il n y a pas des articles !</th>
-		<th><a href='../controleur/retour.php'><img id='img_x' src='../vue/style/x.jpg'></a></th>";
+    } else $lesRows[] = "<tr class='article'><th style='text-align: center;' colspan='10'>il n y a pas des articles !</th>";
                 
                 
                 

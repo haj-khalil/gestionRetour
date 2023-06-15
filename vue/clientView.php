@@ -42,7 +42,10 @@
         <?php endif; ?>
     </section>
 
+    <script>
+    
 
+    </script>
     <script src="../vue/style.js"></script>
     <script src="../vue/script.js"></script>
 </body>

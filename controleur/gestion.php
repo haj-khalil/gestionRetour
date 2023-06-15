@@ -47,7 +47,7 @@ if (isset($_SESSION['login']) && $_SESSION['login']=="root" ) {
     }
 
     // ajouter une enseigne 
-$nomEns = isset($_GET['nomEns']) ? strip_tags(trim($_GET['nomEns'])) : null;
+$nomEns = isset($_GET['nomEns']) ? ucfirst(strip_tags(trim($_GET['nomEns']))) : null;
 $ajouterEns = isset($_GET['ajouterEns']) ? $_GET['ajouterEns'] : null;
 
 
@@ -105,7 +105,7 @@ if ($effacerStatut) {
 }
 
 // ajouter un statut 
-$nomStatut = isset($_GET['nomStatut']) ? strip_tags(trim($_GET['nomStatut'])) : null;
+$nomStatut = isset($_GET['nomStatut']) ? ucfirst(strip_tags(trim($_GET['nomStatut']))) : null;
 $ajouterStatut = isset($_GET['ajouterStatut']) ? $_GET['ajouterStatut'] : null;
 
 if ($ajouterStatut) {
@@ -149,7 +149,7 @@ if ($effacerMotif) {
 }
 
 //;ajouter un motif
-$nomMotif = isset($_GET['nomMotif']) ? strip_tags(trim($_GET['nomMotif'])) : null;
+$nomMotif = isset($_GET['nomMotif']) ? ucfirst(strip_tags(trim($_GET['nomMotif']))) : null;
 $ajouterMotif = isset($_GET['ajouterMotif']) ? $_GET['ajouterMotif'] : null;
 
 if ($ajouterMotif) {

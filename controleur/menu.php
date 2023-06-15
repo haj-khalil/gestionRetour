@@ -1,4 +1,5 @@
 <?php
+require_once('../modele/retourByArticleDAO.php');
 session_start();
 if (isset($_SESSION['login'])){
     if ((time() - $_SESSION['last_login']) > 000 && $_SESSION['login'] != "root") {
@@ -7,7 +8,6 @@ if (isset($_SESSION['login'])){
 }else
 	
 
-    require_once('../modele/retourByArticleDAO.php');
     $isAdmin = false;
     if ($_SESSION['login'] == 'root') {
         $isAdmin = true;
