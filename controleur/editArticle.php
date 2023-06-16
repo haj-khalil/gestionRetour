@@ -46,10 +46,7 @@ $edit_article = ($id_article && $modif);
         'id_motif' => ""
     ];
 
-$REGEX_NOM = "/^[a-zA-Z]{2,25}$/";
-//$REGEX_QUANTITE = "/^([1-9]|[1-9][0-9]{1,5}|10000)(\.[0-9]+)?$/";
-/* $REGEX_MONTANT = "/^(?:\p{Sc}\s*)?([1-9]\d*|0)(?:\.\d{1,2})?(?:\s*\p{Sc})?$/"; */
-
+$REGEX_NOM = "/^[a-zA-ZÀ-ÿ]{2,25}$/";
 if ($valider && $id_retour) {
 
         if (preg_match($REGEX_NOM, $nom_article) && $nom_article != null) {

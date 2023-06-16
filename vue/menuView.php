@@ -57,12 +57,17 @@
 
 
 
-    <footer class="footer mt-auto ml-1 text-light" style="width: 100%; height:5%">
-        <span class="text-muted">© 2023 Tous droits réservés.</span>
 
-    </footer>
 
     <style>
+         html {
+        overflow: scroll;
+        overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar {
+        width: 0px;
+    }
         body {
             background-image: url(../vue/style/back7.jpg);
             background-repeat: no-repeat;
@@ -126,5 +131,9 @@
         img {
             border-radius: 20% ;
         }
+        .H-accueil{
+            color: orange;
+        }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+    <?php require_once("../vue/footer.php") ?>

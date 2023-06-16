@@ -23,7 +23,6 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
     <!-- library pour la par de recherch  -->
     <link rel="stylesheet" href="https://unpkg.com/@jarstone/dselect/dist/css/dselect.css">
-    <script src="https://unpkg.com/@jarstone/dselect/dist/js/dselect.js"></script>
 
 
 
@@ -49,32 +48,32 @@
                             <div class="collapse navbar-collapse" id="navbarCollapse">
                                 <ul class="navbar-nav ms-auto mb-2 mb-md-0">
                                     <li class="nav-item">
-                                        <a style="color: #219cee; " class="nav-link active" aria-current="page" href="../controleur/menu.php">Menu</a>
+                                        <a  class="nav-link H-accueil" aria-current="page" href="../controleur/menu.php">Accueil</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a style="color: #219cee; " class="nav-link <?php echo !empty($index) ? 'active' : ''; ?>" href="../controleur/retour.php">Retours</a>
+                                        <a id="H-retour" class="nav-link  <?php echo !empty($index) ? 'active' : ''; ?>  " href="../controleur/retour.php">Retours</a>
                                     </li>
                                     <?php if ($_SESSION['login'] == 'root') : { ?>
                                             <li class="nav-item">
-                                                <a style="color: #219cee; " class="nav-link" href="../controleur/client.php">Clients</a>
+                                                <a  class="nav-link H-clients" href="../controleur/client.php">Clients</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a style="color: #219cee; " class="nav-link" href="../controleur/histoire.php">Historique</a>
+                                                <a  class="nav-link h-historique" href="../controleur/histoire.php">Historique</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a style="color: #219cee; " class="nav-link" href="../controleur/gestion.php">Paramètres</a>
+                                                <a  class="nav-link H-parametre" href="../controleur/gestion.php">Paramètres</a>
                                             </li>
                                     <?php }
                                     endif;
                                     ?>
                                     <?php if ($_SESSION['login'] != 'root') { ?>
-                                        <li class="nav-item">
-                                        <a style="color: #219cee; " class="nav-link active" aria-current="page" href="../controleur/editRetour.php?op=a&id_client=<?php echo urlencode($_SESSION['id_client']); ?>">Ajouter</a>
+                                        <li  class="nav-item">
+                                        <a id="H-ajouter"  class="nav-link H-ajouter" aria-current="page" href="../controleur/editRetour.php?op=a&id_client=<?php echo urlencode($_SESSION['id_client']); ?>">Ajouter</a>
                                         </li>
                                     <?php } ?>
 
                                     <li class="nav-item">
-                                        <a style="color: #219cee; " class="nav-link" href="../controleur/logout.php">Déconnexion</a>
+                                        <a class="nav-link" href="../controleur/logout.php">Déconnexion</a>
                                     </li>
 
                                 </ul>
@@ -90,6 +89,7 @@
     </body>
 
     <style>
+        
         .container-fluid{
             margin-top: -10px;
             background-image: url(../vue/style/backHeader.png);
@@ -117,6 +117,13 @@
                 font-size: 3.5rem;
             }
         }
-    </style>
+        .nav-link{
+            color: #219cee; 
+        }
+        .nav-link:hover{
+            color: orange;
+        }
 
-</html>
+    
+        
+    </style>

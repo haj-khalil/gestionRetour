@@ -127,4 +127,15 @@ insert into motif (motif) values
 ('pas besoin'),
 ('cassé');
 
- 
+ ALTER TABLE statut
+ADD etat_statut varchar(255) default "actif";
+
+
+alter  table  motif add etat_motif varchar (255) default "actif";
+select  * from motif ;
+
+alter table enseigne add etat_ens varchar(255)  default "actif";
+select * from enseigne;
+
+alter table client 
+add etat_client varchar (255) default "actif";

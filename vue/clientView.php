@@ -1,11 +1,10 @@
-<section class="container my -10" style=" margin-bottom: 50px;">
+<section class="container my-10" style="margin-bottom: 50px;">
     <?php require_once('../vue/header.php'); ?>
 </section>
 
-
 <body>
     <section class="container mt-5">
-        <h1 class="text-center mb-4" >Liste des Clients</h1>
+        <h1 class="text-center mb-4">Liste des Clients</h1>
         <form class="d-flex" role="search">
             <div class="input-control">
                 <input type="text" name="search" placeholder="Search.." class="form-control w-50 me-2" id="cherch">
@@ -13,8 +12,16 @@
             </div>
         </form>
 
+        <?php
+        if (isset($lignes) && $lignes != []) {
+            $totalPages = 15; // nombre d'éléments à afficher par page
+            $nombre_total = count($lignes); // nombre total d'éléments
+            $nombre_de_pages = ceil($nombre_total / $totalPages); // nombre de pages à afficher
+            $currentPage = isset($_GET['page']) ? $_GET['page'] : 1; // numéro de la page actuelle (si non spécifié, afficher la première page)
+            $indice_depart = ($currentPage - 1) * $totalPages; // indice de départ pour afficher les éléments de la page actuelle
+            $elements_a_afficher = array_slice($lignes, $indice_depart, $totalPages); // extraire les éléments à afficher pour la page actuelle
+        ?>
 
-        <?php if (isset($lignes) && $lignes != []) : ?>
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -26,30 +33,51 @@
                         <th>Téléphone</th>
                         <th>Etat</th>
                         <th>Retours</th>
-                        <th>Desactiver block</th>
-                        <th>Activer unBlock </th>
+                        <th>Désactiver </th>
+                        <th>Activer</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($lignes as $ligne) : ?>
-                        <?php echo $ligne; // tableau de lignes à créer dans /controleur/salles.php 
-                        ?>
+                    <?php foreach ($elements_a_afficher as $ligne) : ?>
+                        <?php echo $ligne; ?>
                     <?php endforeach; ?>
                 </tbody>
             </table>
-        <?php else : ?>
-            <p class="text-center">Il n'y a pas de clients pour le moment.</p>
-        <?php endif; ?>
+
+            <!-- Pagination -->
+            <nav aria-label="Pagination">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item <?php echo $currentPage == 1 ? 'disabled' : ''; ?>">
+                        <a class="page-link" href="?page=<?php echo $currentPage - 1; ?>" tabindex="-1" aria-disabled="true">Précédent</a>
+                    </li>
+
+
+
+                    <li class="page-item <?php echo $currentPage == $nombre_de_pages ? 'disabled' : ''; ?>">
+                        <a class="page-link" href="?page=<?php echo $currentPage + 1; ?>">Suivant</a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- End Pagination -->
+
+        <?php
+        } else {
+            var_dump("<p class='text-center'>La liste de client est vide !</p>");
+        }
+        ?>
     </section>
-
-    <script>
-    
-
-    </script>
-    <script src="../vue/style.js"></script>
-    <script src="../vue/script.js"></script>
 </body>
+
 <style>
+    html {
+        overflow: scroll;
+        overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar {
+        width: 0px;
+    }
+
     .input-control {
         display: flex;
         align-items: center;
@@ -75,6 +103,12 @@
     th {
         text-align: center;
         vertical-align: middle;
+        vertical-align: middle;
+    }
+
+    tr {
+        text-align: center;
+        vertical-align: middle;
     }
 
     body {
@@ -91,10 +125,17 @@
         margin-top: 10px;
 
     }
-    .text-center{
+
+    .text-center {
         color: white;
         font-family: "Times New Roman", Times, serif;
 
     }
+
+    .H-clients {
+        color: orange;
+
+    }
 </style>
 <?php require_once('../vue/footer.php'); ?>
+<script src="../vue/script.js"></script>

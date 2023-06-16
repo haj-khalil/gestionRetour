@@ -18,9 +18,9 @@
             color: red;
         }
     </style>
-    <header>
-        <h1> Formulaire d'inscription:  </h1>
-    </header>
+
+        <h1> Inscription  </h1>
+
 
     <section>
         <form method="POST" action="" name="add">
@@ -144,5 +144,31 @@
         }
     </script>
 </body>
+<style>
+     html {
+        overflow: scroll;
+        overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar {
+        width: 0px;
+    }
+
+    body {
+
+    background-image: url(../vue/style/back7.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+    h1 {
+        color: white;
+        font-family: "Times New Roman", Times, serif;
+        text-align: center;
+        padding-top: 10px;
+        padding-left: -10px;
+            
+    }
+</style>
 
 </html>

@@ -48,6 +48,6 @@ if (isset($_POST['Connexion'])) {
         $_SESSION['last_login'] = time();
         header('location: accueil.php');
     } else
-        $message = "<p class='text-center mt-3 alert alert-danger'>Identification incorrecte. Essayez de nouveau.</p>";
+        $message = "<p style=' background-color: red;' class='text-center mt-3 alert alert-danger'>Identification incorrecte. Essayez de nouveau.</p>";
 }
 require_once('../vue/loginView.php');

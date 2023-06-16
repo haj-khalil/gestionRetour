@@ -8,8 +8,6 @@ session_start();
 if (isset($_SESSION['login']) && $_SESSION['login'] == "root") {
     $ClientDAO = new ClientDAO;
     $lesClients = $ClientDAO->getAll();
-    
-
     $op     = (isset($_GET['op']) ? $_GET['op'] : null);
     $activer = ($op == 'activer');
     $suppr = ($op == 'sC');
@@ -38,12 +36,12 @@ if (isset($_SESSION['login']) && $_SESSION['login'] == "root") {
         foreach ($lesClients as $unClient) {
             $ch = '';
             $ch .= '<td >' . $unClient->getId_client() . '</td>';
-            $ch .= '<td>' . $unClient->getNom() . '</td>';
-            $ch .= '<td class="' . $unClient->getPrenom() . '"id="' . $unClient->getPrenom() .     '">' . $unClient->getPrenom() . '</td>';
-            $ch .= '<td class="' . $unClient->getEmail() . '"id="' . $unClient->getEmail() .      '">' . $unClient->getEmail() . '</td>';
-            $ch .= '<td class="' . $unClient->getAddress() . '"id="' . $unClient->getAddress() .    '">' . $unClient->getAddress() . '</td>';
-            $ch .= '<td class="' . $unClient->getTel() . '"id="' . $unClient->getTel() .        '">' . $unClient->getTel() . '</td>';
-            $ch .= '<td class="' . $unClient->getEtat_client() . '"id="' . $unClient->getEtat_client() . '">' . $unClient->getEtat_client() . '</td>';
+            $ch .= '<td >' . $unClient->getNom() . '</td>';
+            $ch .= '<td >' . $unClient->getPrenom() . '</td>';
+            $ch .= '<td >' . $unClient->getEmail() . '</td>';
+            $ch .= '<td >' . $unClient->getAddress() . '</td>';
+            $ch .= '<td >' . $unClient->getTel() . '</td>';
+            $ch .= '<td >' . $unClient->getEtat_client() . '</td>';
 
 
             $ch .= '<td><a href="../controleur/retour.php?EmailClient='

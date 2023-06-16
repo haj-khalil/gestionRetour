@@ -1,5 +1,3 @@
-
-
 <body>
 
     <section class="container my-10" style="margin-bottom: 50px;">
@@ -12,7 +10,7 @@
         </section>
 
         <form name="add" action="editRetourArticle.php?op=a" method="POST">
-<!-- 
+            <!-- 
             <?php if ($_SESSION['login'] != "root") : ?>
                 <section class="mb-3">
                     <div class="col-md-6">
@@ -66,7 +64,7 @@
             <section class="mb-3">
                 <label for="date_envoi" class="form-label">Date envoi :</label>
                 <div class="col-md-6">
-                <input id="date_envoi" name="date_envoi" type="text" class="form-control" size="30" maxlength="30" value="<?= isset($valeurs['date_envoi']) ? htmlentities($valeurs['date_envoi']) : '' ?>" />
+                    <input id="date_envoi" name="date_envoi" type="text" class="form-control" size="30" maxlength="30" value="<?= isset($valeurs['date_envoi']) ? htmlentities($valeurs['date_envoi']) : '' ?>" />
                     <br />
                     <span class="text-danger"><?= isset($erreurs['date_envoi']) ? $erreurs['date_envoi'] : '' ?></span>
                 </div>
@@ -80,6 +78,11 @@
                 </div>
             </section>
 
+        <style>
+            #H-ajouter {
+                color: orange;
+            }
+        </style>
         </form>
 
         <script>
@@ -97,11 +100,8 @@
 
     <?php require_once('../vue/footer.php'); ?>
 
-  
+
 
 </body>
 
 </html>
-
-
-

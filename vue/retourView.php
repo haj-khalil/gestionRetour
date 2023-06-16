@@ -1,10 +1,8 @@
-<?php require_once('../vue/header.php'); ?>
 <section class="container my -10" style=" margin-bottom: 50px;">
 
     <head>
 
         <meta charset="utf-8">
-        <title>Liste des retours</title>
         <!-- ///** */ -->
         <link rel="stylesheet" href="../vue/style/style3.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
@@ -13,11 +11,13 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script src="../vue/style.js"></script>
         <!-- ///** */ -->
+        <!--     <title>Liste des retours</title>-->
     </head>
+    <?php require_once('../vue/header.php'); ?>
 </section>
 
 <body>
-    
+
     <form method="GET" action="../controleur/retour.php" name="add">
         <h1 class="text-center mb-4">Liste des Retours</h1>
 
@@ -66,13 +66,13 @@
                                     <th>Date d'achat</th>
                                     <th>Date d'envoi</th>
                                     <th>Date de remboursement</th>
-                                    <th>Statut</th>
+                                    <th >Statut</th>
                                     <th>Nom</th>
                                     <th>Prénom</th>
                                     <th>Montant</th>
                                     <th>Articles</th>
                                     <th>Supprimer</th>
-                                    <th>Changer statut</th>
+                                    <th>Actualiser</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -107,7 +107,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Modal</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle"></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -126,7 +126,7 @@
                     </div>
                     <div>
                         <label for="date_remboursement">Date de remboursement</label>
-                        <input type="date" id="date_remboursement" name="date_remboursement" value="<?php echo date("Y-m-d"); ?>">
+                        <input type="date" id="date_remboursement" name="date_remboursement" value="">
 
 
                     </div>
@@ -140,6 +140,15 @@
             </div>
         </div>
         <style>
+            html {
+                overflow: scroll;
+                overflow-x: hidden;
+            }
+
+            ::-webkit-scrollbar {
+                width: 0px;
+            }
+
             .article {
                 background-color: blanchedalmond;
             }
@@ -154,6 +163,12 @@
             }
 
             th {
+                vertical-align: middle;
+                text-align: center;
+                vertical-align: middle;
+            }
+
+            tr {
                 text-align: center;
                 vertical-align: middle;
             }
@@ -208,7 +223,41 @@
                 font-family: "Times New Roman", Times, serif;
 
             }
+
+            .nav-link {
+                color: #219cee;
+            }
+
+            a.nav-link {
+                color: #219cee;
+            }
+
+            a.nav-link:hover {
+                color: orange;
+            }
+
+            #H-retour {
+                color: orange;
+            }
+
+        
+
+            .chiffre {
+
+                opacity: 0.0;
+            }
         </style>
+        <script>
+            let lesActualises = document.getElementsByClassName('actualiser')
+            for (let actuelise of lesActualises) {
+                actuelise.style.backgroundImage = "url('../vue/style/update.png')";
+                actuelise.style.backgroundRepeat = "no-repeat"
+                actuelise.style.backgroundSize = "55px 50px"; 
+                actuelise.style.verticalAlign = "bottom"; 
+                actuelise.style.verticalAlign="middle"
+                actuelise.style.marginLeft="5px"
+            }
+        </script>
         <script src="../vue/style.js"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -218,8 +267,4 @@
     </form>
 
 </body>
-
-
-
-
 <?php require_once("../vue/footer.php") ?>

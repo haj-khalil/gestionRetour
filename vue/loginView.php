@@ -24,21 +24,6 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
 
 
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-    </style>
 
 
     <!-- Custom styles for this template -->
@@ -62,7 +47,7 @@
                     <div class="d-grid">
                         <button type="submit" id="Connexion" name="Connexion" class="btn btn-primary">Connexion</button>
                     </div>
-                    <div ><?= $message ?></div>
+                    <div><?= $message ?></div>
                     <p class="text-center mt-3">Pas encore inscrit ? <a href="../controleur/inscription.php">Cliquez ici pour vous inscrire</a></p>
                 </div>
             </div>
@@ -71,5 +56,41 @@
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/js/bootstrap.min.js"></script>
 </body>
+
+<style>
+    body {
+
+        background-image: url(../vue/style/back7.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+    }
+
+    @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+        }
+    }
+
+    .text-center {
+        color: white;
+        font-family: "Times New Roman", Times, serif;
+
+    }
+    a{
+        text-decoration: none;
+    }
+    label{
+        color: white;
+    }
+</style>
 
 </html>
