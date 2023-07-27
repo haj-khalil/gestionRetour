@@ -16,7 +16,7 @@
     ?>
 
         <section class="container my-5">
-            <h1 class="text-center mb-4">Liste des Retours</h1>
+            <h1 class="text-center mb-4">Historique</h1>
 
             <div class="table-responsive">
                 <table class="table table-striped table-hover">

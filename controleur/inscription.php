@@ -81,7 +81,7 @@ if ($valider) {
         if (!password_verify($mdpRep, $mdp)) {
             $erreurs['mdpR'] = 'les mots de pass ne dont pas identiques';
         } else  $valeurs['mdp'] = $mdp;
-    } else $erreurs['mdp'] = 'il faut entrer un mdp correct';
+    } else $erreurs['mdp'] = 'il faut entrer un mots de pass correct';
 
 
     if ($naissance != null) {
